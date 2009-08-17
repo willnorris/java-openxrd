@@ -17,14 +17,14 @@
 package org.openxrd.xrd.core.impl;
 
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
-import org.openxrd.xrd.core.Alias;
+import org.openxrd.xrd.core.TargetAuthority;
 
 /**
- * A concrete implementation of {@link Alias}.
+ * A concrete implementation of {@link TargetAuthority}.
  */
-public class AliasImpl extends AbstractXRDObject implements Alias {
+public class TargetAuthorityImpl extends AbstractXRDObject implements TargetAuthority {
 
-    /** Alias value. */
+    /** URI value. */
     private String value;
 
     /**
@@ -34,7 +34,7 @@ public class AliasImpl extends AbstractXRDObject implements Alias {
      * @param elementLocalName the local name of the XML element this Object represents
      * @param namespacePrefix the prefix for the given namespace
      */
-    protected AliasImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
+    protected TargetAuthorityImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 

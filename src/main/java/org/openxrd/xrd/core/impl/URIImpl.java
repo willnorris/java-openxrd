@@ -17,15 +17,18 @@
 package org.openxrd.xrd.core.impl;
 
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
-import org.openxrd.xrd.core.Alias;
+import org.openxrd.xrd.core.URI;
 
 /**
- * A concrete implementation of {@link Alias}.
+ * A concrete implementation of {@link URI}.
  */
-public class AliasImpl extends AbstractXRDObject implements Alias {
+public class URIImpl extends AbstractXRDObject implements URI {
 
-    /** Alias value. */
+    /** URI value. */
     private String value;
+
+    /** URI priority. */
+    private int priority;
 
     /**
      * Constructor.
@@ -34,7 +37,7 @@ public class AliasImpl extends AbstractXRDObject implements Alias {
      * @param elementLocalName the local name of the XML element this Object represents
      * @param namespacePrefix the prefix for the given namespace
      */
-    protected AliasImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
+    protected URIImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
@@ -46,6 +49,20 @@ public class AliasImpl extends AbstractXRDObject implements Alias {
     /** {@inheritDoc} */
     public void setValue(String newValue) {
         value = prepareForAssignment(value, newValue);
+    }
+
+    /** {@inheritDoc} */
+    public int getPriority() {
+        return this.priority;
+    }
+
+    /**
+     * Set the priority.
+     * 
+     * @param newPriority new priority
+     */
+    public void setPriority(int newPriority) {
+        this.priority = newPriority;
     }
 
 }

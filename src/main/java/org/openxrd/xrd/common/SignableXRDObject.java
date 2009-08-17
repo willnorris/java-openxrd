@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package org.openxrd.xrd.core;
+package org.openxrd.xrd.common;
 
-import javax.xml.namespace.QName;
-
-import org.opensaml.xml.schema.XSURI;
-import org.openxrd.common.xml.XRDConstants;
-import org.openxrd.xrd.common.XRDObject;
+import org.opensaml.xml.signature.SignableXMLObject;
 
 /**
- * XRD Subject.
+ * A signable XRDObject.
  */
-public interface Subject extends XRDObject, XSURI {
+public interface SignableXRDObject extends SignableXMLObject, XRDObject {
 
-    /** Element local name. */
-    public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Subject";
-
-    /** Default element name. */
-    public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
-            XRDConstants.XRD_PREFIX);
-
+    /**
+     * Gets the value of the ID attribute for this XRD object which will be used as its signature reference.
+     * 
+     * @return the value of this XRDObject ID attribute
+     */
+    public String getSignatureReferenceID();
 }

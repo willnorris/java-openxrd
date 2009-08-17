@@ -17,15 +17,18 @@
 package org.openxrd.xrd.core.impl;
 
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
-import org.openxrd.xrd.core.Alias;
+import org.openxrd.xrd.core.Type;
 
 /**
- * A concrete implementation of {@link Alias}.
+ * A concrete implementation of {@link Type}.
  */
-public class AliasImpl extends AbstractXRDObject implements Alias {
+public class TypeImpl extends AbstractXRDObject implements Type {
 
-    /** Alias value. */
+    /** Type value. */
     private String value;
+
+    /** Whether this Type is required. */
+    private boolean required;
 
     /**
      * Constructor.
@@ -34,7 +37,7 @@ public class AliasImpl extends AbstractXRDObject implements Alias {
      * @param elementLocalName the local name of the XML element this Object represents
      * @param namespacePrefix the prefix for the given namespace
      */
-    protected AliasImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
+    protected TypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
@@ -46,6 +49,20 @@ public class AliasImpl extends AbstractXRDObject implements Alias {
     /** {@inheritDoc} */
     public void setValue(String newValue) {
         value = prepareForAssignment(value, newValue);
+    }
+
+    /** {@inheritDoc} */
+    public boolean getRequired() {
+        return this.required;
+    }
+
+    /**
+     * Set required.
+     * 
+     * @param newRequired if the Type is required
+     */
+    public void setRequired(boolean newRequired) {
+        this.required = newRequired;
     }
 
 }
