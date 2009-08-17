@@ -41,7 +41,7 @@ import org.w3c.dom.Element;
 /**
  * Intermediate class that serves to initialize the configuration environment for other base test classes.
  */
-public class BaseTestCase extends XMLTestCase {
+public abstract class BaseTestCase extends XMLTestCase {
 
     /** Parser manager used to parse XML. */
     protected static BasicParserPool parser;
