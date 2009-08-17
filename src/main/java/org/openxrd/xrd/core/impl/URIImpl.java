@@ -53,16 +53,12 @@ public class URIImpl extends AbstractXRDObject implements URI {
 
     /** {@inheritDoc} */
     public int getPriority() {
-        return this.priority;
+        return priority;
     }
 
-    /**
-     * Set the priority.
-     * 
-     * @param newPriority new priority
-     */
+    /** {@inheritDoc} */
     public void setPriority(int newPriority) {
-        this.priority = newPriority;
+        priority = prepareForAssignment(priority, newPriority);
     }
 
 }

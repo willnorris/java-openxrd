@@ -21,7 +21,7 @@ import java.util.List;
 import javax.xml.namespace.QName;
 
 import org.opensaml.xml.ElementExtensibleXMLObject;
-import org.opensaml.xml.schema.XSAny;
+import org.opensaml.xml.signature.Signature;
 import org.openxrd.common.xml.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
 
@@ -37,13 +37,74 @@ public interface XRD extends XRDObject, ElementExtensibleXMLObject {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
+    /**
+     * Get the ID of this XRD.
+     * 
+     * @return the ID of this XRD
+     */
+    public String getID();
+
+    /**
+     * Set the ID of this XRD.
+     * 
+     * @param newID the ID of this XRD
+     */
+    public void setID(String newID);
+
+    /**
+     * Get the signature of this XRD.
+     * 
+     * @return the signature of this XRD
+     */
+    public Signature getSignature();
+
+    /**
+     * Get the expiration of this XRD.
+     * 
+     * @return the expiration of this XRD
+     */
     public Expires getExpires();
 
+    /**
+     * Set the expiration of this XRD.
+     * 
+     * @param newExpires the expiration of this XRD
+     */
+    public void setExpires(Expires newExpires);
+
+    /**
+     * Get the subject of this XRD.
+     * 
+     * @return the subject of this XRD
+     */
     public Subject getSubject();
 
+    /**
+     * Set the subject of this XRD.
+     * 
+     * @param newSubject the subject of this XRD
+     */
+    public void setSubject(Subject newSubject);
+
+    /**
+     * Get the list of aliases for this XRD.
+     * 
+     * @return the list of aliases for this XRD
+     */
     public List<Alias> getAliases();
 
+    /**
+     * Get the list of types for this XRD.
+     * 
+     * @return the list of types for this XRD
+     */
     public List<Type> getTypes();
 
+    /**
+     * Get the list of links for this XRD.
+     * 
+     * @return the list of links for this XRD
+     */
     public List<Link> getLinks();
+
 }

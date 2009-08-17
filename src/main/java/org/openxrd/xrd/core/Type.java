@@ -35,10 +35,17 @@ public interface Type extends XRDObject, XSURI {
             XRDConstants.XRD_PREFIX);
 
     /**
-     * Whether this Type is required.
+     * Get whether this type is required.
      * 
-     * @return if this Type is required
+     * @return whether this type is required
      */
     public boolean getRequired();
+
+    /**
+     * Set whether this type is required.
+     * 
+     * @param newRequired whether this type is required
+     */
+    public void setRequired(boolean newRequired);
 
 }

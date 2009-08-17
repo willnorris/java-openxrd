@@ -17,12 +17,13 @@
 package org.openxrd.xrd.core.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.namespace.QName;
 
 import org.opensaml.xml.XMLObject;
-import org.opensaml.xml.util.AttributeMap;
+import org.opensaml.xml.signature.Signature;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
 import org.openxrd.xrd.core.Alias;
@@ -37,23 +38,26 @@ import org.openxrd.xrd.core.XRD;
  */
 public class XRDImpl extends AbstractXRDObject implements XRD {
 
-    /** Aliases. */
-    private List<Alias> aliases;
+    /** ID. */
+    private String id;
+
+    /** Signature. */
+    private Signature signature;
 
     /** Expiration. */
     private Expires expires;
 
-    /** Links. */
-    private List<Link> links;
-
     /** Subject. */
     private Subject subject;
 
-    /** Types. */
-    private List<Type> types;    
+    /** Aliases. */
+    private List<Alias> aliases;
 
-    /** Unknown attributes for this element. */
-    private AttributeMap unknownAttributes;
+    /** Types. */
+    private List<Type> types;
+
+    /** Links. */
+    private List<Link> links;
 
     /** Unknown children of this element. */
     private IndexedXMLObjectChildrenList<XMLObject> unknownElements;
@@ -71,13 +75,23 @@ public class XRDImpl extends AbstractXRDObject implements XRD {
         aliases = new ArrayList<Alias>();
         links = new ArrayList<Link>();
         types = new ArrayList<Type>();
-        unknownAttributes = new AttributeMap(this);
+
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
 
     /** {@inheritDoc} */
-    public List<Alias> getAliases() {
-        return aliases;
+    public String getID() {
+        return id;
+    }
+
+    /** {@inheritDoc} */
+    public void setID(String newID) {
+        id = prepareForAssignment(id, newID);
+    }
+
+    /** {@inheritDoc} */
+    public Signature getSignature() {
+        return signature;
     }
 
     /** {@inheritDoc} */
@@ -86,8 +100,8 @@ public class XRDImpl extends AbstractXRDObject implements XRD {
     }
 
     /** {@inheritDoc} */
-    public List<Link> getLinks() {
-        return links;
+    public void setExpires(Expires newExpires) {
+        expires = prepareForAssignment(expires, newExpires);
     }
 
     /** {@inheritDoc} */
@@ -96,19 +110,44 @@ public class XRDImpl extends AbstractXRDObject implements XRD {
     }
 
     /** {@inheritDoc} */
+    public void setSubject(Subject newSubject) {
+        subject = prepareForAssignment(subject, newSubject);
+    }
+
+    /** {@inheritDoc} */
+    public List<Alias> getAliases() {
+        return aliases;
+    }
+
+    /** {@inheritDoc} */
     public List<Type> getTypes() {
         return types;
     }
 
     /** {@inheritDoc} */
-    public List<XMLObject> getOrderedChildren() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Link> getLinks() {
+        return links;
     }
 
     /** {@inheritDoc} */
-    public AttributeMap getUnknownAttributes() {
-        return unknownAttributes;
+    public List<XMLObject> getOrderedChildren() {
+        ArrayList<XMLObject> children = new ArrayList<XMLObject>();
+
+        if (getSignature() != null) {
+            children.add(getSignature());
+        }
+
+        if (getSubject() != null) {
+            children.add(getSubject());
+        }
+
+        children.addAll(getAliases());
+        children.addAll(getTypes());
+        children.addAll(getLinks());
+
+        children.addAll(getUnknownXMLObjects());
+
+        return Collections.unmodifiableList(children);
     }
 
     /** {@inheritDoc} */

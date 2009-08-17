@@ -37,20 +37,59 @@ public interface Link extends XRDObject, ElementExtensibleXMLObject {
             XRDConstants.XRD_PREFIX);
 
     /**
-     * Get Priority.
+     * Get the priority of this link.
      * 
-     * @return priority
+     * @return the priority of this link
      */
     public int getPriority();
 
+    /**
+     * Set the priority of this link.
+     * 
+     * @param newPriority the priority of this link
+     */
+    public void setPriority(int newPriority);
+
+    /**
+     * Get the list of rels for this link.
+     * 
+     * @return the list of rels for this link
+     */
     public List<Rel> getRels();
 
+    /**
+     * Get the list of media types for this link.
+     * 
+     * @return the list of media types for this link
+     */
     public List<MediaType> getMediaTypes();
 
+    /**
+     * Get the list of URIs for this link.
+     * 
+     * @return the list of URIs for this link
+     */
     public List<URI> getURIs();
 
+    /**
+     * Get the list of URI templates for this link.
+     * 
+     * @return the list of URI templates for this link
+     */
     public List<URITemplate> getURITemplates();
 
+    /**
+     * Get the target authority for this link.
+     * 
+     * @return the target authority for this link.
+     */
     public TargetAuthority getTargetAuthority();
+
+    /**
+     * Set the target authority for this link.
+     * 
+     * @param newTargetAuthority the target authority for this link
+     */
+    public void setTargetAuthority(TargetAuthority newTargetAuthority);
 
 }

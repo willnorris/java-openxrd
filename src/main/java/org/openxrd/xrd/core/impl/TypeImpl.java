@@ -53,16 +53,12 @@ public class TypeImpl extends AbstractXRDObject implements Type {
 
     /** {@inheritDoc} */
     public boolean getRequired() {
-        return this.required;
+        return required;
     }
 
-    /**
-     * Set required.
-     * 
-     * @param newRequired if the Type is required
-     */
+    /** {@inheritDoc} */
     public void setRequired(boolean newRequired) {
-        this.required = newRequired;
+        required = prepareForAssignment(required, newRequired);
     }
 
 }

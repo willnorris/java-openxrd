@@ -35,10 +35,17 @@ public interface URI extends XRDObject, XSURI {
             XRDConstants.XRD_PREFIX);
 
     /**
-     * Get the priority.
+     * Get the priority of this URI.
      * 
-     * @return the priority
+     * @return the priority of this URI
      */
     public int getPriority();
+
+    /**
+     * Set the priority of this URI.
+     * 
+     * @param priority the priority of this URI
+     */
+    public void setPriority(int priority);
 
 }

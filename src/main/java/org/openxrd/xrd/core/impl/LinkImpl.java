@@ -17,6 +17,7 @@
 package org.openxrd.xrd.core.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.namespace.QName;
@@ -36,14 +37,14 @@ import org.openxrd.xrd.core.URITemplate;
  */
 public class LinkImpl extends AbstractXRDObject implements Link {
 
-    /** Media Types. */
-    private List<MediaType> mediaTypes;
-
     /** Priority. */
     private int priority;
 
     /** Rels. */
     private List<Rel> rels;
+
+    /** Media Types. */
+    private List<MediaType> mediaTypes;
 
     /** URIs. */
     private List<URI> uris;
@@ -75,13 +76,13 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     }
 
     /** {@inheritDoc} */
-    public List<MediaType> getMediaTypes() {
-        return mediaTypes;
+    public int getPriority() {
+        return priority;
     }
 
     /** {@inheritDoc} */
-    public int getPriority() {
-        return priority;
+    public void setPriority(int newPriority) {
+        priority = prepareForAssignment(priority, newPriority);
     }
 
     /** {@inheritDoc} */
@@ -90,13 +91,8 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     }
 
     /** {@inheritDoc} */
-    public TargetAuthority getTargetAuthority() {
-        return targetAuthority;
-    }
-
-    /** {@inheritDoc} */
-    public List<URITemplate> getURITemplates() {
-        return uriTemplates;
+    public List<MediaType> getMediaTypes() {
+        return mediaTypes;
     }
 
     /** {@inheritDoc} */
@@ -105,9 +101,35 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     }
 
     /** {@inheritDoc} */
+    public List<URITemplate> getURITemplates() {
+        return uriTemplates;
+    }
+
+    /** {@inheritDoc} */
+    public TargetAuthority getTargetAuthority() {
+        return targetAuthority;
+    }
+
+    /** {@inheritDoc} */
+    public void setTargetAuthority(TargetAuthority newTargetAuthority) {
+        targetAuthority = prepareForAssignment(targetAuthority, newTargetAuthority);
+    }
+
+    /** {@inheritDoc} */
     public List<XMLObject> getOrderedChildren() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<XMLObject> children = new ArrayList<XMLObject>();
+        
+        children.addAll(getRels());
+        children.addAll(getMediaTypes());
+        children.addAll(getURIs());
+        children.addAll(getURITemplates());
+        if (getTargetAuthority() != null) {
+            children.add(getTargetAuthority());
+        }
+        
+        children.addAll(getUnknownXMLObjects());
+        
+        return Collections.unmodifiableList(children);
     }
 
     /** {@inheritDoc} */

@@ -35,10 +35,16 @@ public interface URITemplate extends XRDObject, XSString {
             XRDConstants.XRD_PREFIX);
 
     /**
-     * Get the priority.
+     * Get the priority of this URI template.
      * 
-     * @return the priority
+     * @return the priority of this URI template
      */
     public int getPriority();
 
+    /**
+     * Set the priority of this URI template.
+     * 
+     * @param newPriority the priority of this URI template
+     */
+    public void setPriority(int newPriority);
 }
