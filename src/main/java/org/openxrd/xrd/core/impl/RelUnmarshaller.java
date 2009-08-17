@@ -16,6 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Rel;
 
@@ -23,5 +24,12 @@ import org.openxrd.xrd.core.Rel;
  * A thread-safe Unmarshaller for {@link Rel}.
  */
 public class RelUnmarshaller extends AbstractXRDObjectUnmarshaller {
+
+    /** {@inheritDoc} */
+    protected void processElementContent(XMLObject xmlObject, String elementContent) {
+        Rel rel = (Rel) xmlObject;
+
+        rel.setValue(elementContent);
+    }
 
 }

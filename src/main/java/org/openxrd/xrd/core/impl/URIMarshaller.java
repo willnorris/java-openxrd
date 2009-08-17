@@ -16,12 +16,36 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.MarshallingException;
+import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
 import org.openxrd.xrd.core.URI;
+import org.w3c.dom.Element;
 
 /**
  * A thread-safe marshaller for {@link URI}.
  */
 public class URIMarshaller extends AbstractXRDObjectMarshaller {
 
+    /** {@inheritDoc} */
+    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
+        URI uri = (URI) xmlObject;
+
+        if (uri.getPriority() != null) {
+            domElement.setAttributeNS(null, URI.PRIORITY_ATTRIB_NAME, uri.getPriority().toString());
+        }
+
+        super.marshallAttributes(xmlObject, domElement);
+    }
+
+    /** {@inheritDoc} */
+    protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
+        URI uri = (URI) xmlObject;
+
+        if (uri.getValue() != null) {
+            XMLHelper.appendTextContent(domElement, uri.getValue());
+        }
+    }
+    
 }

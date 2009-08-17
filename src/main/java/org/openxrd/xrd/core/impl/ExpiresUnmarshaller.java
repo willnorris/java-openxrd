@@ -16,25 +16,25 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.joda.time.DateTime;
+import org.joda.time.chrono.ISOChronology;
 import org.opensaml.xml.XMLObject;
-import org.opensaml.xml.io.MarshallingException;
-import org.opensaml.xml.util.XMLHelper;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
-import org.openxrd.xrd.core.MediaType;
-import org.w3c.dom.Element;
+import org.opensaml.xml.util.DatatypeHelper;
+import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
+import org.openxrd.xrd.core.Expires;
 
 /**
- * A thread-safe marshaller for {@link MediaType}.
+ * A thread-safe Unmarshaller for {@link Expires}.
  */
-public class MediaTypeMarshaller extends AbstractXRDObjectMarshaller {
+public class ExpiresUnmarshaller extends AbstractXRDObjectUnmarshaller {
 
     /** {@inheritDoc} */
-    protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        MediaType mediaType = (MediaType) xmlObject;
+    protected void processElementContent(XMLObject xmlObject, String elementContent) {
+        Expires expires = (Expires) xmlObject;
 
-        if (mediaType.getValue() != null) {
-            XMLHelper.appendTextContent(domElement, mediaType.getValue());
+        if (!DatatypeHelper.isEmpty(elementContent)) {
+            expires.setValue(new DateTime(elementContent, ISOChronology.getInstanceUTC()));
         }
     }
-    
+
 }

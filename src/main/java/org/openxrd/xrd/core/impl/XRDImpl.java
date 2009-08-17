@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.AttributeMap;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
+import org.opensaml.xml.util.XMLObjectChildrenList;
 import org.openxrd.xrd.common.impl.AbstractSignableXRDObject;
 import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
@@ -48,13 +49,13 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     private Subject subject;
 
     /** Aliases. */
-    private List<Alias> aliases;
+    private final XMLObjectChildrenList<Alias> aliases;
 
     /** Types. */
-    private List<Type> types;
+    private final XMLObjectChildrenList<Type> types;
 
     /** Links. */
-    private List<Link> links;
+    private final XMLObjectChildrenList<Link> links;
 
     /** Unknown attributes for this element. */
     private AttributeMap unknownAttributes;
@@ -72,9 +73,9 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     protected XRDImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
 
-        aliases = new ArrayList<Alias>();
-        links = new ArrayList<Link>();
-        types = new ArrayList<Type>();
+        aliases = new XMLObjectChildrenList<Alias>(this);
+        links = new XMLObjectChildrenList<Link>(this);
+        types = new XMLObjectChildrenList<Type>(this);
 
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
@@ -86,7 +87,9 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
 
     /** {@inheritDoc} */
     public void setID(String newID) {
+        String oldID = id;
         id = prepareForAssignment(id, newID);
+        registerOwnID(oldID, newID);
     }
 
     /** {@inheritDoc} */
@@ -142,6 +145,10 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
             children.add(getSignature());
         }
 
+        if (getExpires() != null) {
+            children.add(getExpires());
+        }
+        
         if (getSubject() != null) {
             children.add(getSubject());
         }

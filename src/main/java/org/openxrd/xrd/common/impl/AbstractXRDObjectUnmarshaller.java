@@ -16,9 +16,13 @@
 
 package org.openxrd.xrd.common.impl;
 
+import javax.xml.namespace.QName;
+
+import org.opensaml.xml.AttributeExtensibleXMLObject;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.AbstractXMLObjectUnmarshaller;
 import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.util.XMLHelper;
 import org.w3c.dom.Attr;
 
 /**
@@ -28,10 +32,17 @@ public class AbstractXRDObjectUnmarshaller extends AbstractXMLObjectUnmarshaller
 
     /** {@inheritDoc} */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
+        AttributeExtensibleXMLObject anyAttribute = (AttributeExtensibleXMLObject) xmlObject;
+        QName attribQName = XMLHelper.constructQName(attribute.getNamespaceURI(), attribute.getLocalName(), attribute
+                .getPrefix());
+        if (attribute.isId()) {
+            anyAttribute.getUnknownAttributes().registerID(attribQName);
+        }
+        anyAttribute.getUnknownAttributes().put(attribQName, attribute.getValue());
     }
 
     /** {@inheritDoc} */
-    protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
+    protected void processChildElement(XMLObject parentObject, XMLObject childObject)
             throws UnmarshallingException {
     }
 

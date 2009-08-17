@@ -19,33 +19,24 @@ package org.openxrd.xrd.core.impl;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.XMLHelper;
+import org.openxrd.Configuration;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Expires;
 import org.w3c.dom.Element;
 
 /**
- * A thread-safe marshaller for {@link Type}.
+ * A thread-safe Marshaller for {@link Expires}.
  */
-public class TypeMarshaller extends AbstractXRDObjectMarshaller {
-
-    /** {@inheritDoc} */
-    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Type type = (Type) xmlObject;
-
-        if (type.isRequired() != null) {
-            domElement.setAttributeNS(null, Type.REQUIRED_ATTRIB_NAME, type.isRequiredXSBoolean().toString());
-        }
-
-        super.marshallAttributes(xmlObject, domElement);
-    }
+public class ExpiresMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Type type = (Type) xmlObject;
+        Expires expires = (Expires) xmlObject;
 
-        if (type.getValue() != null) {
-            XMLHelper.appendTextContent(domElement, type.getValue());
+        if (expires.getValue() != null) {
+            String expiresStr = Configuration.getXRDDateFormatter().print(expires.getValue());
+            XMLHelper.appendTextContent(domElement, expiresStr);
         }
     }
-    
+
 }

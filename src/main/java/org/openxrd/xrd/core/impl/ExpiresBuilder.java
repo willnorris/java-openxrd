@@ -16,25 +16,27 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.opensaml.xml.XMLObject;
-import org.opensaml.xml.io.MarshallingException;
-import org.opensaml.xml.util.XMLHelper;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
-import org.openxrd.xrd.core.MediaType;
-import org.w3c.dom.Element;
+import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.xrd.common.impl.AbstractXRDObjectBuilder;
+import org.openxrd.xrd.core.Expires;
 
 /**
- * A thread-safe marshaller for {@link MediaType}.
+ * Builder for {@link ExpiresImpl} objects.
  */
-public class MediaTypeMarshaller extends AbstractXRDObjectMarshaller {
+public class ExpiresBuilder extends AbstractXRDObjectBuilder<Expires> {
+
+    /** Constructor. */
+    public ExpiresBuilder() {
+    }
 
     /** {@inheritDoc} */
-    protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        MediaType mediaType = (MediaType) xmlObject;
-
-        if (mediaType.getValue() != null) {
-            XMLHelper.appendTextContent(domElement, mediaType.getValue());
-        }
+    public Expires buildObject() {
+        return buildObject(XRDConstants.XRD_NS, Expires.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
     }
-    
+
+    /** {@inheritDoc} */
+    public Expires buildObject(String namespaceURI, String localName, String namespacePrefix) {
+        return new ExpiresImpl(namespaceURI, localName, namespacePrefix);
+    }
+
 }

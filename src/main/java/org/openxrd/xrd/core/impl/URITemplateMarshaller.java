@@ -20,20 +20,20 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.URITemplate;
 import org.w3c.dom.Element;
 
 /**
- * A thread-safe marshaller for {@link Type}.
+ * A thread-safe marshaller for {@link URITemplate}.
  */
-public class TypeMarshaller extends AbstractXRDObjectMarshaller {
+public class URITemplateMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Type type = (Type) xmlObject;
+        URITemplate uriTemplate = (URITemplate) xmlObject;
 
-        if (type.isRequired() != null) {
-            domElement.setAttributeNS(null, Type.REQUIRED_ATTRIB_NAME, type.isRequiredXSBoolean().toString());
+        if (uriTemplate.getPriority() != null) {
+            domElement.setAttributeNS(null, URITemplate.PRIORITY_ATTRIB_NAME, uriTemplate.getPriority().toString());
         }
 
         super.marshallAttributes(xmlObject, domElement);
@@ -41,10 +41,10 @@ public class TypeMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Type type = (Type) xmlObject;
+        URITemplate uriTemplate = (URITemplate) xmlObject;
 
-        if (type.getValue() != null) {
-            XMLHelper.appendTextContent(domElement, type.getValue());
+        if (uriTemplate.getValue() != null) {
+            XMLHelper.appendTextContent(domElement, uriTemplate.getValue());
         }
     }
     

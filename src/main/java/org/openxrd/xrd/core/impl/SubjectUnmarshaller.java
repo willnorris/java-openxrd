@@ -16,6 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Subject;
 
@@ -23,5 +24,12 @@ import org.openxrd.xrd.core.Subject;
  * A thread-safe Unmarshaller for {@link Subject}.
  */
 public class SubjectUnmarshaller extends AbstractXRDObjectUnmarshaller {
+
+    /** {@inheritDoc} */
+    protected void processElementContent(XMLObject xmlObject, String elementContent) {
+        Subject subject = (Subject) xmlObject;
+
+        subject.setValue(elementContent);
+    }
 
 }

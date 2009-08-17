@@ -16,19 +16,17 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.joda.time.DateTime;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
-import org.openxrd.xrd.core.URITemplate;
+import org.openxrd.xrd.core.Expires;
 
 /**
- * A concrete implementation of {@link URITemplate}.
+ * A concrete implementation of {@link Expires}.
  */
-public class URITemplateImpl extends AbstractXRDObject implements URITemplate {
+public class ExpiresImpl extends AbstractXRDObject implements Expires {
 
-    /** URITemplate value. */
-    private String value;
-
-    /** URITemplate priority. */
-    private Integer priority;
+    /** Expires value. */
+    private DateTime value;
 
     /**
      * Constructor.
@@ -37,28 +35,18 @@ public class URITemplateImpl extends AbstractXRDObject implements URITemplate {
      * @param elementLocalName the local name of the XML element this Object represents
      * @param namespacePrefix the prefix for the given namespace
      */
-    public URITemplateImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
+    public ExpiresImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
     /** {@inheritDoc} */
-    public String getValue() {
+    public DateTime getValue() {
         return value;
     }
 
     /** {@inheritDoc} */
-    public void setValue(String newValue) {
+    public void setValue(DateTime newValue) {
         value = prepareForAssignment(value, newValue);
-    }
-
-    /** {@inheritDoc} */
-    public Integer getPriority() {
-        return priority;
-    }
-
-    /** {@inheritDoc} */
-    public void setPriority(Integer newPriority) {
-        priority = prepareForAssignment(priority, newPriority);
     }
 
 }

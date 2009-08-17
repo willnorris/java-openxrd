@@ -16,6 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.schema.XSBooleanValue;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
 import org.openxrd.xrd.core.Type;
 
@@ -28,7 +29,7 @@ public class TypeImpl extends AbstractXRDObject implements Type {
     private String value;
 
     /** Whether this Type is required. */
-    private boolean required;
+    private XSBooleanValue required;
 
     /**
      * Constructor.
@@ -52,12 +53,31 @@ public class TypeImpl extends AbstractXRDObject implements Type {
     }
 
     /** {@inheritDoc} */
-    public boolean getRequired() {
-        return required;
+    public Boolean isRequired() {
+        if (required != null) {
+            return required.getValue();
+        }
+        
+        return Boolean.FALSE;
     }
 
+
     /** {@inheritDoc} */
-    public void setRequired(boolean newRequired) {
+    public XSBooleanValue isRequiredXSBoolean() {
+        return required;
+    }
+    
+    /** {@inheritDoc} */
+    public void setRequired(Boolean newRequired) {
+        if (newRequired != null) {
+            setRequired(new XSBooleanValue(newRequired, false));    
+        } else {
+            required = prepareForAssignment(required, null);
+        }   
+    }
+    
+    /** {@inheritDoc} */
+    public void setRequired(XSBooleanValue newRequired) {
         required = prepareForAssignment(required, newRequired);
     }
 

@@ -16,12 +16,26 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
+import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.MarshallingException;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectMarshaller;
 import org.openxrd.xrd.core.Link;
+import org.w3c.dom.Element;
 
 /**
  * A thread-safe marshaller for {@link Link}.
  */
-public class LinkMarshaller extends AbstractXRDObjectMarshaller {
+public class LinkMarshaller extends AbstractExtensibleXRDObjectMarshaller {
+
+    /** {@inheritDoc} */
+    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
+        Link link = (Link) xmlObject;
+
+        if (link.getPriority() != null) {
+            domElement.setAttributeNS(null, Link.PRIORITY_ATTRIB_NAME, link.getPriority().toString());
+        }
+
+        super.marshallAttributes(xmlObject, domElement);
+    }
 
 }

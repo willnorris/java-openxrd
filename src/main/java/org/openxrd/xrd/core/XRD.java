@@ -21,6 +21,7 @@ import java.util.List;
 import javax.xml.namespace.QName;
 
 import org.opensaml.xml.ElementExtensibleXMLObject;
+import org.opensaml.xml.util.XMLConstants;
 import org.openxrd.common.xml.XRDConstants;
 import org.openxrd.xrd.common.SignableXRDObject;
 
@@ -35,6 +36,9 @@ public interface XRD extends SignableXRDObject, ElementExtensibleXMLObject {
     /** Default element name. */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
+
+    /** ID attribute name. */
+    public static final QName ID_ATTRIB_NAME = new QName(XMLConstants.XML_NS, "id", XMLConstants.XML_PREFIX);
 
     /**
      * Get the ID of this XRD.

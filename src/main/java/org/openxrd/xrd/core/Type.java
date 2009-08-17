@@ -18,6 +18,7 @@ package org.openxrd.xrd.core;
 
 import javax.xml.namespace.QName;
 
+import org.opensaml.xml.schema.XSBooleanValue;
 import org.opensaml.xml.schema.XSURI;
 import org.openxrd.common.xml.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
@@ -34,18 +35,35 @@ public interface Type extends XRDObject, XSURI {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
+    /** Required attribute name. */
+    public static final String REQUIRED_ATTRIB_NAME = "required";
+    
     /**
      * Get whether this type is required.
      * 
      * @return whether this type is required
      */
-    public boolean getRequired();
+    public Boolean isRequired();
+    
+    /**
+     * Get whether this type is required.
+     * 
+     * @return whether this type is required
+     */
+    public XSBooleanValue isRequiredXSBoolean();
 
     /**
      * Set whether this type is required.
      * 
      * @param newRequired whether this type is required
      */
-    public void setRequired(boolean newRequired);
+    public void setRequired(Boolean newRequired);
+
+    /**
+     * Set whether this type is required.
+     * 
+     * @param newRequired whether this type is required
+     */
+    public void setRequired(XSBooleanValue newRequired);
 
 }

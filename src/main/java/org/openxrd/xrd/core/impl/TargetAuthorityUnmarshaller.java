@@ -16,6 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.TargetAuthority;
 
@@ -23,5 +24,12 @@ import org.openxrd.xrd.core.TargetAuthority;
  * A thread-safe Unmarshaller for {@link TargetAuthority}.
  */
 public class TargetAuthorityUnmarshaller extends AbstractXRDObjectUnmarshaller {
+
+    /** {@inheritDoc} */
+    protected void processElementContent(XMLObject xmlObject, String elementContent) {
+        TargetAuthority targetAuthority = (TargetAuthority) xmlObject;
+
+        targetAuthority.setValue(elementContent);
+    }
 
 }

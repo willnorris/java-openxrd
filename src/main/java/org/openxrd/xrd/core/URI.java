@@ -34,18 +34,21 @@ public interface URI extends XRDObject, XSURI {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
+    /** Priority attribute name. */
+    public static final String PRIORITY_ATTRIB_NAME = "priority";
+    
     /**
      * Get the priority of this URI.
      * 
      * @return the priority of this URI
      */
-    public int getPriority();
+    public Integer getPriority();
 
     /**
      * Set the priority of this URI.
      * 
      * @param priority the priority of this URI
      */
-    public void setPriority(int priority);
+    public void setPriority(Integer priority);
 
 }

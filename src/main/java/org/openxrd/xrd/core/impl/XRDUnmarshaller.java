@@ -16,12 +16,54 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
+import org.openxrd.xrd.core.Alias;
+import org.openxrd.xrd.core.Expires;
+import org.openxrd.xrd.core.Link;
+import org.openxrd.xrd.core.Subject;
+import org.openxrd.xrd.core.Type;
 import org.openxrd.xrd.core.XRD;
+import org.w3c.dom.Attr;
 
 /**
  * A thread-safe unmarshaller for {@link XRD}.
  */
 public class XRDUnmarshaller extends AbstractXRDObjectUnmarshaller {
 
+    /** {@inheritDoc} */
+    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
+        XRD xrd = (XRD) xmlObject;
+
+        if (attribute.getLocalName().equals(XRD.ID_ATTRIB_NAME.getLocalPart())
+                && attribute.getNamespaceURI().equals(XRD.ID_ATTRIB_NAME.getNamespaceURI())
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            xrd.setID(attribute.getValue());
+            attribute.getOwnerElement().setIdAttributeNode(attribute, true);
+        } else {
+            super.processAttribute(xmlObject, attribute);
+        }
+    }
+    
+    /** {@inheritDoc} */
+    protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {
+        XRD xrd = (XRD) parentObject;
+        
+        if (childObject instanceof Expires) {
+            xrd.setExpires((Expires) childObject);
+        } else if (childObject instanceof Subject) {
+            xrd.setSubject((Subject) childObject);
+        } else if (childObject instanceof Alias) {
+            xrd.getAliases().add((Alias) childObject);
+        } else if (childObject instanceof Type) {
+            xrd.getTypes().add((Type) childObject);
+        } else if (childObject instanceof Link) {
+            xrd.getLinks().add((Link) childObject);
+        } else {
+            super.processChildElement(parentObject, childObject);
+        }
+    }
+    
 }

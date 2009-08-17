@@ -16,6 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Alias;
 
@@ -23,5 +24,12 @@ import org.openxrd.xrd.core.Alias;
  * A thread-safe Unmarshaller for {@link Alias}.
  */
 public class AliasUnmarshaller extends AbstractXRDObjectUnmarshaller {
+
+    /** {@inheritDoc} */
+    protected void processElementContent(XMLObject xmlObject, String elementContent) {
+        Alias alias = (Alias) xmlObject;
+
+        alias.setValue(elementContent);
+    }
 
 }

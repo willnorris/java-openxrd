@@ -16,12 +16,52 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
-import org.openxrd.xrd.core.Alias;
+import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.util.DatatypeHelper;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
+import org.openxrd.xrd.core.Link;
+import org.openxrd.xrd.core.MediaType;
+import org.openxrd.xrd.core.Rel;
+import org.openxrd.xrd.core.TargetAuthority;
+import org.openxrd.xrd.core.URI;
+import org.openxrd.xrd.core.URITemplate;
+import org.w3c.dom.Attr;
 
 /**
  * A thread-safe unmarshaller for {@link Link}.
  */
-public class LinkUnmarshaller extends AbstractXRDObjectUnmarshaller {
+public class LinkUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
+
+    /** {@inheritDoc} */
+    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
+        Link link = (Link) xmlObject;
+
+        if (attribute.getLocalName().equals(Link.PRIORITY_ATTRIB_NAME) 
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            link.setPriority(Integer.valueOf(attribute.getValue()));
+        } else {
+            super.processAttribute(xmlObject, attribute);
+        }
+    }
+
+    /** {@inheritDoc} */
+    protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {
+        Link link = (Link) parentObject;
+
+        if (childObject instanceof Rel) {
+            link.getRels().add((Rel) childObject);
+        } else if (childObject instanceof MediaType) {
+            link.getMediaTypes().add((MediaType) childObject);
+        } else if (childObject instanceof URI) {
+            link.getURIs().add((URI) childObject);
+        } else if (childObject instanceof URITemplate) {
+            link.getURITemplates().add((URITemplate) childObject);
+        } else if (childObject instanceof TargetAuthority) {
+            link.setTargetAuthority((TargetAuthority) childObject);
+        } else {
+            super.processChildElement(parentObject, childObject);
+        }
+    }
 
 }

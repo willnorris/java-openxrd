@@ -34,17 +34,20 @@ public interface URITemplate extends XRDObject, XSString {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
+    /** Priority attribute name. */
+    public static final String PRIORITY_ATTRIB_NAME = "priority";
+
     /**
      * Get the priority of this URI template.
      * 
      * @return the priority of this URI template
      */
-    public int getPriority();
+    public Integer getPriority();
 
     /**
      * Set the priority of this URI template.
      * 
      * @param newPriority the priority of this URI template
      */
-    public void setPriority(int newPriority);
+    public void setPriority(Integer newPriority);
 }

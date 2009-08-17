@@ -18,6 +18,7 @@ package org.openxrd.xrd.core;
 
 import javax.xml.namespace.QName;
 
+import org.joda.time.DateTime;
 import org.openxrd.common.xml.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
 
@@ -32,5 +33,19 @@ public interface Expires extends XRDObject {
     /** Default element name. */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
+
+    /**
+     * Gets the DateTime content of the element.
+     * 
+     * @return the DateTime content of the element
+     */
+    public DateTime getValue();
+
+    /**
+     * Sets the DateTime content of the element.
+     * 
+     * @param newValue the DateTime content of the element
+     */
+    public void setValue(DateTime newValue);
 
 }

@@ -16,12 +16,25 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.MarshallingException;
+import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
 import org.openxrd.xrd.core.Subject;
+import org.w3c.dom.Element;
 
 /**
  * A thread-safe marshaller for {@link Subject}.
  */
 public class SubjectMarshaller extends AbstractXRDObjectMarshaller {
 
+    /** {@inheritDoc} */
+    protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
+        Subject subject = (Subject) xmlObject;
+
+        if (subject.getValue() != null) {
+            XMLHelper.appendTextContent(domElement, subject.getValue());
+        }
+    }
+    
 }

@@ -16,12 +16,36 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.schema.XSBooleanValue;
+import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Type;
+import org.w3c.dom.Attr;
 
 /**
  * A thread-safe Unmarshaller for {@link Type}.
  */
 public class TypeUnmarshaller extends AbstractXRDObjectUnmarshaller {
+
+    /** {@inheritDoc} */
+    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
+        Type type = (Type) xmlObject;
+
+        if (attribute.getLocalName().equals(Type.REQUIRED_ATTRIB_NAME) 
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            type.setRequired(XSBooleanValue.valueOf(attribute.getValue()));
+        } else {
+            super.processAttribute(xmlObject, attribute);
+        }
+    }
+
+    /** {@inheritDoc} */
+    protected void processElementContent(XMLObject xmlObject, String elementContent) {
+        Type type = (Type) xmlObject;
+
+        type.setValue(elementContent);
+    }
 
 }

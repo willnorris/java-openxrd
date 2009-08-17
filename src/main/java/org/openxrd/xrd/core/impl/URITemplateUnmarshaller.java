@@ -17,19 +17,34 @@
 package org.openxrd.xrd.core.impl;
 
 import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
-import org.openxrd.xrd.core.MediaType;
+import org.openxrd.xrd.core.URITemplate;
+import org.w3c.dom.Attr;
 
 /**
- * A thread-safe Unmarshaller for {@link MediaType}.
+ * A thread-safe unmarshaller for {@link URITemplate}.
  */
-public class MediaTypeUnmarshaller extends AbstractXRDObjectUnmarshaller {
+public class URITemplateUnmarshaller extends AbstractXRDObjectUnmarshaller {
+
+    /** {@inheritDoc} */
+    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
+        URITemplate uriTemplate = (URITemplate) xmlObject;
+
+        if (attribute.getLocalName().equals(URITemplate.PRIORITY_ATTRIB_NAME)
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            uriTemplate.setPriority(Integer.valueOf(attribute.getValue()));
+        } else {
+            super.processAttribute(xmlObject, attribute);
+        }
+    }
 
     /** {@inheritDoc} */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {
-        MediaType mediaType = (MediaType) xmlObject;
+        URITemplate uri = (URITemplate) xmlObject;
 
-        mediaType.setValue(elementContent);
+        uri.setValue(elementContent);
     }
-    
+
 }

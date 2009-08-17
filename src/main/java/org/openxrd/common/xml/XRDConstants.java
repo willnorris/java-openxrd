@@ -30,7 +30,7 @@ public class XRDConstants extends XMLConstants {
     public static final String XRD_PREFIX = "xrd";
 
     /** XRD 1.0 Trust XML Namespace. */
-    public static final String XRDTRUST_NS = "http://docs.oasis-open.org/ns/xri/xrd-1.0";
+    public static final String XRDTRUST_NS = "http://docs.oasis-open.org/ns/xri/xrd-1.0-trust";
 
     /** XRD 1.0 Trust QName prefix. */
     public static final String XRDTRUST_PREFIX = "trust";

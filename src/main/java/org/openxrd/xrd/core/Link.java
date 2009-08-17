@@ -36,19 +36,22 @@ public interface Link extends XRDObject, ElementExtensibleXMLObject {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
+    /** Priority attribute name. */
+    public static final String PRIORITY_ATTRIB_NAME = "priority";
+
     /**
      * Get the priority of this link.
      * 
      * @return the priority of this link
      */
-    public int getPriority();
+    public Integer getPriority();
 
     /**
      * Set the priority of this link.
      * 
      * @param newPriority the priority of this link
      */
-    public void setPriority(int newPriority);
+    public void setPriority(Integer newPriority);
 
     /**
      * Get the list of rels for this link.

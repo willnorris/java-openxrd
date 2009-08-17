@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package org.openxrd.xrd.core.impl;
+package org.openxrd.xrd.common.impl;
 
-import org.opensaml.xml.XMLObject;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
-import org.openxrd.xrd.core.MediaType;
+import org.opensaml.xml.io.Marshaller;
 
 /**
- * A thread-safe Unmarshaller for {@link MediaType}.
+ * A thread safe, abstract implementation of the {@link Marshaller} interface that supports element extensibility.
  */
-public class MediaTypeUnmarshaller extends AbstractXRDObjectUnmarshaller {
+public class AbstractExtensibleXRDObjectMarshaller extends AbstractXRDObjectMarshaller {
 
-    /** {@inheritDoc} */
-    protected void processElementContent(XMLObject xmlObject, String elementContent) {
-        MediaType mediaType = (MediaType) xmlObject;
-
-        mediaType.setValue(elementContent);
-    }
-    
 }
