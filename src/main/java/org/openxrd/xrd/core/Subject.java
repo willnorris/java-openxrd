@@ -34,4 +34,21 @@ public interface Subject extends XRDObject, XSURI {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
+    /** Match attribute name. */
+    public static final String MATCH_ATTRIB_NAME = "match";
+
+    /**
+     * Get the match rule for this subject.
+     * 
+     * @return the match rule for this subject
+     */
+    public String getMatch();
+
+    /**
+     * Set the match rule for this subject.
+     * 
+     * @param newMatch the match rule for this subject
+     */
+    public void setMatch(String newMatch);
+
 }

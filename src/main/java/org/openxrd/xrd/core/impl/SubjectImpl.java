@@ -27,6 +27,9 @@ public class SubjectImpl extends AbstractXRDObject implements Subject {
     /** URI value. */
     private String value;
 
+    /** Match value. */
+    private String match;
+
     /**
      * Constructor.
      * 
@@ -46,6 +49,16 @@ public class SubjectImpl extends AbstractXRDObject implements Subject {
     /** {@inheritDoc} */
     public void setValue(String newValue) {
         value = prepareForAssignment(value, newValue);
+    }
+
+    /** {@inheritDoc} */
+    public String getMatch() {
+        return match;
+    }
+
+    /** {@inheritDoc} */
+    public void setMatch(String newMatch) {
+        match = prepareForAssignment(match, newMatch);
     }
 
 }
