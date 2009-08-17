@@ -34,7 +34,7 @@ public class AbstractExtensibleXRDObjectUnmarshaller extends AbstractXRDObjectUn
     protected void processChildElement(XMLObject parentXMLObject, XMLObject childXMLObject)
             throws UnmarshallingException {
 
-        // TODO: make sure child element is not in XRD or XRD-Trust namespaces
+        // TODO: make sure child element is not in XRD namespace
 
         ElementExtensibleXMLObject any = (ElementExtensibleXMLObject) parentXMLObject;
         any.getUnknownXMLObjects().add(childXMLObject);

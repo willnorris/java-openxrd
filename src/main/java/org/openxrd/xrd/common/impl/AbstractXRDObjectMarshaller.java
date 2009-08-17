@@ -47,7 +47,7 @@ public class AbstractXRDObjectMarshaller extends AbstractXMLObjectMarshaller {
 
         Attr attr;
         for (Entry<QName, String> entry : xrdObject.getUnknownAttributes().entrySet()) {
-            // TODO: ensure attribute is not in the XRD or XRD-Trust namespaces
+            // TODO: ensure attribute is not in the XRD namespace
             attr = XMLHelper.constructAttribute(domElement.getOwnerDocument(), entry.getKey());
             attr.setValue(entry.getValue());
             domElement.setAttributeNodeNS(attr);

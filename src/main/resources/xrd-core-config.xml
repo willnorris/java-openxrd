@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd"
-	xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0" xmlns:trust="http://docs.oasis-open.org/ns/xri/xrd-1.0-trust"
-	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.opensaml.org/xmltooling-config">
+	xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" 
+	xmlns="http://www.opensaml.org/xmltooling-config">
 
 	<!-- XRD Object providers -->
 
