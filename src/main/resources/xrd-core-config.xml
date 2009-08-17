@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd"
+	xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0" xmlns:trust="http://docs.oasis-open.org/ns/xri/xrd-1.0-trust"
+	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.opensaml.org/xmltooling-config">
+
+	<!-- XRD Object providers -->
+
+	<ObjectProviders>
+
+		<!-- XRD -->
+		<ObjectProvider qualifiedName="xrd:XRD">
+			<BuilderClass className="org.openxrd.xrd.core.impl.XRDBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.XRDMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.XRDUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- Expires -->
+		<ObjectProvider qualifiedName="xrd:Expires">
+			<BuilderClass className="org.openxrd.xrd.core.impl.ExpiresBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.ExpiresMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.ExpiresUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- Subject -->
+		<ObjectProvider qualifiedName="xrd:Subject">
+			<BuilderClass className="org.openxrd.xrd.core.impl.SubjectBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.SubjectMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.SubjectUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- Alias -->
+		<ObjectProvider qualifiedName="xrd:Alias">
+			<BuilderClass className="org.openxrd.xrd.core.impl.AliasBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.AliasMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.AliasUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- Type -->
+		<ObjectProvider qualifiedName="xrd:Type">
+			<BuilderClass className="org.openxrd.xrd.core.impl.TypeBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.TypeMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.TypeUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- Link -->
+		<ObjectProvider qualifiedName="xrd:Link">
+			<BuilderClass className="org.openxrd.xrd.core.impl.LinkBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.LinkMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.LinkUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- Rel -->
+		<ObjectProvider qualifiedName="xrd:Rel">
+			<BuilderClass className="org.openxrd.xrd.core.impl.RelBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.RelMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.RelUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- MediaType -->
+		<ObjectProvider qualifiedName="xrd:MediaType">
+			<BuilderClass className="org.openxrd.xrd.core.impl.MediaTypeBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.MediaTypeMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.MediaTypeUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- URI -->
+		<ObjectProvider qualifiedName="xrd:URI">
+			<BuilderClass className="org.openxrd.xrd.core.impl.URIBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.URIMarshaller" />
+			<UnmarshallingClass className="org.openxrd.xrd.core.impl.URIUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- URITemplate -->
+		<ObjectProvider qualifiedName="xrd:URITemplate">
+			<BuilderClass className="org.openxrd.xrd.core.impl.URITemplateBuilder" />
+			<MarshallingClass className="org.openxrd.xrd.core.impl.URITemplateMarshaller" />
+			<UnmarshallingClass
+				className="org.openxrd.xrd.core.impl.URITemplateUnmarshaller" />
+		</ObjectProvider>
+
+		<!-- TargetAuthority -->
+		<ObjectProvider qualifiedName="trust:TargetAuthority">
+			<BuilderClass className="org.openxrd.xrd.core.impl.TargetAuthorityBuilder" />
+			<MarshallingClass
+				className="org.openxrd.xrd.core.impl.TargetAuthorityMarshaller" />
+			<UnmarshallingClass
+				className="org.openxrd.xrd.core.impl.TargetAuthorityUnmarshaller" />
+		</ObjectProvider>
+
+	</ObjectProviders>
+</XMLTooling>
