@@ -38,10 +38,9 @@ public class DefaultBootstrap {
         "/default-config.xml", 
         "/schema-config.xml", 
         "/signature-config.xml",
-        "/signature-validation-config.xml", 
-        "/encryption-config.xml", 
-        "/encryption-validation-config.xml",        
+        "/signature-validation-config.xml",         
         "/xrd-core-config.xml", 
+        "/xrd-core-validation-config.xml", 
     };
 
     /** Constructor. */
