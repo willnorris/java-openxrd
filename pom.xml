@@ -1,26 +1,193 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.openxrd</groupId>
-  <artifactId>openxrd</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>OpenXRD-J</name>
-  <description>The OpenXRD-J library provides tools to support developers working with Extensible Resource Descriptors (XRD).</description>
-  <url>http://openxrd.org/</url>
-  <inceptionYear>2009</inceptionYear>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>org.opensaml</groupId>
-    	<artifactId>xmltooling</artifactId>
-    	<version>1.2.1</version>
-    	<optional>false</optional>
-    </dependency>
-  </dependencies>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.openxrd</groupId>
+	<artifactId>openxrd</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>OpenXRD-J</name>
+	<description>The OpenXRD-J library provides tools to support
+		developers working with Extensible Resource Descriptors (XRD).</description>
+	<url>http://openxrd.org/</url>
+	<inceptionYear>2009</inceptionYear>
+
+	<dependencies>
+
+		<!-- Compile dependencies -->
+		<dependency>
+			<groupId>org.opensaml</groupId>
+			<artifactId>xmltooling</artifactId>
+			<version>1.2.1</version>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+            <groupId>velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>oro</groupId>
+                    <artifactId>oro</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+		<!-- Runtime dependencies -->
+		<dependency>
+			<groupId>org.apache.xerces</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>2.9.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.9.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xerces</groupId>
+			<artifactId>resolver</artifactId>
+			<version>2.9.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xerces</groupId>
+			<artifactId>serializer</artifactId>
+			<version>2.9.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>xmlunit</groupId>
+			<artifactId>xmlunit</artifactId>
+			<version>1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>0.9.15</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<debug>true</debug>
+				</configuration>
+			</plugin>
+			
+			<!-- 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/bin.xml</descriptor>
+						<descriptor>src/main/assembly/src.xml</descriptor>
+					</descriptors>
+					<tarLongFileMode>gnu</tarLongFileMode>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>-Xmx256m</argLine>
+				</configuration>
+			</plugin>
+			
+			<!-- 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<index>true</index>
+						<manifestEntries>
+							<Main-Class>org.opensaml.Version</Main-Class>
+						</manifestEntries>
+						<manifestSections>
+							<manifestSection>
+								<name>org/opensaml/</name>
+								<manifestEntries>
+									<Implementation-Title>${pom.artifactId}</Implementation-Title>
+									<Implementation-Version>${pom.version}</Implementation-Version>
+									<Implementation-Vendor>www.opensaml.org</Implementation-Vendor>
+								</manifestEntries>
+							</manifestSection>
+							<manifestSection>
+								<name>org/opensaml/saml1/</name>
+								<manifestEntries>
+									<Specification-Title>Assertions and Protocol for the
+										OASIS Security Assertion Markup Language (SAML) V1.1</Specification-Title>
+									<Specification-Version>1.1</Specification-Version>
+									<Specification-Vendor>OASIS</Specification-Vendor>
+								</manifestEntries>
+							</manifestSection>
+							<manifestSection>
+								<name>org/opensaml/saml2/</name>
+								<manifestEntries>
+									<Specification-Title>Assertions and Protocol for the
+										OASIS Security Assertion Markup Language (SAML) V2.0</Specification-Title>
+									<Specification-Version>2.0</Specification-Version>
+									<Specification-Vendor>OASIS</Specification-Vendor>
+								</manifestEntries>
+							</manifestSection>
+							<manifestSection>
+								<name>org/opensaml/xacml/</name>
+								<manifestEntries>
+									<Specification-Title>eXtensible Access Control Markup
+										Language (XACML) Version 2.0</Specification-Title>
+									<Specification-Version>2.0</Specification-Version>
+									<Specification-Vendor>OASIS</Specification-Vendor>
+								</manifestEntries>
+							</manifestSection>
+							<manifestSection>
+								<name>org/opensaml/xacml/profile/saml/</name>
+								<manifestEntries>
+									<Specification-Title>SAML 2.0 Profile of XACML, Version 2</Specification-Title>
+									<Specification-Version>Working Draft 5</Specification-Version>
+									<Specification-Vendor>OASIS</Specification-Vendor>
+								</manifestEntries>
+							</manifestSection>
+						</manifestSections>
+					</archive>
+				</configuration>
+			</plugin>
+			-->
+			
+		</plugins>
+	</build>
 </project>

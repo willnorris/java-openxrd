@@ -32,7 +32,7 @@ public class TypeMarshaller extends AbstractXRDObjectMarshaller {
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
         Type type = (Type) xmlObject;
 
-        if (type.isRequired() != null) {
+        if (type.isRequiredXSBoolean() != null) {
             domElement.setAttributeNS(null, Type.REQUIRED_ATTRIB_NAME, type.isRequiredXSBoolean().toString());
         }
 

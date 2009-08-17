@@ -77,6 +77,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
         links = new XMLObjectChildrenList<Link>(this);
         types = new XMLObjectChildrenList<Type>(this);
 
+        unknownAttributes = new AttributeMap(this);
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
 
