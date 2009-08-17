@@ -23,9 +23,9 @@ import java.util.List;
 import javax.xml.namespace.QName;
 
 import org.opensaml.xml.XMLObject;
-import org.opensaml.xml.signature.Signature;
+import org.opensaml.xml.util.AttributeMap;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
-import org.openxrd.xrd.common.impl.AbstractXRDObject;
+import org.openxrd.xrd.common.impl.AbstractSignableXRDObject;
 import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
 import org.openxrd.xrd.core.Link;
@@ -36,13 +36,10 @@ import org.openxrd.xrd.core.XRD;
 /**
  * A concrete implementation of {@link XRD}.
  */
-public class XRDImpl extends AbstractXRDObject implements XRD {
+public class XRDImpl extends AbstractSignableXRDObject implements XRD {
 
     /** ID. */
     private String id;
-
-    /** Signature. */
-    private Signature signature;
 
     /** Expiration. */
     private Expires expires;
@@ -58,6 +55,9 @@ public class XRDImpl extends AbstractXRDObject implements XRD {
 
     /** Links. */
     private List<Link> links;
+
+    /** Unknown attributes for this element. */
+    private AttributeMap unknownAttributes;
 
     /** Unknown children of this element. */
     private IndexedXMLObjectChildrenList<XMLObject> unknownElements;
@@ -87,11 +87,6 @@ public class XRDImpl extends AbstractXRDObject implements XRD {
     /** {@inheritDoc} */
     public void setID(String newID) {
         id = prepareForAssignment(id, newID);
-    }
-
-    /** {@inheritDoc} */
-    public Signature getSignature() {
-        return signature;
     }
 
     /** {@inheritDoc} */
@@ -127,6 +122,16 @@ public class XRDImpl extends AbstractXRDObject implements XRD {
     /** {@inheritDoc} */
     public List<Link> getLinks() {
         return links;
+    }
+
+    /** {@inheritDoc} */
+    public String getSignatureReferenceID() {
+        return getID();
+    }
+
+    /** {@inheritDoc} */
+    public AttributeMap getUnknownAttributes() {
+        return unknownAttributes;
     }
 
     /** {@inheritDoc} */
