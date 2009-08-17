@@ -23,13 +23,14 @@ import java.util.List;
 import javax.xml.namespace.QName;
 
 import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.signature.KeyInfo;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
 import org.openxrd.xrd.core.Rel;
-import org.openxrd.xrd.core.TargetAuthority;
+import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.URI;
 import org.openxrd.xrd.core.URITemplate;
 
@@ -40,6 +41,9 @@ public class LinkImpl extends AbstractXRDObject implements Link {
 
     /** Priority. */
     private Integer priority;
+
+    /** Subject. */
+    private Subject subject;
 
     /** Rels. */
     private final XMLObjectChildrenList<Rel> rels;
@@ -53,8 +57,8 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     /** URITemplates. */
     private final XMLObjectChildrenList<URITemplate> uriTemplates;
 
-    /** Target Authority. */
-    private TargetAuthority targetAuthority;
+    /** KeyInfos. */
+    private final XMLObjectChildrenList<KeyInfo> keyInfos;
 
     /** Unknown children of this element. */
     private IndexedXMLObjectChildrenList<XMLObject> unknownElements;
@@ -73,6 +77,7 @@ public class LinkImpl extends AbstractXRDObject implements Link {
         rels = new XMLObjectChildrenList<Rel>(this);
         uris = new XMLObjectChildrenList<URI>(this);
         uriTemplates = new XMLObjectChildrenList<URITemplate>(this);
+        keyInfos = new XMLObjectChildrenList<KeyInfo>(this);
 
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
@@ -85,6 +90,16 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     /** {@inheritDoc} */
     public void setPriority(Integer newPriority) {
         priority = prepareForAssignment(priority, newPriority);
+    }
+
+    /** {@inheritDoc} */
+    public Subject getSubject() {
+        return subject;
+    }
+
+    /** {@inheritDoc} */
+    public void setSubject(Subject newSubject) {
+        subject = prepareForAssignment(subject, newSubject);
     }
 
     /** {@inheritDoc} */
@@ -108,26 +123,23 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     }
 
     /** {@inheritDoc} */
-    public TargetAuthority getTargetAuthority() {
-        return targetAuthority;
-    }
-
-    /** {@inheritDoc} */
-    public void setTargetAuthority(TargetAuthority newTargetAuthority) {
-        targetAuthority = prepareForAssignment(targetAuthority, newTargetAuthority);
+    public List<KeyInfo> getKeyInfos() {
+        return keyInfos;
     }
 
     /** {@inheritDoc} */
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
+        if (getSubject() != null) {
+            children.add(getSubject());
+        }
+
         children.addAll(getRels());
         children.addAll(getMediaTypes());
         children.addAll(getURIs());
         children.addAll(getURITemplates());
-        if (getTargetAuthority() != null) {
-            children.add(getTargetAuthority());
-        }
+        children.addAll(getKeyInfos());
 
         children.addAll(getUnknownXMLObjects());
 

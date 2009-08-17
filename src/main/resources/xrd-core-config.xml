@@ -79,14 +79,5 @@
 				className="org.openxrd.xrd.core.impl.URITemplateUnmarshaller" />
 		</ObjectProvider>
 
-		<!-- TargetAuthority -->
-		<ObjectProvider qualifiedName="trust:TargetAuthority">
-			<BuilderClass className="org.openxrd.xrd.core.impl.TargetAuthorityBuilder" />
-			<MarshallingClass
-				className="org.openxrd.xrd.core.impl.TargetAuthorityMarshaller" />
-			<UnmarshallingClass
-				className="org.openxrd.xrd.core.impl.TargetAuthorityUnmarshaller" />
-		</ObjectProvider>
-
 	</ObjectProviders>
 </XMLTooling>

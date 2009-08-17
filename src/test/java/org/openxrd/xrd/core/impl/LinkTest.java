@@ -18,12 +18,14 @@ package org.openxrd.xrd.core.impl;
 
 import javax.xml.namespace.QName;
 
+import org.opensaml.xml.signature.KeyInfo;
+import org.opensaml.xml.util.XMLConstants;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
 import org.openxrd.common.xml.XRDConstants;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
 import org.openxrd.xrd.core.Rel;
-import org.openxrd.xrd.core.TargetAuthority;
+import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.URI;
 import org.openxrd.xrd.core.URITemplate;
 
@@ -47,6 +49,9 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     /** Count of URITemplate sub-elements. */
     protected int uriTemplateCount;
 
+    /** Count of KeyInfo sub-elements. */
+    protected int keyInfoCount;
+
     /** Constructor. */
     public LinkTest() {
         singleElementFile = "/data/org/openxrd/xrd/core/impl/Link.xml";
@@ -62,6 +67,7 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
         mediaTypeCount = 2;
         uriCount = 3;
         uriTemplateCount = 2;
+        keyInfoCount = 2;
     }
 
     /** {@inheritDoc} */
@@ -76,11 +82,12 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     public void testChildElementsUnmarshall() {
         Link link = (Link) unmarshallElement(childElementsFile);
 
+        assertNotNull("Subject element not present", link.getSubject());
         assertEquals("Rel count not as expected", relCount, link.getRels().size());
         assertEquals("MediaType count not as expected", mediaTypeCount, link.getMediaTypes().size());
         assertEquals("URI count not as expected", uriCount, link.getURIs().size());
         assertEquals("URITemplate count not as expected", uriTemplateCount, link.getURITemplates().size());
-        assertNotNull("TargetAuthority element not present", link.getTargetAuthority());
+        assertEquals("KeyInfo count not as expected", keyInfoCount, link.getKeyInfos().size());
     }
 
     /** {@inheritDoc} */
@@ -96,6 +103,9 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     public void testChildElementsMarshall() {
         QName qname = new QName(XRDConstants.XRD_NS, Link.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         Link link = (Link) buildXMLObject(qname);
+
+        QName subjectQName = new QName(XRDConstants.XRD_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
+        link.setSubject((Subject) buildXMLObject(subjectQName));
 
         QName relQName = new QName(XRDConstants.XRD_NS, Rel.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         for (int i = 0; i < relCount; i++) {
@@ -119,9 +129,11 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
             link.getURITemplates().add((URITemplate) buildXMLObject(uriTemplateQName));
         }
 
-        QName targetAuthorityQName = new QName(XRDConstants.XRDTRUST_NS, TargetAuthority.DEFAULT_ELEMENT_LOCAL_NAME,
-                XRDConstants.XRDTRUST_PREFIX);
-        link.setTargetAuthority((TargetAuthority) buildXMLObject(targetAuthorityQName));
+        QName keyInfoQName = new QName(XMLConstants.XMLSIG_NS, KeyInfo.DEFAULT_ELEMENT_LOCAL_NAME,
+                XMLConstants.XMLSIG_PREFIX);
+        for (int i = 0; i < uriTemplateCount; i++) {
+            link.getKeyInfos().add((KeyInfo) buildXMLObject(keyInfoQName));
+        }
 
         assertEquals(expectedChildElementsDOM, link);
     }

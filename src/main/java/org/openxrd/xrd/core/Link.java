@@ -21,6 +21,7 @@ import java.util.List;
 import javax.xml.namespace.QName;
 
 import org.opensaml.xml.ElementExtensibleXMLObject;
+import org.opensaml.xml.signature.KeyInfo;
 import org.openxrd.common.xml.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
 
@@ -54,6 +55,20 @@ public interface Link extends XRDObject, ElementExtensibleXMLObject {
     public void setPriority(Integer newPriority);
 
     /**
+     * Get the subject of this link.
+     * 
+     * @return the subject of this link
+     */
+    public Subject getSubject();
+
+    /**
+     * Set the subject of this link.
+     * 
+     * @param newSubject the subject of this link
+     */
+    public void setSubject(Subject newSubject);
+
+    /**
      * Get the list of rels for this link.
      * 
      * @return the list of rels for this link
@@ -82,17 +97,10 @@ public interface Link extends XRDObject, ElementExtensibleXMLObject {
     public List<URITemplate> getURITemplates();
 
     /**
-     * Get the target authority for this link.
+     * Get the key infos for this link.
      * 
-     * @return the target authority for this link.
+     * @return the key infos for this link.
      */
-    public TargetAuthority getTargetAuthority();
-
-    /**
-     * Set the target authority for this link.
-     * 
-     * @param newTargetAuthority the target authority for this link
-     */
-    public void setTargetAuthority(TargetAuthority newTargetAuthority);
+    public List<KeyInfo> getKeyInfos();
 
 }
