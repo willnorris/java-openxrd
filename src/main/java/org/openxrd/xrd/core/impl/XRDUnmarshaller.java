@@ -18,6 +18,7 @@ package org.openxrd.xrd.core.impl;
 
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.signature.Signature;
 import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Alias;
@@ -46,11 +47,11 @@ public class XRDUnmarshaller extends AbstractXRDObjectUnmarshaller {
             super.processAttribute(xmlObject, attribute);
         }
     }
-    
+
     /** {@inheritDoc} */
     protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {
         XRD xrd = (XRD) parentObject;
-        
+
         if (childObject instanceof Expires) {
             xrd.setExpires((Expires) childObject);
         } else if (childObject instanceof Subject) {
@@ -61,9 +62,11 @@ public class XRDUnmarshaller extends AbstractXRDObjectUnmarshaller {
             xrd.getTypes().add((Type) childObject);
         } else if (childObject instanceof Link) {
             xrd.getLinks().add((Link) childObject);
+        } else if (childObject instanceof Signature) {
+            xrd.setSignature((Signature) childObject);
         } else {
             super.processChildElement(parentObject, childObject);
         }
     }
-    
+
 }
