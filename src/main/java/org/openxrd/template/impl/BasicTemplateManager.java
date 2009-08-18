@@ -18,13 +18,14 @@ package org.openxrd.template.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.opensaml.xml.util.LazyList;
+import org.opensaml.xml.util.LazyMap;
 import org.openxrd.template.TemplateDictionary;
 import org.openxrd.template.TemplateManager;
 
@@ -35,6 +36,11 @@ public class BasicTemplateManager implements TemplateManager {
 
     /** Dictionary registry. */
     private Map<String, List<TemplateDictionary>> dictionaries;
+
+    /** Constructor. */
+    public BasicTemplateManager() {
+        dictionaries = new LazyMap<String, List<TemplateDictionary>>();
+    }
 
     /** {@inheritDoc} */
     public String applyTemplate(String template, TemplateDictionary dictionary, String input) {
@@ -86,7 +92,7 @@ public class BasicTemplateManager implements TemplateManager {
     /** {@inheritDoc} */
     public void registerDictionary(String rel, TemplateDictionary dictionary) {
         if (!dictionaries.containsKey(rel)) {
-            dictionaries.put(rel, new ArrayList<TemplateDictionary>());
+            dictionaries.put(rel, new LazyList<TemplateDictionary>());
         }
 
         if (!dictionaries.get(rel).contains(dictionary)) {

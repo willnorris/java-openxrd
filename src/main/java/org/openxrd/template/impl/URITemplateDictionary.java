@@ -20,11 +20,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.opensaml.xml.util.LazyMap;
 import org.openxrd.template.TemplateDictionary;
 
 /**
@@ -47,7 +47,7 @@ public class URITemplateDictionary implements TemplateDictionary {
     }
 
     protected Map<String, String> getURIParts(URI uri) {
-        Map<String, String> values = new HashMap<String, String>();
+        Map<String, String> values = new LazyMap<String, String>();
 
         if (uri.getScheme() != null) {
             values.put("scheme", uri.getScheme());

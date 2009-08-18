@@ -26,8 +26,6 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.signature.KeyInfo;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 import org.opensaml.xml.util.XMLObjectChildrenList;
-import org.openxrd.xrd.common.Prioritizable;
-import org.openxrd.xrd.common.PriorityUtils;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
@@ -156,11 +154,6 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     /** {@inheritDoc} */
     public List<XMLObject> getUnknownXMLObjects(QName typeOrName) {
         return (List<XMLObject>) unknownElements.subList(typeOrName);
-    }
-
-    /** {@inheritDoc} */
-    public int compareTo(Prioritizable o) {
-        return PriorityUtils.comparePriority(getPriority(), o.getPriority());
     }
 
 }

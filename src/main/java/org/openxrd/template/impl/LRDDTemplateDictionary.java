@@ -19,10 +19,11 @@ package org.openxrd.template.impl;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import org.opensaml.xml.util.LazyMap;
 
 /**
  * Template dictionary which adds the additional "uri" term to the other URI parts, as specified in LRDD.
@@ -34,7 +35,7 @@ public class LRDDTemplateDictionary extends URITemplateDictionary {
     /** {@inheritDoc} */
     public Map<String, String> getTermValues(String input) {
 
-        Map<String, String> values = new HashMap<String, String>();
+        Map<String, String> values = new LazyMap<String, String>();
 
         try {
             URI uri = new URI(input);

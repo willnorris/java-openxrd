@@ -20,9 +20,9 @@ package org.openxrd.xrd.common;
  * Prioritizable objects have an Integer priority which can be used to sort a list of such objects. The comparison rules
  * for the priorities of two objects is defined in XRD 1.0.
  * 
- * @seealso http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html#s.priority.attribute
+ * @see http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html#s.priority.attribute
  */
-public interface Prioritizable extends Comparable<Prioritizable> {
+public interface Prioritizable {
 
     /**
      * Get the priority.

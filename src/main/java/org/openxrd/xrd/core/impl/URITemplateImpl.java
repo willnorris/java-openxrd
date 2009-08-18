@@ -16,8 +16,6 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.openxrd.xrd.common.Prioritizable;
-import org.openxrd.xrd.common.PriorityUtils;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
 import org.openxrd.xrd.core.URITemplate;
 
@@ -63,8 +61,4 @@ public class URITemplateImpl extends AbstractXRDObject implements URITemplate {
         priority = prepareForAssignment(priority, newPriority);
     }
 
-    /** {@inheritDoc} */
-    public int compareTo(Prioritizable o) {
-        return PriorityUtils.comparePriority(getPriority(), o.getPriority());
-    }
 }
