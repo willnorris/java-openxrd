@@ -19,7 +19,7 @@ package org.openxrd.xrd.core.impl;
 import javax.xml.namespace.QName;
 
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Type;
 
 /**

@@ -16,7 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectBuilder;
 import org.openxrd.xrd.core.Expires;
 

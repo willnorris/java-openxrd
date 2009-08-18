@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.openxrd.common.xml;
+package org.openxrd.common;
 
 import org.opensaml.xml.util.XMLConstants;
 

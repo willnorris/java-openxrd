@@ -20,7 +20,7 @@ import javax.xml.namespace.QName;
 
 import org.opensaml.xml.schema.XSBooleanValue;
 import org.opensaml.xml.schema.XSURI;
-import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
 
 /**

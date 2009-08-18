@@ -19,7 +19,7 @@ package org.openxrd.xrd.core;
 import javax.xml.namespace.QName;
 
 import org.opensaml.xml.schema.XSString;
-import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
 
 /**

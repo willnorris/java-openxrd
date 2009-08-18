@@ -21,7 +21,7 @@ import javax.xml.namespace.QName;
 import org.joda.time.DateTime;
 import org.joda.time.chrono.ISOChronology;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Expires;
 
 /**

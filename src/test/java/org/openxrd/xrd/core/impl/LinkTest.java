@@ -21,7 +21,7 @@ import javax.xml.namespace.QName;
 import org.opensaml.xml.signature.KeyInfo;
 import org.opensaml.xml.util.XMLConstants;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
 import org.openxrd.xrd.core.Rel;

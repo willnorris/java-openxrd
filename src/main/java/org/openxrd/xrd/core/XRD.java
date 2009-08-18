@@ -22,7 +22,7 @@ import javax.xml.namespace.QName;
 
 import org.opensaml.xml.ElementExtensibleXMLObject;
 import org.opensaml.xml.util.XMLConstants;
-import org.openxrd.common.xml.XRDConstants;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.SignableXRDObject;
 
 /**
