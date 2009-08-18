@@ -26,14 +26,20 @@ import java.util.Set;
 
 import org.opensaml.xml.util.LazyMap;
 import org.openxrd.template.TemplateDictionary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Template Dictionary which provides RFC3986 URI parts.
  */
 public class URITemplateDictionary implements TemplateDictionary {
 
-    private static final String[] terms = { "scheme", "authority", "userinfo", "host", "port", "path", "query",
-            "fragment" };
+    /** Terms supported by this dictionary. */
+    private static final String[] TERMS = { "scheme", "authority", "userinfo", "host", "port", "path", "query",
+            "fragment", };
+
+    /** Logger. */
+    private Logger log = LoggerFactory.getLogger(URITemplateDictionary.class);
 
     /** {@inheritDoc} */
     public Map<String, String> getTermValues(String input) {
@@ -41,11 +47,17 @@ public class URITemplateDictionary implements TemplateDictionary {
             URI uri = new URI(input);
             return getURIParts(uri);
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            log.error("Input is not a valid URI: %s", input);
             return Collections.EMPTY_MAP;
         }
     }
 
+    /**
+     * Parse the URI and get RFC3986 parts.
+     * 
+     * @param uri URI to parse
+     * @return map of URI parts
+     */
     protected Map<String, String> getURIParts(URI uri) {
         Map<String, String> values = new LazyMap<String, String>();
 
@@ -86,7 +98,7 @@ public class URITemplateDictionary implements TemplateDictionary {
 
     /** {@inheritDoc} */
     public Set<String> getTerms() {
-        return new HashSet(Arrays.asList(URITemplateDictionary.terms));
+        return new HashSet(Arrays.asList(URITemplateDictionary.TERMS));
     }
 
 }

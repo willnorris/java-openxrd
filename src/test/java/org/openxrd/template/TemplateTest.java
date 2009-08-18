@@ -26,14 +26,19 @@ import org.openxrd.template.impl.LRDDTemplateDictionary;
  */
 public class TemplateTest extends TestCase {
 
-    public void testTemplate() {
+    /**
+     * Basic template test.
+     * 
+     * @throws TemplateException if problem occurs while processing template
+     */
+    public void testTemplate() throws TemplateException {
         TemplateManager manager = new BasicTemplateManager();
         TemplateDictionary dictionary = new LRDDTemplateDictionary();
-        
+
         String template = "http://example.com/?uri={%uri}";
         String input = "http://openxrd.org/";
-        String result = manager.applyTemplate(template, dictionary, input);        
+        String result = manager.applyTemplate(template, dictionary, input);
         assertEquals("http://example.com/?uri=http%3A%2F%2Fopenxrd.org%2F", result);
     }
-    
+
 }

@@ -49,8 +49,9 @@ public interface TemplateManager {
      * @param template template to populate
      * @param input values used to populate the template
      * @return populated template
+     * @throws TemplateException if problem occurs while processing the template
      */
-    public String applyTemplate(String template, Map<String, String> input);
+    public String applyTemplate(String template, Map<String, String> input) throws TemplateException;
 
     /**
      * Populate a template using a template dictionary and input string.
@@ -59,7 +60,8 @@ public interface TemplateManager {
      * @param dictionary dictionary used to extract values from the input string
      * @param input input string used to populate the template
      * @return populated template
+     * @throws TemplateException if problem occurs while processing the template
      */
-    public String applyTemplate(String template, TemplateDictionary dictionary, String input);
+    public String applyTemplate(String template, TemplateDictionary dictionary, String input) throws TemplateException;
 
 }

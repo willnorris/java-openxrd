@@ -27,12 +27,18 @@ import java.util.regex.Pattern;
 import org.opensaml.xml.util.LazyList;
 import org.opensaml.xml.util.LazyMap;
 import org.openxrd.template.TemplateDictionary;
+import org.openxrd.template.TemplateException;
 import org.openxrd.template.TemplateManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Basic implementation of TemplateManager.
  */
 public class BasicTemplateManager implements TemplateManager {
+
+    /** Logger. */
+    private Logger log = LoggerFactory.getLogger(BasicTemplateManager.class);
 
     /** Dictionary registry. */
     private Map<String, List<TemplateDictionary>> dictionaries;
@@ -43,13 +49,13 @@ public class BasicTemplateManager implements TemplateManager {
     }
 
     /** {@inheritDoc} */
-    public String applyTemplate(String template, TemplateDictionary dictionary, String input) {
+    public String applyTemplate(String template, TemplateDictionary dictionary, String input) throws TemplateException {
         Map<String, String> terms = dictionary.getTermValues(input);
         return applyTemplate(template, terms);
     }
 
     /** {@inheritDoc} */
-    public String applyTemplate(String template, Map<String, String> input) {
+    public String applyTemplate(String template, Map<String, String> input) throws TemplateException {
         StringBuffer result = new StringBuffer();
 
         Pattern termPattern = Pattern.compile("\\{%?(.+)\\}");
@@ -69,7 +75,8 @@ public class BasicTemplateManager implements TemplateManager {
                 try {
                     value = URLEncoder.encode(value, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    log.error("UTF-8 encoding is not supported, this VM is not Java compliant.");
+                    throw new TemplateException("Unable to process template, UTF-8 encoding is not supported");
                 }
             }
 

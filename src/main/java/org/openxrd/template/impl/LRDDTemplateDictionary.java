@@ -24,13 +24,19 @@ import java.util.Map;
 import java.util.Set;
 
 import org.opensaml.xml.util.LazyMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Template dictionary which adds the additional "uri" term to the other URI parts, as specified in LRDD.
  */
 public class LRDDTemplateDictionary extends URITemplateDictionary {
 
-    private static final String[] terms = { "uri" };
+    /** Terms supported by this dictionary. */
+    private static final String[] TERMS = { "uri" };
+
+    /** Logger. */
+    private Logger log = LoggerFactory.getLogger(LRDDTemplateDictionary.class);
 
     /** {@inheritDoc} */
     public Map<String, String> getTermValues(String input) {
@@ -50,7 +56,7 @@ public class LRDDTemplateDictionary extends URITemplateDictionary {
             values.putAll(getURIParts(uri));
 
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            log.error("Input is not a valid URI: %s", input);
         }
 
         return values;
@@ -58,7 +64,7 @@ public class LRDDTemplateDictionary extends URITemplateDictionary {
 
     /** {@inheritDoc} */
     public Set<String> getTerms() {
-        Set<String> terms = new HashSet(Arrays.asList(LRDDTemplateDictionary.terms));
+        Set<String> terms = new HashSet(Arrays.asList(LRDDTemplateDictionary.TERMS));
         terms.addAll(super.getTerms());
         return terms;
     }
