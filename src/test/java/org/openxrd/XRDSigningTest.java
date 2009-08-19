@@ -18,24 +18,14 @@ package org.openxrd;
 
 import java.security.KeyPair;
 
-import javax.xml.namespace.QName;
-
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.XMLSerializer;
-import org.opensaml.xml.io.Marshaller;
 import org.opensaml.xml.security.SecurityHelper;
-import org.opensaml.xml.security.credential.BasicCredential;
+import org.opensaml.xml.security.credential.Credential;
 import org.opensaml.xml.signature.Signature;
-import org.opensaml.xml.signature.SignatureConstants;
 import org.opensaml.xml.signature.Signer;
-import org.opensaml.xml.util.XMLConstants;
+import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.common.BaseTestCase;
-import org.openxrd.common.XRDConstants;
+import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.XRD;
-import org.w3c.dom.bootstrap.DOMImplementationRegistry;
-import org.w3c.dom.ls.DOMImplementationLS;
-import org.w3c.dom.ls.LSOutput;
-import org.w3c.dom.ls.LSSerializer;
 
 /**
  * This isn't a real test case... just a demonstration of how to sign and print an XRD document.
@@ -45,76 +35,50 @@ public class XRDSigningTest extends BaseTestCase {
     /**
      * Test XRD building.
      * 
-     * @throws Exception
+     * @throws Exception if something breaks
      */
     public void testXRD() throws Exception {
-        QName qname = new QName(XRDConstants.XRD_NS, XRD.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        XRD xrd = (XRD) buildXMLObject(qname);
+        XRD xrd = (XRD) buildXMLObject(XRD.DEFAULT_ELEMENT_NAME);
         xrd.setID("foo");
+
+        Subject subject = (Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME);
+        subject.setValue("http://openxrd.org/");
+        xrd.setSubject(subject);
 
         addSignature(xrd);
 
-        Marshaller marshaller = Configuration.getMarshallerFactory().getMarshaller(xrd);
-        marshaller.marshall(xrd);
-
+        Configuration.getMarshallerFactory().getMarshaller(xrd).marshall(xrd);
         Signer.signObject(xrd.getSignature());
 
-        printXRD(xrd);
-        System.out.println("\n\n");
-        printXRD2(xrd);
+        System.out.println(XMLHelper.nodeToString(xrd.getDOM()));
     }
 
     /**
      * Sign the XRD.
      * 
      * @param xrd XRD to sign
+     * @throws Exception if something breaks
      */
     public void addSignature(XRD xrd) throws Exception {
-        QName qname = new QName(XMLConstants.XMLSIG_NS, Signature.DEFAULT_ELEMENT_LOCAL_NAME,
-                XMLConstants.XMLSIG_PREFIX);
-        Signature signature = (Signature) buildXMLObject(qname);
+        Signature signature = (Signature) buildXMLObject(Signature.DEFAULT_ELEMENT_NAME);
 
-        KeyPair keyPair = SecurityHelper.generateKeyPair("RSA", 1024, null);
-        BasicCredential credential = SecurityHelper.getSimpleCredential(keyPair.getPublic(), keyPair.getPrivate());
+        Credential credential = getCredential();
         signature.setSigningCredential(credential);
-        signature.setCanonicalizationAlgorithm(SignatureConstants.ALGO_ID_C14N_EXCL_OMIT_COMMENTS);
-        signature.setSignatureAlgorithm(SignatureConstants.ALGO_ID_SIGNATURE_RSA);
 
+        SecurityHelper.prepareSignatureParams(signature, credential, null, null);
         xrd.setSignature(signature);
     }
 
     /**
-     * Print the XRD using DOM Level 3 serialization.
+     * Get a credential to use for signing.
      * 
-     * @param xrd XRD to print
-     * @throws Exception if problems occur
+     * @return a credential for signing
+     * @throws Exception if something breaks
      */
-    public void printXRD(XRD xrd) throws Exception {
+    public Credential getCredential() throws Exception {
 
-        DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
-        DOMImplementationLS impl = (DOMImplementationLS) registry.getDOMImplementation("LS");
+        KeyPair keyPair = SecurityHelper.generateKeyPair("RSA", 1024, null);
+        return SecurityHelper.getSimpleCredential(keyPair.getPublic(), keyPair.getPrivate());
 
-        LSSerializer writer = impl.createLSSerializer();
-        LSOutput output = impl.createLSOutput();
-        output.setByteStream(System.out);
-        writer.write(xrd.getDOM(), output);
-    }
-
-    /**
-     * Print the XRD using deprecated Xerces serializer.
-     * 
-     * @param xrd XRD to print
-     * @throws Exception if problems occur
-     */
-    public void printXRD2(XRD xrd) throws Exception {
-        OutputFormat of = new OutputFormat("XML", "ISO-8859-1", true);
-
-        of.setIndent(1);
-        of.setIndenting(true);
-
-        XMLSerializer serializer = new XMLSerializer(System.out, of);
-        // As a DOM Serializer
-        serializer.asDOMSerializer();
-        serializer.serialize(xrd.getDOM());
     }
 }

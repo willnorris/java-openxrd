@@ -32,8 +32,8 @@ public class XRDMarshaller extends AbstractXRDObjectMarshaller {
         XRD xrd = (XRD) xmlObject;
 
         if (xrd.getID() != null) {
-            domElement.setAttributeNS(XRD.ID_ATTRIB_NAME.getNamespaceURI(), XRD.ID_ATTRIB_NAME.getLocalPart(), xrd
-                    .getID());
+            domElement.setAttributeNS(XRD.ID_ATTRIB_NAME.getNamespaceURI(), XRD.ID_ATTRIB_NAME.getPrefix() + ":"
+                    + XRD.ID_ATTRIB_NAME.getLocalPart(), xrd.getID());
         }
 
         super.marshallAttributes(xmlObject, domElement);

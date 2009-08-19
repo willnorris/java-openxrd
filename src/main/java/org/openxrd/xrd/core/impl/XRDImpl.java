@@ -142,14 +142,10 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
-        if (getSignature() != null) {
-            children.add(getSignature());
-        }
-
         if (getExpires() != null) {
             children.add(getExpires());
         }
-        
+
         if (getSubject() != null) {
             children.add(getSubject());
         }
@@ -159,6 +155,10 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
         children.addAll(getLinks());
 
         children.addAll(getUnknownXMLObjects());
+
+        if (getSignature() != null) {
+            children.add(getSignature());
+        }
 
         return Collections.unmodifiableList(children);
     }
