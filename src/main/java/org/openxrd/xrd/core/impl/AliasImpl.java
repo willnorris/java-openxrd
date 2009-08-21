@@ -27,6 +27,9 @@ public class AliasImpl extends AbstractXRDObject implements Alias {
     /** Alias value. */
     private String value;
 
+    /** Match value. */
+    private String match;
+
     /**
      * Constructor.
      * 
@@ -46,6 +49,16 @@ public class AliasImpl extends AbstractXRDObject implements Alias {
     /** {@inheritDoc} */
     public void setValue(String newValue) {
         value = prepareForAssignment(value, newValue);
+    }
+
+    /** {@inheritDoc} */
+    public String getMatch() {
+        return match;
+    }
+
+    /** {@inheritDoc} */
+    public void setMatch(String newMatch) {
+        match = prepareForAssignment(match, newMatch);
     }
 
 }

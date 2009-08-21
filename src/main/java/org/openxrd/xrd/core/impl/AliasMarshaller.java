@@ -29,6 +29,17 @@ import org.w3c.dom.Element;
 public class AliasMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
+    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
+        Alias alias = (Alias) xmlObject;
+
+        if (alias.getMatch() != null) {
+            domElement.setAttributeNS(null, Alias.MATCH_ATTRIB_NAME, alias.getMatch());
+        }
+
+        super.marshallAttributes(xmlObject, domElement);
+    }
+    
+    /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
         Alias alias = (Alias) xmlObject;
 

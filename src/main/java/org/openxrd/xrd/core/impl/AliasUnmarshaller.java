@@ -17,14 +17,29 @@
 package org.openxrd.xrd.core.impl;
 
 import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.UnmarshallingException;
+import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Alias;
+import org.w3c.dom.Attr;
 
 /**
  * A thread-safe Unmarshaller for {@link Alias}.
  */
 public class AliasUnmarshaller extends AbstractXRDObjectUnmarshaller {
 
+    /** {@inheritDoc} */
+    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
+        Alias alias = (Alias) xmlObject;
+
+        if (attribute.getLocalName().equals(Alias.MATCH_ATTRIB_NAME) && 
+                !DatatypeHelper.isEmpty(attribute.getValue())) {
+            alias.setMatch(attribute.getValue());
+        } else {
+            super.processAttribute(xmlObject, attribute);
+        }
+    }
+    
     /** {@inheritDoc} */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {
         Alias alias = (Alias) xmlObject;

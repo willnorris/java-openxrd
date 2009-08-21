@@ -21,6 +21,7 @@ import javax.xml.namespace.QName;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
 import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Alias;
+import org.openxrd.xrd.core.Subject;
 
 /**
  * Test case for creating, marshalling, and unmarshalling {@link org.openxrd.xrd.core.impl.AliasImpl}.
@@ -30,9 +31,13 @@ public class AliasTest extends BaseXRDObjectProviderTestCase {
     /** Expected alias value. */
     protected String expectedValue;
 
+    /** Expected match value. */
+    protected String expectedMatch;
+
     /** Constructor. */
     public AliasTest() {
         singleElementFile = "/data/org/openxrd/xrd/core/impl/Alias.xml";
+        singleElementOptionalAttributesFile = "/data/org/openxrd/xrd/core/impl/AliasOptionalAttributes.xml";
     }
 
     /** {@inheritDoc} */
@@ -40,6 +45,7 @@ public class AliasTest extends BaseXRDObjectProviderTestCase {
         super.setUp();
 
         expectedValue = "http://alias.example.com/";
+        expectedMatch = "http://example.net/";
     }
 
     /** {@inheritDoc} */
@@ -51,6 +57,17 @@ public class AliasTest extends BaseXRDObjectProviderTestCase {
     }
 
     /** {@inheritDoc} */
+    public void testSingleElementOptionalAttributesUnmarshall() {
+        Alias alias = (Alias) unmarshallElement(singleElementOptionalAttributesFile);
+
+        String value = alias.getValue();
+        assertEquals("Alias value was " + value + ", expected " + expectedValue, expectedValue, value);
+
+        String match = alias.getMatch();
+        assertEquals("Match value was " + match + ", expected " + expectedMatch, expectedMatch, match);
+    }
+
+    /** {@inheritDoc} */
     public void testSingleElementMarshall() {
         QName qname = new QName(XRDConstants.XRD_NS, Alias.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         Alias alias = (Alias) buildXMLObject(qname);
@@ -58,5 +75,14 @@ public class AliasTest extends BaseXRDObjectProviderTestCase {
         alias.setValue(expectedValue);
         assertEquals(expectedDOM, alias);
     }
-    
+
+    /** {@inheritDoc} */
+    public void testSingleElementOptionalAttributesMarshall() {
+        QName qname = new QName(XRDConstants.XRD_NS, Alias.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
+        Alias alias = (Alias) buildXMLObject(qname);
+
+        alias.setValue(expectedValue);
+        alias.setMatch(expectedMatch);
+        assertEquals(expectedOptionalAttributesDOM, alias);
+    }
 }
