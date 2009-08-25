@@ -16,12 +16,8 @@
 
 package org.openxrd.xrd.core.impl;
 
-import javax.xml.namespace.QName;
-
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Alias;
-import org.openxrd.xrd.core.Subject;
 
 /**
  * Test case for creating, marshalling, and unmarshalling {@link org.openxrd.xrd.core.impl.AliasImpl}.
@@ -69,8 +65,7 @@ public class AliasTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Alias.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Alias alias = (Alias) buildXMLObject(qname);
+        Alias alias = (Alias) buildXMLObject(Alias.DEFAULT_ELEMENT_NAME);
 
         alias.setValue(expectedValue);
         assertEquals(expectedDOM, alias);
@@ -78,8 +73,7 @@ public class AliasTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementOptionalAttributesMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Alias.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Alias alias = (Alias) buildXMLObject(qname);
+        Alias alias = (Alias) buildXMLObject(Alias.DEFAULT_ELEMENT_NAME);
 
         alias.setValue(expectedValue);
         alias.setMatch(expectedMatch);

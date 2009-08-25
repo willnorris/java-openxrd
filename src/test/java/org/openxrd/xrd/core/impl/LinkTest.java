@@ -16,12 +16,8 @@
 
 package org.openxrd.xrd.core.impl;
 
-import javax.xml.namespace.QName;
-
 import org.opensaml.xml.signature.KeyInfo;
-import org.opensaml.xml.util.XMLConstants;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
 import org.openxrd.xrd.core.Rel;
@@ -92,8 +88,7 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Link.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Link link = (Link) buildXMLObject(qname);
+        Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
 
         link.setPriority(expectedPriority);
         assertEquals(expectedDOM, link);
@@ -101,38 +96,27 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testChildElementsMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Link.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Link link = (Link) buildXMLObject(qname);
+        Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
+        link.setSubject((Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME));
 
-        QName subjectQName = new QName(XRDConstants.XRD_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        link.setSubject((Subject) buildXMLObject(subjectQName));
-
-        QName relQName = new QName(XRDConstants.XRD_NS, Rel.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         for (int i = 0; i < relCount; i++) {
-            link.getRels().add((Rel) buildXMLObject(relQName));
+            link.getRels().add((Rel) buildXMLObject(Rel.DEFAULT_ELEMENT_NAME));
         }
 
-        QName mediaTypeQName = new QName(XRDConstants.XRD_NS, MediaType.DEFAULT_ELEMENT_LOCAL_NAME,
-                XRDConstants.XRD_PREFIX);
         for (int i = 0; i < mediaTypeCount; i++) {
-            link.getMediaTypes().add((MediaType) buildXMLObject(mediaTypeQName));
+            link.getMediaTypes().add((MediaType) buildXMLObject(MediaType.DEFAULT_ELEMENT_NAME));
         }
 
-        QName uriQName = new QName(XRDConstants.XRD_NS, URI.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         for (int i = 0; i < uriCount; i++) {
-            link.getURIs().add((URI) buildXMLObject(uriQName));
+            link.getURIs().add((URI) buildXMLObject(URI.DEFAULT_ELEMENT_NAME));
         }
 
-        QName uriTemplateQName = new QName(XRDConstants.XRD_NS, URITemplate.DEFAULT_ELEMENT_LOCAL_NAME,
-                XRDConstants.XRD_PREFIX);
         for (int i = 0; i < uriTemplateCount; i++) {
-            link.getURITemplates().add((URITemplate) buildXMLObject(uriTemplateQName));
+            link.getURITemplates().add((URITemplate) buildXMLObject(URITemplate.DEFAULT_ELEMENT_NAME));
         }
 
-        QName keyInfoQName = new QName(XMLConstants.XMLSIG_NS, KeyInfo.DEFAULT_ELEMENT_LOCAL_NAME,
-                XMLConstants.XMLSIG_PREFIX);
         for (int i = 0; i < uriTemplateCount; i++) {
-            link.getKeyInfos().add((KeyInfo) buildXMLObject(keyInfoQName));
+            link.getKeyInfos().add((KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME));
         }
 
         assertEquals(expectedChildElementsDOM, link);

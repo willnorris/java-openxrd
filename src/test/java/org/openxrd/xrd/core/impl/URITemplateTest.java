@@ -68,8 +68,7 @@ public class URITemplateTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, URITemplate.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        URITemplate uriTemplate = (URITemplate) buildXMLObject(qname);
+        URITemplate uriTemplate = (URITemplate) buildXMLObject(URITemplate.DEFAULT_ELEMENT_NAME);
 
         uriTemplate.setValue(expectedValue);
         assertEquals(expectedDOM, uriTemplate);
@@ -77,8 +76,7 @@ public class URITemplateTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementOptionalAttributesMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, URITemplate.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        URITemplate uriTemplate = (URITemplate) buildXMLObject(qname);
+        URITemplate uriTemplate = (URITemplate) buildXMLObject(URITemplate.DEFAULT_ELEMENT_NAME);
 
         uriTemplate.setValue(expectedValue);
         uriTemplate.setPriority(expectedPriority);

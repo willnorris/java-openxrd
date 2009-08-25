@@ -54,8 +54,7 @@ public class ExpiresTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Expires.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Expires expires = (Expires) buildXMLObject(qname);
+        Expires expires = (Expires) buildXMLObject(Expires.DEFAULT_ELEMENT_NAME);
 
         expires.setValue(expectedValue);
         assertEquals(expectedDOM, expires);

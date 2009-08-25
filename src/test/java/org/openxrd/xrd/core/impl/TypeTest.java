@@ -69,8 +69,7 @@ public class TypeTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Type.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Type type = (Type) buildXMLObject(qname);
+        Type type = (Type) buildXMLObject(Type.DEFAULT_ELEMENT_NAME);
 
         type.setValue(expectedValue);
         assertEquals(expectedDOM, type);
@@ -78,8 +77,7 @@ public class TypeTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementOptionalAttributesMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Type.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Type type = (Type) buildXMLObject(qname);
+        Type type = (Type) buildXMLObject(Type.DEFAULT_ELEMENT_NAME);
 
         type.setValue(expectedValue);
         type.setRequired(expectedRequired);

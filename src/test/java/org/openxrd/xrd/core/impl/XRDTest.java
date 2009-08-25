@@ -81,8 +81,7 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, XRD.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        XRD xrd = (XRD) buildXMLObject(qname);
+        XRD xrd = (XRD) buildXMLObject(XRD.DEFAULT_ELEMENT_NAME);
 
         xrd.setID(expectedID);
         assertEquals(expectedDOM, xrd);
@@ -90,28 +89,21 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testChildElementsMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, XRD.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        XRD xrd = (XRD) buildXMLObject(qname);
+        XRD xrd = (XRD) buildXMLObject(XRD.DEFAULT_ELEMENT_NAME);
 
-        QName expiresQName = new QName(XRDConstants.XRD_NS, Expires.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        xrd.setExpires((Expires) buildXMLObject(expiresQName));
+        xrd.setExpires((Expires) buildXMLObject(Expires.DEFAULT_ELEMENT_NAME));
+        xrd.setSubject((Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME));
 
-        QName subjectQName = new QName(XRDConstants.XRD_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        xrd.setSubject((Subject) buildXMLObject(subjectQName));
-
-        QName aliasQName = new QName(XRDConstants.XRD_NS, Alias.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         for (int i = 0; i < aliasCount; i++) {
-            xrd.getAliases().add((Alias) buildXMLObject(aliasQName));
+            xrd.getAliases().add((Alias) buildXMLObject(Alias.DEFAULT_ELEMENT_NAME));
         }
 
-        QName typeQName = new QName(XRDConstants.XRD_NS, Type.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         for (int i = 0; i < typeCount; i++) {
-            xrd.getTypes().add((Type) buildXMLObject(typeQName));
+            xrd.getTypes().add((Type) buildXMLObject(Type.DEFAULT_ELEMENT_NAME));
         }
 
-        QName linkQName = new QName(XRDConstants.XRD_NS, Link.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
         for (int i = 0; i < linkCount; i++) {
-            xrd.getLinks().add((Link) buildXMLObject(linkQName));
+            xrd.getLinks().add((Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME));
         }
 
         assertEquals(expectedChildElementsDOM, xrd);

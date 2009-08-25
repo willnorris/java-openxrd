@@ -21,8 +21,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.xml.namespace.QName;
-
 import org.openxrd.xrd.common.Prioritizable;
 import org.openxrd.xrd.common.PrioritizableComparator;
 import org.openxrd.xrd.core.Link;
@@ -38,16 +36,15 @@ public class PrioritizableTest extends BaseTestCase {
     public void testPriority() {
         List<Prioritizable> items = new ArrayList<Prioritizable>();
 
-        QName qname = new QName(XRDConstants.XRD_NS, Link.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Link link = (Link) buildXMLObject(qname);
+        Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
         link.setPriority(10);
         items.add(link);
 
-        link = (Link) buildXMLObject(qname);
+        link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
         link.setPriority(15);
         items.add(link);
 
-        link = (Link) buildXMLObject(qname);
+        link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
         link.setPriority(5);
         items.add(link);
 

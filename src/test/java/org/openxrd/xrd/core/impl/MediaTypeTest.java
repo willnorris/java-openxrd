@@ -52,11 +52,10 @@ public class MediaTypeTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, MediaType.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        MediaType mediaType = (MediaType) buildXMLObject(qname);
+        MediaType mediaType = (MediaType) buildXMLObject(MediaType.DEFAULT_ELEMENT_NAME);
 
         mediaType.setValue(expectedValue);
         assertEquals(expectedDOM, mediaType);
     }
-    
+
 }

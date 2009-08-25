@@ -19,13 +19,29 @@ package org.openxrd.xrd.common;
 import java.util.Comparator;
 
 /**
- * Priority Utils.
+ * Comparator for {@link Prioritizable}s.
  */
 public class PrioritizableComparator implements Comparator<Prioritizable> {
 
+    /** Singleton instance. */
+    private static PrioritizableComparator singleton;
+
+    /**
+     * Get singleton instance.
+     * 
+     * @return singleton instance.
+     */
+    public static PrioritizableComparator getInstance() {
+        if (singleton == null) {
+            singleton = new PrioritizableComparator();
+        }
+
+        return singleton;
+    }
+
     /** {@inheritDoc} */
     public int compare(Prioritizable o1, Prioritizable o2) {
-        Integer result;
+        int result;
 
         // handle the null case
         if (o1.getPriority() == null) {

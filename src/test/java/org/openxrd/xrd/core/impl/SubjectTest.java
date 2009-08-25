@@ -68,8 +68,7 @@ public class SubjectTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Subject subject = (Subject) buildXMLObject(qname);
+        Subject subject = (Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME);
 
         subject.setValue(expectedValue);
         assertEquals(expectedDOM, subject);
@@ -77,8 +76,7 @@ public class SubjectTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementOptionalAttributesMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Subject.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Subject subject = (Subject) buildXMLObject(qname);
+        Subject subject = (Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME);
 
         subject.setValue(expectedValue);
         subject.setMatch(expectedMatch);

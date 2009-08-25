@@ -52,11 +52,10 @@ public class RelTest extends BaseXRDObjectProviderTestCase {
 
     /** {@inheritDoc} */
     public void testSingleElementMarshall() {
-        QName qname = new QName(XRDConstants.XRD_NS, Rel.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
-        Rel rel = (Rel) buildXMLObject(qname);
+        Rel rel = (Rel) buildXMLObject(Rel.DEFAULT_ELEMENT_NAME);
 
         rel.setValue(expectedValue);
         assertEquals(expectedDOM, rel);
     }
-    
+
 }
