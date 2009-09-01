@@ -20,7 +20,6 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
-import org.opensaml.xml.ElementExtensibleXMLObject;
 import org.opensaml.xml.signature.KeyInfo;
 import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.Prioritizable;
@@ -29,7 +28,7 @@ import org.openxrd.xrd.common.XRDObject;
 /**
  * XRD Link.
  */
-public interface Link extends XRDObject, ElementExtensibleXMLObject, Prioritizable {
+public interface Link extends XRDObject, Prioritizable {
 
     /** Element local name. */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Link";
@@ -61,6 +60,20 @@ public interface Link extends XRDObject, ElementExtensibleXMLObject, Prioritizab
      * @param newSubject the subject of this link
      */
     public void setSubject(Subject newSubject);
+
+    /**
+     * Get the extensions for this link.
+     * 
+     * @return the extensions for this link
+     */
+    public Extensions getExtensions();
+
+    /**
+     * Set the extensions for this link.
+     * 
+     * @param newExtensions the extensions for this link
+     */
+    public void setExtensions(Extensions newExtensions);
 
     /**
      * Get the list of rels for this link.

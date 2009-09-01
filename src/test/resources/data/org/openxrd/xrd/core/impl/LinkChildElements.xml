@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xrd:Link xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0">
 	<xrd:Subject />
+    <xrd:Extensions />
 	<xrd:Rel />
 	<xrd:Rel />
 	<xrd:Rel />

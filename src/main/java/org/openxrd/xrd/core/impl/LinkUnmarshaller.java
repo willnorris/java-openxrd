@@ -21,6 +21,7 @@ import org.opensaml.xml.io.UnmarshallingException;
 import org.opensaml.xml.signature.KeyInfo;
 import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
+import org.openxrd.xrd.core.Extensions;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
 import org.openxrd.xrd.core.Rel;
@@ -52,6 +53,8 @@ public class LinkUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
 
         if (childObject instanceof Subject) {
             link.setSubject((Subject) childObject);
+        } else if (childObject instanceof Extensions) {
+            link.setExtensions((Extensions) childObject);
         } else if (childObject instanceof Rel) {
             link.getRels().add((Rel) childObject);
         } else if (childObject instanceof MediaType) {

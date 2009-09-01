@@ -18,6 +18,7 @@ package org.openxrd.xrd.core.impl;
 
 import org.opensaml.xml.signature.KeyInfo;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
+import org.openxrd.xrd.core.Extensions;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
 import org.openxrd.xrd.core.Rel;
@@ -79,6 +80,7 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
         Link link = (Link) unmarshallElement(childElementsFile);
 
         assertNotNull("Subject element not present", link.getSubject());
+        assertNotNull("Extensions element not present", link.getExtensions());
         assertEquals("Rel count not as expected", relCount, link.getRels().size());
         assertEquals("MediaType count not as expected", mediaTypeCount, link.getMediaTypes().size());
         assertEquals("URI count not as expected", uriCount, link.getURIs().size());
@@ -97,7 +99,9 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     /** {@inheritDoc} */
     public void testChildElementsMarshall() {
         Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
+
         link.setSubject((Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME));
+        link.setExtensions((Extensions) buildXMLObject(Extensions.DEFAULT_ELEMENT_NAME));
 
         for (int i = 0; i < relCount; i++) {
             link.getRels().add((Rel) buildXMLObject(Rel.DEFAULT_ELEMENT_NAME));

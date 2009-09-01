@@ -2,6 +2,7 @@
 <xrd:XRD xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0">
 	<xrd:Expires />
 	<xrd:Subject />
+    <xrd:Extensions />
 	<xrd:Alias />
 	<xrd:Alias />
 	<xrd:Type />

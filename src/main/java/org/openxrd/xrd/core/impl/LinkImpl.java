@@ -20,13 +20,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.xml.namespace.QName;
-
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.signature.KeyInfo;
-import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
+import org.openxrd.xrd.core.Extensions;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.MediaType;
 import org.openxrd.xrd.core.Rel;
@@ -45,6 +43,9 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     /** Subject. */
     private Subject subject;
 
+    /** Extensions. */
+    private Extensions extensions;
+
     /** Rels. */
     private final XMLObjectChildrenList<Rel> rels;
 
@@ -59,9 +60,6 @@ public class LinkImpl extends AbstractXRDObject implements Link {
 
     /** KeyInfos. */
     private final XMLObjectChildrenList<KeyInfo> keyInfos;
-
-    /** Unknown children of this element. */
-    private IndexedXMLObjectChildrenList<XMLObject> unknownElements;
 
     /**
      * Constructor.
@@ -78,8 +76,6 @@ public class LinkImpl extends AbstractXRDObject implements Link {
         uris = new XMLObjectChildrenList<URI>(this);
         uriTemplates = new XMLObjectChildrenList<URITemplate>(this);
         keyInfos = new XMLObjectChildrenList<KeyInfo>(this);
-
-        unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
 
     /** {@inheritDoc} */
@@ -100,6 +96,16 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     /** {@inheritDoc} */
     public void setSubject(Subject newSubject) {
         subject = prepareForAssignment(subject, newSubject);
+    }
+
+    /** {@inheritDoc} */
+    public Extensions getExtensions() {
+        return extensions;
+    }
+
+    /** {@inheritDoc} */
+    public void setExtensions(Extensions newExtensions) {
+        extensions = prepareForAssignment(extensions, newExtensions);
     }
 
     /** {@inheritDoc} */
@@ -135,25 +141,17 @@ public class LinkImpl extends AbstractXRDObject implements Link {
             children.add(getSubject());
         }
 
+        if (getExtensions() != null) {
+            children.add(getExtensions());
+        }
+
         children.addAll(getRels());
         children.addAll(getMediaTypes());
         children.addAll(getURIs());
         children.addAll(getURITemplates());
         children.addAll(getKeyInfos());
 
-        children.addAll(getUnknownXMLObjects());
-
         return Collections.unmodifiableList(children);
-    }
-
-    /** {@inheritDoc} */
-    public List<XMLObject> getUnknownXMLObjects() {
-        return unknownElements;
-    }
-
-    /** {@inheritDoc} */
-    public List<XMLObject> getUnknownXMLObjects(QName typeOrName) {
-        return (List<XMLObject>) unknownElements.subList(typeOrName);
     }
 
 }
