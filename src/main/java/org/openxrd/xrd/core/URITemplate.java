@@ -20,13 +20,12 @@ import javax.xml.namespace.QName;
 
 import org.opensaml.xml.schema.XSString;
 import org.openxrd.common.XRDConstants;
-import org.openxrd.xrd.common.Prioritizable;
 import org.openxrd.xrd.common.XRDObject;
 
 /**
  * XRD URITemplate.
  */
-public interface URITemplate extends XRDObject, XSString, Prioritizable {
+public interface URITemplate extends XRDObject, XSString {
 
     /** Element local name. */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "URITemplate";
@@ -35,13 +34,4 @@ public interface URITemplate extends XRDObject, XSString, Prioritizable {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
-    /** Priority attribute name. */
-    public static final String PRIORITY_ATTRIB_NAME = "priority";
-
-    /**
-     * Set the priority of this URI template.
-     * 
-     * @param newPriority the priority of this URI template
-     */
-    public void setPriority(Integer newPriority);
 }

@@ -17,28 +17,13 @@
 package org.openxrd.xrd.core.impl;
 
 import org.opensaml.xml.XMLObject;
-import org.opensaml.xml.io.UnmarshallingException;
-import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Subject;
-import org.w3c.dom.Attr;
 
 /**
  * A thread-safe Unmarshaller for {@link Subject}.
  */
 public class SubjectUnmarshaller extends AbstractXRDObjectUnmarshaller {
-
-    /** {@inheritDoc} */
-    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
-        Subject subject = (Subject) xmlObject;
-
-        if (attribute.getLocalName().equals(Subject.MATCH_ATTRIB_NAME) && 
-                !DatatypeHelper.isEmpty(attribute.getValue())) {
-            subject.setMatch(attribute.getValue());
-        } else {
-            super.processAttribute(xmlObject, attribute);
-        }
-    }
 
     /** {@inheritDoc} */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {

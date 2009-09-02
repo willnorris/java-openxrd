@@ -16,10 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
-import javax.xml.namespace.QName;
-
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.URI;
 
 /**
@@ -30,13 +27,9 @@ public class URITest extends BaseXRDObjectProviderTestCase {
     /** Expected URI value. */
     protected String expectedValue;
 
-    /** Expected priority value. */
-    protected Integer expectedPriority;
-
     /** Constructor. */
     public URITest() {
         singleElementFile = "/data/org/openxrd/xrd/core/impl/URI.xml";
-        singleElementOptionalAttributesFile = "/data/org/openxrd/xrd/core/impl/URIOptionalAttributes.xml";
     }
 
     /** {@inheritDoc} */
@@ -44,7 +37,6 @@ public class URITest extends BaseXRDObjectProviderTestCase {
         super.setUp();
 
         expectedValue = "http://example.com/";
-        expectedPriority = 42;
     }
 
     /** {@inheritDoc} */
@@ -56,32 +48,11 @@ public class URITest extends BaseXRDObjectProviderTestCase {
     }
 
     /** {@inheritDoc} */
-    public void testSingleElementOptionalAttributesUnmarshall() {
-        URI uri = (URI) unmarshallElement(singleElementOptionalAttributesFile);
-
-        String value = uri.getValue();
-        assertEquals("URI value was " + value + ", expected " + expectedValue, expectedValue, value);
-
-        Integer priority = uri.getPriority();
-        assertEquals("Priority value was " + priority + ", expected " + expectedPriority, expectedPriority, priority);
-    }
-
-    /** {@inheritDoc} */
     public void testSingleElementMarshall() {
         URI uri = (URI) buildXMLObject(URI.DEFAULT_ELEMENT_NAME);
 
         uri.setValue(expectedValue);
         assertEquals(expectedDOM, uri);
-    }
-
-    /** {@inheritDoc} */
-    public void testSingleElementOptionalAttributesMarshall() {
-        URI uri = (URI) buildXMLObject(URI.DEFAULT_ELEMENT_NAME);
-
-        uri.setValue(expectedValue);
-        uri.setPriority(expectedPriority);
-
-        assertEquals(expectedOptionalAttributesDOM, uri);
     }
 
 }

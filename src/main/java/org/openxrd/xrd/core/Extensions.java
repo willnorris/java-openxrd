@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-package org.openxrd.xrd.common;
+package org.openxrd.xrd.core;
+
+import javax.xml.namespace.QName;
+
+import org.opensaml.xml.ElementExtensibleXMLObject;
+import org.openxrd.common.XRDConstants;
+import org.openxrd.xrd.common.XRDObject;
 
 /**
- * Prioritizable objects have an Integer priority which can be used to sort a list of such objects. The comparison rules
- * for the priorities of two objects is defined in XRD 1.0.
- * 
- * @see http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html#s.priority.attribute
+ * Extensions.
  */
-public interface Prioritizable {
+public interface Extensions extends XRDObject, ElementExtensibleXMLObject {
 
-    /**
-     * Get the priority.
-     * 
-     * @return the priority
-     */
-    public Integer getPriority();
+    /** Element local name. */
+    public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Extensions";
+
+    /** Default element name. */
+    public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
+            XRDConstants.XRD_PREFIX);
 
 }

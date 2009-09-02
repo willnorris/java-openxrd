@@ -27,18 +27,6 @@ public class LinkSchemaValidator implements Validator<Link> {
 
     /** {@inheritDoc} */
     public void validate(Link link) throws ValidationException {
-        validatePriority(link);
     }
 
-    /**
-     * Checks that the link priority is non-negative.
-     * 
-     * @param link Link to validate
-     * @throws ValidationException if link priority is negative
-     */
-    protected void validatePriority(Link link) throws ValidationException {
-        if (link.getPriority() != null && link.getPriority() < 0) {
-            throw new ValidationException("Link priority must be non-negative.");
-        }
-    }
 }

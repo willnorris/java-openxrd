@@ -29,17 +29,6 @@ import org.w3c.dom.Element;
 public class URITemplateMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
-    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        URITemplate uriTemplate = (URITemplate) xmlObject;
-
-        if (uriTemplate.getPriority() != null) {
-            domElement.setAttributeNS(null, URITemplate.PRIORITY_ATTRIB_NAME, uriTemplate.getPriority().toString());
-        }
-
-        super.marshallAttributes(xmlObject, domElement);
-    }
-
-    /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
         URITemplate uriTemplate = (URITemplate) xmlObject;
 
@@ -47,5 +36,5 @@ public class URITemplateMarshaller extends AbstractXRDObjectMarshaller {
             XMLHelper.appendTextContent(domElement, uriTemplate.getValue());
         }
     }
-    
+
 }

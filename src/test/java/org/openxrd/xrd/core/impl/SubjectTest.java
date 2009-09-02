@@ -16,10 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
-import javax.xml.namespace.QName;
-
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Subject;
 
 /**
@@ -30,13 +27,9 @@ public class SubjectTest extends BaseXRDObjectProviderTestCase {
     /** Expected subject value. */
     protected String expectedValue;
 
-    /** Expected match value. */
-    protected String expectedMatch;
-
     /** Constructor. */
     public SubjectTest() {
         singleElementFile = "/data/org/openxrd/xrd/core/impl/Subject.xml";
-        singleElementOptionalAttributesFile = "/data/org/openxrd/xrd/core/impl/SubjectOptionalAttributes.xml";
     }
 
     /** {@inheritDoc} */
@@ -44,7 +37,6 @@ public class SubjectTest extends BaseXRDObjectProviderTestCase {
         super.setUp();
 
         expectedValue = "http://example.com/";
-        expectedMatch = "http://example.net/";
     }
 
     /** {@inheritDoc} */
@@ -56,17 +48,6 @@ public class SubjectTest extends BaseXRDObjectProviderTestCase {
     }
 
     /** {@inheritDoc} */
-    public void testSingleElementOptionalAttributesUnmarshall() {
-        Subject subject = (Subject) unmarshallElement(singleElementOptionalAttributesFile);
-
-        String value = subject.getValue();
-        assertEquals("Subject value was " + value + ", expected " + expectedValue, expectedValue, value);
-
-        String match = subject.getMatch();
-        assertEquals("Match value was " + match + ", expected " + expectedMatch, expectedMatch, match);
-    }
-
-    /** {@inheritDoc} */
     public void testSingleElementMarshall() {
         Subject subject = (Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME);
 
@@ -74,12 +55,4 @@ public class SubjectTest extends BaseXRDObjectProviderTestCase {
         assertEquals(expectedDOM, subject);
     }
 
-    /** {@inheritDoc} */
-    public void testSingleElementOptionalAttributesMarshall() {
-        Subject subject = (Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME);
-
-        subject.setValue(expectedValue);
-        subject.setMatch(expectedMatch);
-        assertEquals(expectedOptionalAttributesDOM, subject);
-    }
 }

@@ -27,9 +27,6 @@ public class URITemplateImpl extends AbstractXRDObject implements URITemplate {
     /** URITemplate value. */
     private String value;
 
-    /** URITemplate priority. */
-    private Integer priority;
-
     /**
      * Constructor.
      * 
@@ -49,16 +46,6 @@ public class URITemplateImpl extends AbstractXRDObject implements URITemplate {
     /** {@inheritDoc} */
     public void setValue(String newValue) {
         value = prepareForAssignment(value, newValue);
-    }
-
-    /** {@inheritDoc} */
-    public Integer getPriority() {
-        return priority;
-    }
-
-    /** {@inheritDoc} */
-    public void setPriority(Integer newPriority) {
-        priority = prepareForAssignment(priority, newPriority);
     }
 
 }

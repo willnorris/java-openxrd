@@ -37,9 +37,6 @@ import org.openxrd.xrd.core.URITemplate;
  */
 public class LinkImpl extends AbstractXRDObject implements Link {
 
-    /** Priority. */
-    private Integer priority;
-
     /** Subject. */
     private Subject subject;
 
@@ -76,16 +73,6 @@ public class LinkImpl extends AbstractXRDObject implements Link {
         uris = new XMLObjectChildrenList<URI>(this);
         uriTemplates = new XMLObjectChildrenList<URITemplate>(this);
         keyInfos = new XMLObjectChildrenList<KeyInfo>(this);
-    }
-
-    /** {@inheritDoc} */
-    public Integer getPriority() {
-        return priority;
-    }
-
-    /** {@inheritDoc} */
-    public void setPriority(Integer newPriority) {
-        priority = prepareForAssignment(priority, newPriority);
     }
 
     /** {@inheritDoc} */

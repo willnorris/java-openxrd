@@ -31,9 +31,6 @@ import org.openxrd.xrd.core.URITemplate;
  */
 public class LinkTest extends BaseXRDObjectProviderTestCase {
 
-    /** Expected priority value. */
-    protected Integer expectedPriority;
-
     /** Count of Rel sub-elements. */
     protected int relCount;
 
@@ -59,7 +56,6 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     protected void setUp() throws Exception {
         super.setUp();
 
-        expectedPriority = 42;
         relCount = 3;
         mediaTypeCount = 2;
         uriCount = 3;
@@ -71,8 +67,7 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     public void testSingleElementUnmarshall() {
         Link link = (Link) unmarshallElement(singleElementFile);
 
-        Integer priority = link.getPriority();
-        assertEquals("Priority value was " + priority + ", expected " + expectedPriority, expectedPriority, priority);
+        assertNotNull("Unable to unmarshall link", link);
     }
 
     /** {@inheritDoc} */
@@ -92,7 +87,6 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     public void testSingleElementMarshall() {
         Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
 
-        link.setPriority(expectedPriority);
         assertEquals(expectedDOM, link);
     }
 

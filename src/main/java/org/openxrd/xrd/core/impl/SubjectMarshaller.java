@@ -29,17 +29,6 @@ import org.w3c.dom.Element;
 public class SubjectMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
-    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Subject subject = (Subject) xmlObject;
-
-        if (subject.getMatch() != null) {
-            domElement.setAttributeNS(null, Subject.MATCH_ATTRIB_NAME, subject.getMatch());
-        }
-
-        super.marshallAttributes(xmlObject, domElement);
-    }
-
-    /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
         Subject subject = (Subject) xmlObject;
 

@@ -29,7 +29,6 @@ public class URITemplateSchemaValidator implements Validator<URITemplate> {
     /** {@inheritDoc} */
     public void validate(URITemplate uri) throws ValidationException {
         validateURI(uri);
-        validatePriority(uri);
     }
 
     /**
@@ -41,18 +40,6 @@ public class URITemplateSchemaValidator implements Validator<URITemplate> {
     protected void validateURI(URITemplate uri) throws ValidationException {
         if (DatatypeHelper.isEmpty(uri.getValue())) {
             throw new ValidationException("URITemplate value must be specified.");
-        }
-    }
-
-    /**
-     * Checks that the uri template priority is non-negative.
-     * 
-     * @param uri URITemplate to validate
-     * @throws ValidationException if uri template priority is negative
-     */
-    protected void validatePriority(URITemplate uri) throws ValidationException {
-        if (uri.getPriority() != null && uri.getPriority() < 0) {
-            throw new ValidationException("URITemplate priority must be non-negative.");
         }
     }
 

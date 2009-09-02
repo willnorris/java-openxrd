@@ -16,10 +16,7 @@
 
 package org.openxrd.xrd.core.impl;
 
-import javax.xml.namespace.QName;
-
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.URITemplate;
 
 /**
@@ -30,13 +27,9 @@ public class URITemplateTest extends BaseXRDObjectProviderTestCase {
     /** Expected URI template value. */
     protected String expectedValue;
 
-    /** Expected priority value. */
-    protected Integer expectedPriority;
-
     /** Constructor. */
     public URITemplateTest() {
         singleElementFile = "/data/org/openxrd/xrd/core/impl/URITemplate.xml";
-        singleElementOptionalAttributesFile = "/data/org/openxrd/xrd/core/impl/URITemplateOptionalAttributes.xml";
     }
 
     /** {@inheritDoc} */
@@ -44,7 +37,6 @@ public class URITemplateTest extends BaseXRDObjectProviderTestCase {
         super.setUp();
 
         expectedValue = "{uri};about";
-        expectedPriority = 42;
     }
 
     /** {@inheritDoc} */
@@ -56,32 +48,11 @@ public class URITemplateTest extends BaseXRDObjectProviderTestCase {
     }
 
     /** {@inheritDoc} */
-    public void testSingleElementOptionalAttributesUnmarshall() {
-        URITemplate uriTemplate = (URITemplate) unmarshallElement(singleElementOptionalAttributesFile);
-
-        String value = uriTemplate.getValue();
-        assertEquals("URITemplate value was " + value + ", expected " + expectedValue, expectedValue, value);
-
-        Integer priority = uriTemplate.getPriority();
-        assertEquals("Priority value was " + priority + ", expected " + expectedPriority, expectedPriority, priority);
-    }
-
-    /** {@inheritDoc} */
     public void testSingleElementMarshall() {
         URITemplate uriTemplate = (URITemplate) buildXMLObject(URITemplate.DEFAULT_ELEMENT_NAME);
 
         uriTemplate.setValue(expectedValue);
         assertEquals(expectedDOM, uriTemplate);
-    }
-
-    /** {@inheritDoc} */
-    public void testSingleElementOptionalAttributesMarshall() {
-        URITemplate uriTemplate = (URITemplate) buildXMLObject(URITemplate.DEFAULT_ELEMENT_NAME);
-
-        uriTemplate.setValue(expectedValue);
-        uriTemplate.setPriority(expectedPriority);
-
-        assertEquals(expectedOptionalAttributesDOM, uriTemplate);
     }
 
 }

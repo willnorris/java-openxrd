@@ -17,28 +17,13 @@
 package org.openxrd.xrd.core.impl;
 
 import org.opensaml.xml.XMLObject;
-import org.opensaml.xml.io.UnmarshallingException;
-import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.URI;
-import org.w3c.dom.Attr;
 
 /**
  * A thread-safe unmarshaller for {@link URI}.
  */
 public class URIUnmarshaller extends AbstractXRDObjectUnmarshaller {
-
-    /** {@inheritDoc} */
-    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
-        URI uri = (URI) xmlObject;
-
-        if (attribute.getLocalName().equals(URI.PRIORITY_ATTRIB_NAME) 
-                && !DatatypeHelper.isEmpty(attribute.getValue())) {
-            uri.setPriority(Integer.valueOf(attribute.getValue()));
-        } else {
-            super.processAttribute(xmlObject, attribute);
-        }
-    }
 
     /** {@inheritDoc} */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {

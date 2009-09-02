@@ -28,7 +28,7 @@ public class URISchemaValidator implements Validator<URI> {
 
     /** {@inheritDoc} */
     public void validate(URI uri) throws ValidationException {
-        validatePriority(uri);
+        validateURI(uri);
     }
 
     /**
@@ -40,18 +40,6 @@ public class URISchemaValidator implements Validator<URI> {
     protected void validateURI(URI uri) throws ValidationException {
         if (DatatypeHelper.isEmpty(uri.getValue())) {
             throw new ValidationException("URI value must be specified.");
-        }
-    }
-
-    /**
-     * Checks that the uri priority is non-negative.
-     * 
-     * @param uri URI to validate
-     * @throws ValidationException if uri priority is negative
-     */
-    protected void validatePriority(URI uri) throws ValidationException {
-        if (uri.getPriority() != null && uri.getPriority() < 0) {
-            throw new ValidationException("URI priority must be non-negative.");
         }
     }
 

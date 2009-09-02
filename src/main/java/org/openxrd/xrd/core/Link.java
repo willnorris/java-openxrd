@@ -22,13 +22,12 @@ import javax.xml.namespace.QName;
 
 import org.opensaml.xml.signature.KeyInfo;
 import org.openxrd.common.XRDConstants;
-import org.openxrd.xrd.common.Prioritizable;
 import org.openxrd.xrd.common.XRDObject;
 
 /**
  * XRD Link.
  */
-public interface Link extends XRDObject, Prioritizable {
+public interface Link extends XRDObject {
 
     /** Element local name. */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Link";
@@ -36,16 +35,6 @@ public interface Link extends XRDObject, Prioritizable {
     /** Default element name. */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
-
-    /** Priority attribute name. */
-    public static final String PRIORITY_ATTRIB_NAME = "priority";
-
-    /**
-     * Set the priority of this link.
-     * 
-     * @param newPriority the priority of this link
-     */
-    public void setPriority(Integer newPriority);
 
     /**
      * Get the subject of this link.
