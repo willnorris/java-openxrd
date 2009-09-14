@@ -35,13 +35,13 @@ public class XRDConstants extends XMLConstants {
     /** XRD 1.0 QName prefix. */
     public static final String XRD_PREFIX = "xrd";
 
-    /** XRD 1.0 Subject exact match. */
-    public static final String XRD_SUBJECT_MATCH_EXACT = "http://docs.oasis-open.org/xri/xrd/v1.0#exact-match";
-
-    /** XRD 1.0 Subject begins-with match. */
-    public static final String XRD_SUBJECT_MATCH_BEGINSWITH = "http://docs.oasis-open.org/xri/xrd/v1.0#begins-with";
-
     /** XRD 1.0 Link Rel see-also. */
     public static final String XRD_REL_SEEALSO = "http://docs.oasis-open.org/xri/xrd/v1.0#see-also";
+    
+    /** XRD 1.0 Mime-Type. */
+    public static final String XRD_MIME_TYPE = "application/xrd+xml";
+    
+    /** XRD 1.0 describedby rel value. */
+    public static final String XRD_REL_DESCRIBEDBY = "describedby";
 
 }
