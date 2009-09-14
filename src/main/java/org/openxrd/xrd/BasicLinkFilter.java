@@ -61,7 +61,7 @@ public class BasicLinkFilter implements LinkFilter {
      * @return true if link matches rel values for this filter
      */
     protected boolean matchRels(Link link) {
-        if (link.getRels().size() != 0 && rels.size() != 0) {
+        if (rels.size() != 0) {
             Set<String> linkRels = new HashSet<String>();
             for (Rel rel : link.getRels()) {
                 linkRels.add(rel.getValue());
@@ -83,7 +83,7 @@ public class BasicLinkFilter implements LinkFilter {
      * @return true if link matches media type values for this filter
      */
     protected boolean matchMediaTypes(Link link) {
-        if (link.getMediaTypes().size() != 0 && mediaTypes.size() != 0) {
+        if (mediaTypes.size() != 0) {
             Set<String> linkMediaTypes = new HashSet<String>();
             for (MediaType type : link.getMediaTypes()) {
                 linkMediaTypes.add(type.getValue());

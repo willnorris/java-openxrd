@@ -11,6 +11,7 @@
     </Link>
     <Link>
         <Rel>describedby</Rel>
+        <MediaType>text/html</MediaType>
         <URI>http://example.com/3</URI>
     </Link>
 </XRD>
