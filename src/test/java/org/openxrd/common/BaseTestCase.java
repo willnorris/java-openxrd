@@ -149,14 +149,14 @@ public abstract class BaseTestCase extends XMLTestCase {
     protected XMLObject unmarshallElement(String elementFile) {
         try {
             Document doc = parser.parse(BaseTestCase.class.getResourceAsStream(elementFile));
-            Element samlElement = doc.getDocumentElement();
+            Element xrdElement = doc.getDocumentElement();
 
-            Unmarshaller unmarshaller = Configuration.getUnmarshallerFactory().getUnmarshaller(samlElement);
+            Unmarshaller unmarshaller = Configuration.getUnmarshallerFactory().getUnmarshaller(xrdElement);
             if (unmarshaller == null) {
                 fail("Unable to retrieve unmarshaller by DOM Element");
             }
 
-            return unmarshaller.unmarshall(samlElement);
+            return unmarshaller.unmarshall(xrdElement);
         } catch (XMLParserException e) {
             fail("Unable to parse element file " + elementFile);
         } catch (UnmarshallingException e) {

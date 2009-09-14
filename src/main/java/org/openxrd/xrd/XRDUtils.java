@@ -35,27 +35,27 @@ public class XRDUtils {
     }
 
     /**
-     * Get all related resources of the given XRD that have the specified rel value.
+     * Get all linked resources of the given XRD that have the specified rel value.
      * 
-     * @param xrd XRD to get related resources from
-     * @param rel Rel value used to select related resources
-     * @return list of related resources that have the specified rel value
+     * @param xrd XRD to get linked resources from
+     * @param rel Rel value used to select linked resources
+     * @return list of linked resources that have the specified rel value
      */
-    public static List<Link> getRelatedResources(XRD xrd, String rel) {
+    public static List<Link> getLinkedResources(XRD xrd, String rel) {
         BasicLinkFilter criteria = new BasicLinkFilter();
         criteria.getRels().add(rel);
 
-        return getRelatedResources(xrd, criteria);
+        return getLinkedResources(xrd, criteria);
     }
 
     /**
-     * Get all related resources of the given XRD that match the specified selection criteria.
+     * Get all linked resources of the given XRD that match the specified selection criteria.
      * 
-     * @param xrd XRD to get related resources from
-     * @param criteria Selection criteria used to select related resources
-     * @return list of related resources that match the specified selection criteria
+     * @param xrd XRD to get linked resources from
+     * @param criteria Selection criteria used to select linked resources
+     * @return list of linked resources that match the specified selection criteria
      */
-    public static List<Link> getRelatedResources(XRD xrd, LinkFilter criteria) {
+    public static List<Link> getLinkedResources(XRD xrd, LinkFilter criteria) {
         List<Link> relatedLinks = new ArrayList<Link>();
 
         for (Link link : xrd.getLinks()) {
@@ -74,7 +74,7 @@ public class XRDUtils {
      * @return list of linked XRDs
      */
     public static List<Link> getLinkedXRDs(XRD xrd) {
-        return getRelatedResources(xrd, XRDConstants.XRD_REL_SEEALSO);
+        return getLinkedResources(xrd, XRDConstants.XRD_REL_SEEALSO);
     }
 
 }
