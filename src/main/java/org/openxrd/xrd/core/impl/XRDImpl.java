@@ -29,7 +29,6 @@ import org.opensaml.xml.util.XMLObjectChildrenList;
 import org.openxrd.xrd.common.impl.AbstractSignableXRDObject;
 import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
-import org.openxrd.xrd.core.Extensions;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.Type;
@@ -49,9 +48,6 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     /** Subject. */
     private Subject subject;
 
-    /** Extensions. */
-    private Extensions extensions;
-
     /** Aliases. */
     private final XMLObjectChildrenList<Alias> aliases;
 
@@ -63,6 +59,9 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
 
     /** Unknown attributes for this element. */
     private AttributeMap unknownAttributes;
+
+    /** Unknown children of this element. */
+    private IndexedXMLObjectChildrenList<XMLObject> unknownElements;
 
     /**
      * Constructor.
@@ -79,6 +78,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
         types = new XMLObjectChildrenList<Type>(this);
 
         unknownAttributes = new AttributeMap(this);
+        unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
 
     /** {@inheritDoc} */
@@ -111,16 +111,6 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     /** {@inheritDoc} */
     public void setSubject(Subject newSubject) {
         subject = prepareForAssignment(subject, newSubject);
-    }
-
-    /** {@inheritDoc} */
-    public Extensions getExtensions() {
-        return extensions;
-    }
-
-    /** {@inheritDoc} */
-    public void setExtensions(Extensions newExtensions) {
-        extensions = prepareForAssignment(extensions, newExtensions);
     }
 
     /** {@inheritDoc} */
@@ -160,19 +150,27 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
             children.add(getSubject());
         }
 
-        if (getSignature() != null) {
-            children.add(getSignature());
-        }
-
-        if (getExtensions() != null) {
-            children.add(getExtensions());
-        }
-
         children.addAll(getAliases());
         children.addAll(getTypes());
         children.addAll(getLinks());
 
+        children.addAll(getUnknownXMLObjects());
+
+        if (getSignature() != null) {
+            children.add(getSignature());
+        }
+
         return Collections.unmodifiableList(children);
+    }
+
+    /** {@inheritDoc} */
+    public List<XMLObject> getUnknownXMLObjects() {
+        return unknownElements;
+    }
+
+    /** {@inheritDoc} */
+    public List<XMLObject> getUnknownXMLObjects(QName typeOrName) {
+        return (List<XMLObject>) unknownElements.subList(typeOrName);
     }
 
 }

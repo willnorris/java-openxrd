@@ -16,10 +16,12 @@
 
 package org.openxrd.xrd.core.impl;
 
+import javax.xml.namespace.QName;
+
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
+import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
-import org.openxrd.xrd.core.Extensions;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.Type;
@@ -72,7 +74,6 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
 
         assertNotNull("Expires element not present", xrd.getExpires());
         assertNotNull("Subject element not present", xrd.getSubject());
-        assertNotNull("Extensions element not present", xrd.getExtensions());
         assertEquals("Alias count not as expected", aliasCount, xrd.getAliases().size());
         assertEquals("Type count not as expected", typeCount, xrd.getTypes().size());
         assertEquals("Link count not as expected", linkCount, xrd.getLinks().size());
@@ -92,7 +93,6 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
 
         xrd.setExpires((Expires) buildXMLObject(Expires.DEFAULT_ELEMENT_NAME));
         xrd.setSubject((Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME));
-        xrd.setExtensions((Extensions) buildXMLObject(Extensions.DEFAULT_ELEMENT_NAME));
 
         for (int i = 0; i < aliasCount; i++) {
             xrd.getAliases().add((Alias) buildXMLObject(Alias.DEFAULT_ELEMENT_NAME));

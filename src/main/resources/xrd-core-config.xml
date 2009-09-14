@@ -27,13 +27,6 @@
             <UnmarshallingClass className="org.openxrd.xrd.core.impl.SubjectUnmarshaller" />
         </ObjectProvider>
 
-        <!-- Extensions -->
-        <ObjectProvider qualifiedName="xrd:Extensions">
-            <BuilderClass className="org.openxrd.xrd.core.impl.ExtensionsBuilder" />
-            <MarshallingClass className="org.openxrd.xrd.core.impl.ExtensionsMarshaller" />
-            <UnmarshallingClass className="org.openxrd.xrd.core.impl.ExtensionsUnmarshaller" />
-        </ObjectProvider>
-
         <!-- Alias -->
         <ObjectProvider qualifiedName="xrd:Alias">
             <BuilderClass className="org.openxrd.xrd.core.impl.AliasBuilder" />

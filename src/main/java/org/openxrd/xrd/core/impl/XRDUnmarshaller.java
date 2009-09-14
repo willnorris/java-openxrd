@@ -23,7 +23,6 @@ import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
-import org.openxrd.xrd.core.Extensions;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.Type;
@@ -57,16 +56,14 @@ public class XRDUnmarshaller extends AbstractXRDObjectUnmarshaller {
             xrd.setExpires((Expires) childObject);
         } else if (childObject instanceof Subject) {
             xrd.setSubject((Subject) childObject);
-        } else if (childObject instanceof Signature) {
-            xrd.setSignature((Signature) childObject);
-        } else if (childObject instanceof Extensions) {
-            xrd.setExtensions((Extensions) childObject);
         } else if (childObject instanceof Alias) {
             xrd.getAliases().add((Alias) childObject);
         } else if (childObject instanceof Type) {
             xrd.getTypes().add((Type) childObject);
         } else if (childObject instanceof Link) {
             xrd.getLinks().add((Link) childObject);
+        } else if (childObject instanceof Signature) {
+            xrd.setSignature((Signature) childObject);
         } else {
             super.processChildElement(parentObject, childObject);
         }

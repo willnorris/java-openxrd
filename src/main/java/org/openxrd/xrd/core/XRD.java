@@ -20,6 +20,7 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+import org.opensaml.xml.ElementExtensibleXMLObject;
 import org.opensaml.xml.util.XMLConstants;
 import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.SignableXRDObject;
@@ -27,7 +28,7 @@ import org.openxrd.xrd.common.SignableXRDObject;
 /**
  * XRD.
  */
-public interface XRD extends SignableXRDObject {
+public interface XRD extends SignableXRDObject, ElementExtensibleXMLObject {
 
     /** Element local name. */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "XRD";
@@ -80,20 +81,6 @@ public interface XRD extends SignableXRDObject {
      * @param newSubject the subject of this XRD
      */
     public void setSubject(Subject newSubject);
-
-    /**
-     * Get the extensions for this XRD.
-     * 
-     * @return the extensions for this XRD
-     */
-    public Extensions getExtensions();
-
-    /**
-     * Set the extensions for this XRD
-     * 
-     * @param newExtensions the extensions for this XRD
-     */
-    public void setExtensions(Extensions newExtensions);
 
     /**
      * Get the list of aliases for this XRD.
