@@ -22,8 +22,6 @@ import java.util.Map;
 /**
  * The template manager maintains a registry of URI {@link TemplateDictionary}s associated with rel values. The manager
  * is also responsible for applying templates based on a list of dictionaries and input values.
- * 
- * Manager of template dictionaries.
  */
 public interface TemplateManager {
 

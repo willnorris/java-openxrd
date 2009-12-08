@@ -16,8 +16,6 @@
 
 package org.openxrd;
 
-import org.apache.velocity.app.Velocity;
-import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.xml.security.Init;
 import org.opensaml.xml.ConfigurationException;
 import org.opensaml.xml.XMLConfigurator;
@@ -34,14 +32,8 @@ public class DefaultBootstrap {
     private static Logger log = LoggerFactory.getLogger(DefaultBootstrap.class);
 
     /** List of default XMLTooling configuration files. */
-    private static String[] xmlToolingConfigs = { 
-        "/default-config.xml", 
-        "/schema-config.xml", 
-        "/signature-config.xml",
-        "/signature-validation-config.xml",         
-        "/xrd-core-config.xml", 
-        "/xrd-core-validation-config.xml", 
-    };
+    private static String[] xmlToolingConfigs = { "/default-config.xml", "/schema-config.xml", "/signature-config.xml",
+            "/signature-validation-config.xml", "/xrd-core-config.xml", "/xrd-core-validation-config.xml", };
 
     /** Constructor. */
     protected DefaultBootstrap() {
@@ -56,8 +48,6 @@ public class DefaultBootstrap {
     public static synchronized void bootstrap() throws ConfigurationException {
 
         initializeXMLSecurity();
-
-        initializeVelocity();
 
         initializeXMLTooling(xmlToolingConfigs);
 
@@ -80,27 +70,6 @@ public class DefaultBootstrap {
         if (!Init.isInitialized()) {
             log.debug("Initializing Apache XMLSecurity library");
             Init.init();
-        }
-    }
-
-    /**
-     * Intializes the Apache Velocity template engine.
-     * 
-     * @throws ConfigurationException thrown if there is a problem initializing Velocity
-     */
-    protected static void initializeVelocity() throws ConfigurationException {
-        try {
-            log.debug("Initializing Velocity template engine");
-            Velocity.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS,
-                    "org.apache.velocity.runtime.log.NullLogChute");
-            Velocity.setProperty(RuntimeConstants.ENCODING_DEFAULT, "UTF-8");
-            Velocity.setProperty(RuntimeConstants.OUTPUT_ENCODING, "UTF-8");
-            Velocity.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-            Velocity.setProperty("classpath.resource.loader.class",
-                    "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-            Velocity.init();
-        } catch (Exception e) {
-            throw new ConfigurationException("Unable to initialize Velocity template engine", e);
         }
     }
 

@@ -25,10 +25,10 @@ import org.openxrd.xrd.core.Alias;
 public class AliasTest extends BaseXRDObjectProviderTestCase {
 
     /** Expected alias value. */
-    protected String expectedValue;
+    private String expectedValue;
 
     /** Expected match value. */
-    protected String expectedMatch;
+    private String expectedMatch;
 
     /** Constructor. */
     public AliasTest() {

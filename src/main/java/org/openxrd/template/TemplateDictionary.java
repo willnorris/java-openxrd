@@ -21,7 +21,7 @@ import java.util.Set;
 
 /**
  * A TemplateDictionary defines a set of terms which may be used in a template. It is also responsible for parsing input
- * strings into
+ * strings into variable values to be inserted into a template.
  */
 public interface TemplateDictionary {
 

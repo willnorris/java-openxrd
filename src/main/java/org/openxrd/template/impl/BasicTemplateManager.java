@@ -33,12 +33,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Basic implementation of TemplateManager.
+ * Basic implementation of a TemplateManager.
  */
 public class BasicTemplateManager implements TemplateManager {
 
     /** Logger. */
-    private Logger log = LoggerFactory.getLogger(BasicTemplateManager.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BasicTemplateManager.class);
 
     /** Dictionary registry. */
     private Map<String, List<TemplateDictionary>> dictionaries;
@@ -75,7 +75,7 @@ public class BasicTemplateManager implements TemplateManager {
                 try {
                     value = URLEncoder.encode(value, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
-                    log.error("UTF-8 encoding is not supported, this VM is not Java compliant.");
+                    LOG.error("UTF-8 encoding is not supported, this VM is not Java compliant.");
                     throw new TemplateException("Unable to process template, UTF-8 encoding is not supported");
                 }
             }

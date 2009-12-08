@@ -24,7 +24,6 @@ import org.opensaml.xml.signature.Signature;
 import org.opensaml.xml.signature.Signer;
 import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.common.BaseTestCase;
-import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.XRD;
 
 /**
@@ -38,13 +37,8 @@ public class XRDSigningTest extends BaseTestCase {
      * @throws Exception if something breaks
      */
     public void testXRD() throws Exception {
-        XRD xrd = (XRD) buildXMLObject(XRD.DEFAULT_ELEMENT_NAME);
-        xrd.setID("foo");
-
-        Subject subject = (Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME);
-        subject.setValue("http://openxrd.org/");
-        xrd.setSubject(subject);
-
+        XRD xrd = (XRD) unmarshallElement("/data/org/openxrd/signing-example.xml");
+                
         addSignature(xrd);
 
         Configuration.getMarshallerFactory().getMarshaller(xrd).marshall(xrd);
