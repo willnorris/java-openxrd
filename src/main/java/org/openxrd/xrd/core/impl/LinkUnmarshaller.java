@@ -19,13 +19,10 @@ package org.openxrd.xrd.core.impl;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.opensaml.xml.signature.KeyInfo;
+import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Link;
-import org.openxrd.xrd.core.MediaType;
-import org.openxrd.xrd.core.Rel;
-import org.openxrd.xrd.core.Subject;
-import org.openxrd.xrd.core.URI;
-import org.openxrd.xrd.core.URITemplate;
+import org.w3c.dom.Attr;
 
 /**
  * A thread-safe unmarshaller for {@link Link}.
@@ -36,20 +33,30 @@ public class LinkUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
     protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {
         Link link = (Link) parentObject;
 
-        if (childObject instanceof Subject) {
-            link.setSubject((Subject) childObject);
-        } else if (childObject instanceof Rel) {
-            link.getRels().add((Rel) childObject);
-        } else if (childObject instanceof MediaType) {
-            link.getMediaTypes().add((MediaType) childObject);
-        } else if (childObject instanceof URI) {
-            link.getURIs().add((URI) childObject);
-        } else if (childObject instanceof URITemplate) {
-            link.getURITemplates().add((URITemplate) childObject);
-        } else if (childObject instanceof KeyInfo) {
+        if (childObject instanceof KeyInfo) {
             link.getKeyInfos().add((KeyInfo) childObject);
         } else {
             super.processChildElement(parentObject, childObject);
+        }
+    }
+
+    /** {@inheritDoc} */
+    protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
+        Link link = (Link) xmlObject;
+
+        if (attribute.getLocalName().equals(Link.HREF_ATTRIB_NAME) && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            link.setHref(attribute.getValue());
+        } else if (attribute.getLocalName().equals(Link.REL_ATTRIB_NAME)
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            link.setRel(attribute.getValue());
+        } else if (attribute.getLocalName().equals(Link.TEMPLATE_ATTRIB_NAME)
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            link.setTemplate(attribute.getValue());
+        } else if (attribute.getLocalName().equals(Link.TYPE_ATTRIB_NAME)
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            link.setType(attribute.getValue());
+        } else {
+            super.processAttribute(xmlObject, attribute);
         }
     }
 

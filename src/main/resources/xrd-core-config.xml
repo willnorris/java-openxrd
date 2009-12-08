@@ -48,33 +48,5 @@
             <UnmarshallingClass className="org.openxrd.xrd.core.impl.LinkUnmarshaller" />
         </ObjectProvider>
 
-        <!-- Rel -->
-        <ObjectProvider qualifiedName="xrd:Rel">
-            <BuilderClass className="org.openxrd.xrd.core.impl.RelBuilder" />
-            <MarshallingClass className="org.openxrd.xrd.core.impl.RelMarshaller" />
-            <UnmarshallingClass className="org.openxrd.xrd.core.impl.RelUnmarshaller" />
-        </ObjectProvider>
-
-        <!-- MediaType -->
-        <ObjectProvider qualifiedName="xrd:MediaType">
-            <BuilderClass className="org.openxrd.xrd.core.impl.MediaTypeBuilder" />
-            <MarshallingClass className="org.openxrd.xrd.core.impl.MediaTypeMarshaller" />
-            <UnmarshallingClass className="org.openxrd.xrd.core.impl.MediaTypeUnmarshaller" />
-        </ObjectProvider>
-
-        <!-- URI -->
-        <ObjectProvider qualifiedName="xrd:URI">
-            <BuilderClass className="org.openxrd.xrd.core.impl.URIBuilder" />
-            <MarshallingClass className="org.openxrd.xrd.core.impl.URIMarshaller" />
-            <UnmarshallingClass className="org.openxrd.xrd.core.impl.URIUnmarshaller" />
-        </ObjectProvider>
-
-        <!-- URITemplate -->
-        <ObjectProvider qualifiedName="xrd:URITemplate">
-            <BuilderClass className="org.openxrd.xrd.core.impl.URITemplateBuilder" />
-            <MarshallingClass className="org.openxrd.xrd.core.impl.URITemplateMarshaller" />
-            <UnmarshallingClass className="org.openxrd.xrd.core.impl.URITemplateUnmarshaller" />
-        </ObjectProvider>
-
     </ObjectProviders>
 </XMLTooling>

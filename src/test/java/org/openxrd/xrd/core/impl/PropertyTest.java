@@ -48,11 +48,10 @@ public class PropertyTest extends BaseXRDObjectProviderTestCase {
         Property property = (Property) unmarshallElement(singleElementFile);
 
         String value = property.getValue();
-        assertEquals("Type value was " + value + ", expected " + expectedValue, expectedValue, value);
+        assertEquals("Property value was " + value + ", expected " + expectedValue, expectedValue, value);
 
         String type = property.getType();
-        assertEquals("Required value was " + type.toString() + ", expected " + expectedType.toString(), expectedType,
-                type);
+        assertEquals("Type value was " + type.toString() + ", expected " + expectedType.toString(), expectedType, type);
     }
 
     /** {@inheritDoc} */

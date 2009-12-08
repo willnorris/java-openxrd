@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xrd:Link xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-	<xrd:Subject />
-	<xrd:Rel />
-	<xrd:Rel />
-	<xrd:Rel />
-	<xrd:MediaType />
-	<xrd:MediaType />
-	<xrd:URI />
-	<xrd:URI />
-	<xrd:URI />
-	<xrd:URITemplate />
-	<xrd:URITemplate />
-	<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#" />
-	<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#" />
+    <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#" />
+    <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#" />
 </xrd:Link>

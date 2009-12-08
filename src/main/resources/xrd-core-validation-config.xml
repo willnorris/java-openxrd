@@ -1,33 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd"
-            xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0"
-            xmlns="http://www.opensaml.org/xmltooling-config">
-            
-     <!-- Validation rules for XRD 1.0 XRDObjects -->
+<XMLTooling xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opensaml.org/xmltooling-config ../../src/schema/xmltooling-config.xsd"
+    xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0" xmlns="http://www.opensaml.org/xmltooling-config">
+
+    <!-- Validation rules for XRD 1.0 XRDObjects -->
     <ValidatorSuites>
-    
+
         <!--  XRD 1.0 Schema Validation Rules -->
         <ValidatorSuite id="xrd-core-schema-validator">
             <Validator qualifiedName="xrd:Alias" className="org.openxrd.xrd.core.validator.AliasSchemaValidator" />
             <Validator qualifiedName="xrd:Expires" className="org.openxrd.xrd.core.validator.ExpiresSchemaValidator" />
             <Validator qualifiedName="xrd:Link" className="org.openxrd.xrd.core.validator.LinkSchemaValidator" />
-            <Validator qualifiedName="xrd:MediaType" className="org.openxrd.xrd.core.validator.MediaTypeSchemaValidator" />
-            <Validator qualifiedName="xrd:Rel" className="org.openxrd.xrd.core.validator.RelSchemaValidator" />
             <Validator qualifiedName="xrd:Subject" className="org.openxrd.xrd.core.validator.SubjectSchemaValidator" />
-            <Validator qualifiedName="xrd:Type" className="org.openxrd.xrd.core.validator.TypeSchemaValidator" />
-            <Validator qualifiedName="xrd:URI" className="org.openxrd.xrd.core.validator.URISchemaValidator" />
-            <Validator qualifiedName="xrd:URITemplate" className="org.openxrd.xrd.core.validator.URITemplateSchemaValidator" />
+            <Validator qualifiedName="xrd:Property" className="org.openxrd.xrd.core.validator.PropertySchemaValidator" />
             <Validator qualifiedName="xrd:XRD" className="org.openxrd.xrd.core.validator.XRDSchemaValidator" />
         </ValidatorSuite>
-    
+
         <!-- XRD 1.0 Specification Validation Rules -->
-        <!-- 
-        <ValidatorSuite id="xrd-core-spec-validator">
-        	<validator qualifiedName="" className="" />
-        </ValidatorSuite>
+        <!--
+            <ValidatorSuite id="xrd-core-spec-validator"> <validator qualifiedName="" className="" /> </ValidatorSuite>
         -->
-        
+
     </ValidatorSuites>
- 
+
 </XMLTooling>

@@ -28,31 +28,23 @@ import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
 import org.openxrd.xrd.core.Link;
-import org.openxrd.xrd.core.MediaType;
-import org.openxrd.xrd.core.Rel;
-import org.openxrd.xrd.core.Subject;
-import org.openxrd.xrd.core.URI;
-import org.openxrd.xrd.core.URITemplate;
 
 /**
  * A concrete implementation of {@link Link}.
  */
 public class LinkImpl extends AbstractXRDObject implements Link {
 
-    /** Subject. */
-    private Subject subject;
+    /** Rel. */
+    private String rel;
 
-    /** Rels. */
-    private final XMLObjectChildrenList<Rel> rels;
+    /** Media Type. */
+    private String type;
 
-    /** Media Types. */
-    private final XMLObjectChildrenList<MediaType> mediaTypes;
+    /** Href. */
+    private String href;
 
-    /** URIs. */
-    private final XMLObjectChildrenList<URI> uris;
-
-    /** URITemplates. */
-    private final XMLObjectChildrenList<URITemplate> uriTemplates;
+    /** Template. */
+    private String template;
 
     /** KeyInfos. */
     private final XMLObjectChildrenList<KeyInfo> keyInfos;
@@ -70,43 +62,48 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     public LinkImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
 
-        mediaTypes = new XMLObjectChildrenList<MediaType>(this);
-        rels = new XMLObjectChildrenList<Rel>(this);
-        uris = new XMLObjectChildrenList<URI>(this);
-        uriTemplates = new XMLObjectChildrenList<URITemplate>(this);
         keyInfos = new XMLObjectChildrenList<KeyInfo>(this);
-
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
 
     /** {@inheritDoc} */
-    public Subject getSubject() {
-        return subject;
+    public String getHref() {
+        return href;
     }
 
     /** {@inheritDoc} */
-    public void setSubject(Subject newSubject) {
-        subject = prepareForAssignment(subject, newSubject);
+    public String getRel() {
+        return rel;
     }
 
     /** {@inheritDoc} */
-    public List<Rel> getRels() {
-        return rels;
+    public String getTemplate() {
+        return template;
     }
 
     /** {@inheritDoc} */
-    public List<MediaType> getMediaTypes() {
-        return mediaTypes;
+    public String getType() {
+        return type;
     }
 
     /** {@inheritDoc} */
-    public List<URI> getURIs() {
-        return uris;
+    public void setHref(String newHref) {
+        href = prepareForAssignment(href, newHref);
     }
 
     /** {@inheritDoc} */
-    public List<URITemplate> getURITemplates() {
-        return uriTemplates;
+    public void setRel(String newRel) {
+        rel = prepareForAssignment(rel, newRel);
+    }
+
+    /** {@inheritDoc} */
+    public void setTemplate(String newTemplate) {
+        template = prepareForAssignment(template, newTemplate);
+    }
+
+    /** {@inheritDoc} */
+    public void setType(String newType) {
+        type = prepareForAssignment(type, newType);
     }
 
     /** {@inheritDoc} */
@@ -118,14 +115,6 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
-        if (getSubject() != null) {
-            children.add(getSubject());
-        }
-
-        children.addAll(getRels());
-        children.addAll(getMediaTypes());
-        children.addAll(getURIs());
-        children.addAll(getURITemplates());
         children.addAll(getKeyInfos());
 
         children.addAll(getUnknownXMLObjects());

@@ -19,28 +19,23 @@ package org.openxrd.xrd.core.impl;
 import org.opensaml.xml.signature.KeyInfo;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
 import org.openxrd.xrd.core.Link;
-import org.openxrd.xrd.core.MediaType;
-import org.openxrd.xrd.core.Rel;
-import org.openxrd.xrd.core.Subject;
-import org.openxrd.xrd.core.URI;
-import org.openxrd.xrd.core.URITemplate;
 
 /**
  * Test case for creating, marshalling, and unmarshalling {@link org.openxrd.xrd.core.impl.LinkImpl}.
  */
 public class LinkTest extends BaseXRDObjectProviderTestCase {
 
-    /** Count of Rel sub-elements. */
-    protected int relCount;
+    /** Expected rel value. */
+    protected String expectedRel;
 
-    /** Count of MediaType sub-elements. */
-    protected int mediaTypeCount;
+    /** Expected type value. */
+    protected String expectedType;
 
-    /** Count of URI sub-elements. */
-    protected int uriCount;
+    /** Expected href value. */
+    protected String expectedHref;
 
-    /** Count of URITemplate sub-elements. */
-    protected int uriTemplateCount;
+    /** Expected template value. */
+    protected String expectedTemplate;
 
     /** Count of KeyInfo sub-elements. */
     protected int keyInfoCount;
@@ -55,10 +50,10 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     protected void setUp() throws Exception {
         super.setUp();
 
-        relCount = 3;
-        mediaTypeCount = 2;
-        uriCount = 3;
-        uriTemplateCount = 2;
+        expectedRel = "author";
+        expectedType = "text/html";
+        expectedHref = "http://www.example.com/";
+        expectedTemplate = "http://www.example.com/author?uri={uri}";
         keyInfoCount = 2;
     }
 
@@ -66,18 +61,24 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     public void testSingleElementUnmarshall() {
         Link link = (Link) unmarshallElement(singleElementFile);
 
-        assertNotNull("Unable to unmarshall link", link);
+        String href = link.getHref();
+        assertEquals("Type value was " + href.toString() + ", expected " + expectedHref.toString(), expectedHref, href);
+
+        String rel = link.getRel();
+        assertEquals("Type value was " + rel.toString() + ", expected " + expectedRel.toString(), expectedRel, rel);
+
+        String template = link.getTemplate();
+        assertEquals("Type value was " + template.toString() + ", expected " + expectedTemplate.toString(),
+                expectedTemplate, template);
+
+        String type = link.getType();
+        assertEquals("Type value was " + type.toString() + ", expected " + expectedType.toString(), expectedType, type);
     }
 
     /** {@inheritDoc} */
     public void testChildElementsUnmarshall() {
         Link link = (Link) unmarshallElement(childElementsFile);
 
-        assertNotNull("Subject element not present", link.getSubject());
-        assertEquals("Rel count not as expected", relCount, link.getRels().size());
-        assertEquals("MediaType count not as expected", mediaTypeCount, link.getMediaTypes().size());
-        assertEquals("URI count not as expected", uriCount, link.getURIs().size());
-        assertEquals("URITemplate count not as expected", uriTemplateCount, link.getURITemplates().size());
         assertEquals("KeyInfo count not as expected", keyInfoCount, link.getKeyInfos().size());
     }
 
@@ -85,31 +86,19 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     public void testSingleElementMarshall() {
         Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
 
+        link.setHref(expectedHref);
+        link.setRel(expectedRel);
+        link.setTemplate(expectedTemplate);
+        link.setType(expectedType);
+
         assertEquals(expectedDOM, link);
     }
 
     /** {@inheritDoc} */
     public void testChildElementsMarshall() {
         Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
-        link.setSubject((Subject) buildXMLObject(Subject.DEFAULT_ELEMENT_NAME));
 
-        for (int i = 0; i < relCount; i++) {
-            link.getRels().add((Rel) buildXMLObject(Rel.DEFAULT_ELEMENT_NAME));
-        }
-
-        for (int i = 0; i < mediaTypeCount; i++) {
-            link.getMediaTypes().add((MediaType) buildXMLObject(MediaType.DEFAULT_ELEMENT_NAME));
-        }
-
-        for (int i = 0; i < uriCount; i++) {
-            link.getURIs().add((URI) buildXMLObject(URI.DEFAULT_ELEMENT_NAME));
-        }
-
-        for (int i = 0; i < uriTemplateCount; i++) {
-            link.getURITemplates().add((URITemplate) buildXMLObject(URITemplate.DEFAULT_ELEMENT_NAME));
-        }
-
-        for (int i = 0; i < uriTemplateCount; i++) {
+        for (int i = 0; i < keyInfoCount; i++) {
             link.getKeyInfos().add((KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME));
         }
 

@@ -37,47 +37,73 @@ public interface Link extends XRDObject, ElementExtensibleXMLObject {
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
-    /**
-     * Get the subject of this link.
-     * 
-     * @return the subject of this link
-     */
-    public Subject getSubject();
+    /** Rel attribute name. */
+    public static final String REL_ATTRIB_NAME = "rel";
+
+    /** Type attribute name. */
+    public static final String TYPE_ATTRIB_NAME = "type";
+
+    /** Href attribute name. */
+    public static final String HREF_ATTRIB_NAME = "href";
+
+    /** Template attribute name. */
+    public static final String TEMPLATE_ATTRIB_NAME = "template";
 
     /**
-     * Set the subject of this link.
+     * Get the rel for this link.
      * 
-     * @param newSubject the subject of this link
+     * @return the rel for this link
      */
-    public void setSubject(Subject newSubject);
+    public String getRel();
 
     /**
-     * Get the list of rels for this link.
+     * Set the rel for this link.
      * 
-     * @return the list of rels for this link
+     * @param newRel the rel for this link
      */
-    public List<Rel> getRels();
+    public void setRel(String newRel);
 
     /**
-     * Get the list of media types for this link.
+     * Get the media type for this link.
      * 
-     * @return the list of media types for this link
+     * @return the media type for this link
      */
-    public List<MediaType> getMediaTypes();
+    public String getType();
 
     /**
-     * Get the list of URIs for this link.
+     * Set the media type for this link.
      * 
-     * @return the list of URIs for this link
+     * @param newType the media type for this link
      */
-    public List<URI> getURIs();
+    public void setType(String newType);
 
     /**
-     * Get the list of URI templates for this link.
+     * Get the href for this link.
      * 
-     * @return the list of URI templates for this link
+     * @return the href for this link
      */
-    public List<URITemplate> getURITemplates();
+    public String getHref();
+
+    /**
+     * Set the href for this link.
+     * 
+     * @param newHref the href for this link
+     */
+    public void setHref(String newHref);
+
+    /**
+     * Get the template for this link.
+     * 
+     * @return the template for this link
+     */
+    public String getTemplate();
+
+    /**
+     * Set the template for this link.
+     * 
+     * @param newTemplate the template for this link
+     */
+    public void setTemplate(String newTemplate);
 
     /**
      * Get the key infos for this link.

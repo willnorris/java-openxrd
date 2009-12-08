@@ -16,12 +16,38 @@
 
 package org.openxrd.xrd.core.impl;
 
+import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.io.MarshallingException;
 import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectMarshaller;
 import org.openxrd.xrd.core.Link;
+import org.w3c.dom.Element;
 
 /**
  * A thread-safe marshaller for {@link Link}.
  */
 public class LinkMarshaller extends AbstractExtensibleXRDObjectMarshaller {
+
+    /** {@inheritDoc} */
+    protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
+        Link link = (Link) xmlObject;
+
+        if (link.getHref() != null) {
+            domElement.setAttributeNS(null, Link.HREF_ATTRIB_NAME, link.getHref());
+        }
+
+        if (link.getRel() != null) {
+            domElement.setAttributeNS(null, Link.REL_ATTRIB_NAME, link.getRel());
+        }
+
+        if (link.getTemplate() != null) {
+            domElement.setAttributeNS(null, Link.TEMPLATE_ATTRIB_NAME, link.getTemplate());
+        }
+
+        if (link.getType() != null) {
+            domElement.setAttributeNS(null, Link.TYPE_ATTRIB_NAME, link.getType());
+        }
+
+        super.marshallAttributes(xmlObject, domElement);
+    }
 
 }
