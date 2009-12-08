@@ -24,7 +24,7 @@ import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Subject;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Property;
 import org.openxrd.xrd.core.XRD;
 
 /**
@@ -99,7 +99,7 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
         }
 
         for (int i = 0; i < typeCount; i++) {
-            xrd.getTypes().add((Type) buildXMLObject(Type.DEFAULT_ELEMENT_NAME));
+            xrd.getTypes().add((Property) buildXMLObject(Property.DEFAULT_ELEMENT_NAME));
         }
 
         for (int i = 0; i < linkCount; i++) {

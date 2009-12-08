@@ -18,25 +18,25 @@ package org.openxrd.xrd.core.impl;
 
 import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectBuilder;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Property;
 
 /**
- * Builder for {@link TypeImpl} objects.
+ * Builder for {@link PropertyImpl} objects.
  */
-public class TypeBuilder extends AbstractXRDObjectBuilder<Type> {
+public class PropertyBuilder extends AbstractXRDObjectBuilder<Property> {
 
     /** Constructor. */
-    public TypeBuilder() {
+    public PropertyBuilder() {
     }
 
     /** {@inheritDoc} */
-    public Type buildObject() {
-        return buildObject(XRDConstants.XRD_NS, Type.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
+    public Property buildObject() {
+        return buildObject(XRDConstants.XRD_NS, Property.DEFAULT_ELEMENT_LOCAL_NAME, XRDConstants.XRD_PREFIX);
     }
 
     /** {@inheritDoc} */
-    public Type buildObject(String namespaceURI, String localName, String namespacePrefix) {
-        return new TypeImpl(namespaceURI, localName, namespacePrefix);
+    public Property buildObject(String namespaceURI, String localName, String namespacePrefix) {
+        return new PropertyImpl(namespaceURI, localName, namespacePrefix);
     }
 
 }

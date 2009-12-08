@@ -19,27 +19,27 @@ package org.openxrd.xrd.core.validator;
 import org.opensaml.xml.util.DatatypeHelper;
 import org.opensaml.xml.validation.ValidationException;
 import org.opensaml.xml.validation.Validator;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Property;
 
 /**
- * Checks {@link Type} for schema compliance.
+ * Checks {@link Property} for schema compliance.
  */
-public class TypeSchemaValidator implements Validator<Type> {
+public class PropertySchemaValidator implements Validator<Property> {
 
     /** {@inheritDoc} */
-    public void validate(Type type) throws ValidationException {
-        validateType(type);
+    public void validate(Property type) throws ValidationException {
+        validateProperty(type);
     }
 
     /**
-     * Checks that the type value is specified.
+     * Checks that the property type is specified.
      * 
-     * @param type Type to validate
-     * @throws ValidationException if type value is not specified
+     * @param property Property to validate
+     * @throws ValidationException if property type is not specified
      */
-    protected void validateType(Type type) throws ValidationException {
-        if (DatatypeHelper.isEmpty(type.getValue())) {
-            throw new ValidationException("Type value must be specified.");
+    protected void validateProperty(Property property) throws ValidationException {
+        if (DatatypeHelper.isEmpty(property.getType())) {
+            throw new ValidationException("Property type must be specified.");
         }
     }
 

@@ -25,7 +25,7 @@ import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Subject;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Property;
 import org.openxrd.xrd.core.XRD;
 import org.w3c.dom.Attr;
 
@@ -58,8 +58,8 @@ public class XRDUnmarshaller extends AbstractXRDObjectUnmarshaller {
             xrd.setSubject((Subject) childObject);
         } else if (childObject instanceof Alias) {
             xrd.getAliases().add((Alias) childObject);
-        } else if (childObject instanceof Type) {
-            xrd.getTypes().add((Type) childObject);
+        } else if (childObject instanceof Property) {
+            xrd.getTypes().add((Property) childObject);
         } else if (childObject instanceof Link) {
             xrd.getLinks().add((Link) childObject);
         } else if (childObject instanceof Signature) {

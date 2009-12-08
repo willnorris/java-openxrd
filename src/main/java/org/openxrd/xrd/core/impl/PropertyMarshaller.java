@@ -20,20 +20,20 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Property;
 import org.w3c.dom.Element;
 
 /**
- * A thread-safe marshaller for {@link Type}.
+ * A thread-safe marshaller for {@link Property}.
  */
-public class TypeMarshaller extends AbstractXRDObjectMarshaller {
+public class PropertyMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Type type = (Type) xmlObject;
+        Property property = (Property) xmlObject;
 
-        if (type.isRequiredXSBoolean() != null) {
-            domElement.setAttributeNS(null, Type.REQUIRED_ATTRIB_NAME, type.isRequiredXSBoolean().toString());
+        if (property.getType() != null) {
+            domElement.setAttributeNS(null, Property.TYPE_ATTRIB_NAME, property.getType());
         }
 
         super.marshallAttributes(xmlObject, domElement);
@@ -41,7 +41,7 @@ public class TypeMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Type type = (Type) xmlObject;
+        Property type = (Property) xmlObject;
 
         if (type.getValue() != null) {
             XMLHelper.appendTextContent(domElement, type.getValue());

@@ -94,7 +94,7 @@ public interface XRD extends SignableXRDObject, ElementExtensibleXMLObject {
      * 
      * @return the list of types for this XRD
      */
-    public List<Type> getTypes();
+    public List<Property> getTypes();
 
     /**
      * Get the list of links for this XRD.

@@ -34,11 +34,11 @@
             <UnmarshallingClass className="org.openxrd.xrd.core.impl.AliasUnmarshaller" />
         </ObjectProvider>
 
-        <!-- Type -->
-        <ObjectProvider qualifiedName="xrd:Type">
-            <BuilderClass className="org.openxrd.xrd.core.impl.TypeBuilder" />
-            <MarshallingClass className="org.openxrd.xrd.core.impl.TypeMarshaller" />
-            <UnmarshallingClass className="org.openxrd.xrd.core.impl.TypeUnmarshaller" />
+        <!-- Property -->
+        <ObjectProvider qualifiedName="xrd:Property">
+            <BuilderClass className="org.openxrd.xrd.core.impl.PropertyBuilder" />
+            <MarshallingClass className="org.openxrd.xrd.core.impl.PropertyMarshaller" />
+            <UnmarshallingClass className="org.openxrd.xrd.core.impl.PropertyUnmarshaller" />
         </ObjectProvider>
 
         <!-- Link -->

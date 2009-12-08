@@ -31,7 +31,7 @@ import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Subject;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Property;
 import org.openxrd.xrd.core.XRD;
 
 /**
@@ -52,7 +52,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     private final XMLObjectChildrenList<Alias> aliases;
 
     /** Types. */
-    private final XMLObjectChildrenList<Type> types;
+    private final XMLObjectChildrenList<Property> types;
 
     /** Links. */
     private final XMLObjectChildrenList<Link> links;
@@ -75,7 +75,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
 
         aliases = new XMLObjectChildrenList<Alias>(this);
         links = new XMLObjectChildrenList<Link>(this);
-        types = new XMLObjectChildrenList<Type>(this);
+        types = new XMLObjectChildrenList<Property>(this);
 
         unknownAttributes = new AttributeMap(this);
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
@@ -119,7 +119,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     }
 
     /** {@inheritDoc} */
-    public List<Type> getTypes() {
+    public List<Property> getTypes() {
         return types;
     }
 

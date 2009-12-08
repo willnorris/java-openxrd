@@ -16,20 +16,19 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.opensaml.xml.schema.XSBooleanValue;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
-import org.openxrd.xrd.core.Type;
+import org.openxrd.xrd.core.Property;
 
 /**
- * A concrete implementation of {@link Type}.
+ * A concrete implementation of {@link Property}.
  */
-public class TypeImpl extends AbstractXRDObject implements Type {
+public class PropertyImpl extends AbstractXRDObject implements Property {
 
-    /** Type value. */
+    /** Property value. */
     private String value;
 
-    /** Whether this Type is required. */
-    private XSBooleanValue required;
+    /** Property type. */
+    private String type;
 
     /**
      * Constructor.
@@ -38,7 +37,7 @@ public class TypeImpl extends AbstractXRDObject implements Type {
      * @param elementLocalName the local name of the XML element this Object represents
      * @param namespacePrefix the prefix for the given namespace
      */
-    protected TypeImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
+    protected PropertyImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
     }
 
@@ -53,32 +52,13 @@ public class TypeImpl extends AbstractXRDObject implements Type {
     }
 
     /** {@inheritDoc} */
-    public Boolean isRequired() {
-        if (required != null) {
-            return required.getValue();
-        }
-        
-        return Boolean.FALSE;
+    public String getType() {
+        return type;
     }
 
-
     /** {@inheritDoc} */
-    public XSBooleanValue isRequiredXSBoolean() {
-        return required;
-    }
-    
-    /** {@inheritDoc} */
-    public void setRequired(Boolean newRequired) {
-        if (newRequired != null) {
-            setRequired(new XSBooleanValue(newRequired, false));    
-        } else {
-            required = prepareForAssignment(required, null);
-        }   
-    }
-    
-    /** {@inheritDoc} */
-    public void setRequired(XSBooleanValue newRequired) {
-        required = prepareForAssignment(required, newRequired);
+    public void setType(String newType) {
+        type = prepareForAssignment(type, newType);
     }
 
 }

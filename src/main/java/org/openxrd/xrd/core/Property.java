@@ -18,52 +18,37 @@ package org.openxrd.xrd.core;
 
 import javax.xml.namespace.QName;
 
-import org.opensaml.xml.schema.XSBooleanValue;
-import org.opensaml.xml.schema.XSURI;
+import org.opensaml.xml.schema.XSString;
 import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
 
 /**
- * XRD Type.
+ * XRD Property.
  */
-public interface Type extends XRDObject, XSURI {
+public interface Property extends XRDObject, XSString {
 
     /** Element local name. */
-    public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Type";
+    public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Property";
 
     /** Default element name. */
     public static final QName DEFAULT_ELEMENT_NAME = new QName(XRDConstants.XRD_NS, DEFAULT_ELEMENT_LOCAL_NAME,
             XRDConstants.XRD_PREFIX);
 
-    /** Required attribute name. */
-    public static final String REQUIRED_ATTRIB_NAME = "required";
-    
-    /**
-     * Get whether this type is required.
-     * 
-     * @return whether this type is required
-     */
-    public Boolean isRequired();
-    
-    /**
-     * Get whether this type is required.
-     * 
-     * @return whether this type is required
-     */
-    public XSBooleanValue isRequiredXSBoolean();
+    /** Type attribute name. */
+    public static final String TYPE_ATTRIB_NAME = "type";
 
     /**
-     * Set whether this type is required.
+     * Get the property type.
      * 
-     * @param newRequired whether this type is required
+     * @return property type
      */
-    public void setRequired(Boolean newRequired);
+    public String getType();
 
     /**
-     * Set whether this type is required.
+     * Set the property type.
      * 
-     * @param newRequired whether this type is required
+     * @param newType property type
      */
-    public void setRequired(XSBooleanValue newRequired);
+    public void setType(String newType);
 
 }
