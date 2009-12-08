@@ -19,6 +19,7 @@ package org.openxrd.xrd.core.impl;
 import org.opensaml.xml.signature.KeyInfo;
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
 import org.openxrd.xrd.core.Link;
+import org.openxrd.xrd.core.Title;
 
 /**
  * Test case for creating, marshalling, and unmarshalling {@link org.openxrd.xrd.core.impl.LinkImpl}.
@@ -37,6 +38,9 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     /** Expected template value. */
     protected String expectedTemplate;
 
+    /** Count of Title sub-elements. */
+    protected int titleCount;
+
     /** Count of KeyInfo sub-elements. */
     protected int keyInfoCount;
 
@@ -54,6 +58,7 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
         expectedType = "text/html";
         expectedHref = "http://www.example.com/";
         expectedTemplate = "http://www.example.com/author?uri={uri}";
+        titleCount = 3;
         keyInfoCount = 2;
     }
 
@@ -79,6 +84,7 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     public void testChildElementsUnmarshall() {
         Link link = (Link) unmarshallElement(childElementsFile);
 
+        assertEquals("Title count not as expected", titleCount, link.getTitles().size());
         assertEquals("KeyInfo count not as expected", keyInfoCount, link.getKeyInfos().size());
     }
 
@@ -97,6 +103,10 @@ public class LinkTest extends BaseXRDObjectProviderTestCase {
     /** {@inheritDoc} */
     public void testChildElementsMarshall() {
         Link link = (Link) buildXMLObject(Link.DEFAULT_ELEMENT_NAME);
+
+        for (int i = 0; i < titleCount; i++) {
+            link.getTitles().add((Title) buildXMLObject(Title.DEFAULT_ELEMENT_NAME));
+        }
 
         for (int i = 0; i < keyInfoCount; i++) {
             link.getKeyInfos().add((KeyInfo) buildXMLObject(KeyInfo.DEFAULT_ELEMENT_NAME));

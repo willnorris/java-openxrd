@@ -20,20 +20,22 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
-import org.openxrd.xrd.core.Property;
+import org.openxrd.xrd.core.Title;
 import org.w3c.dom.Attr;
 
 /**
- * A thread-safe Unmarshaller for {@link Property}.
+ * A thread-safe Unmarshaller for {@link Title}.
  */
-public class PropertyUnmarshaller extends AbstractXRDObjectUnmarshaller {
+public class TitleUnmarshaller extends AbstractXRDObjectUnmarshaller {
 
     /** {@inheritDoc} */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {
-        Property property = (Property) xmlObject;
+        Title title = (Title) xmlObject;
 
-        if (attribute.getLocalName().equals(Property.TYPE_ATTRIB_NAME) && !DatatypeHelper.isEmpty(attribute.getValue())) {
-            property.setType(attribute.getValue());
+        if (attribute.getLocalName().equals(Title.LANG_ATTRIB_NAME.getLocalPart())
+                && attribute.getNamespaceURI().equals(Title.LANG_ATTRIB_NAME.getNamespaceURI())
+                && !DatatypeHelper.isEmpty(attribute.getValue())) {
+            title.setLanguage(attribute.getValue());
         } else {
             super.processAttribute(xmlObject, attribute);
         }
@@ -41,9 +43,9 @@ public class PropertyUnmarshaller extends AbstractXRDObjectUnmarshaller {
 
     /** {@inheritDoc} */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {
-        Property property = (Property) xmlObject;
+        Title title = (Title) xmlObject;
 
-        property.setValue(elementContent);
+        title.setValue(elementContent);
     }
 
 }

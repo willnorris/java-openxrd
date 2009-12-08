@@ -28,6 +28,7 @@ import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 import org.opensaml.xml.util.XMLObjectChildrenList;
 import org.openxrd.xrd.common.impl.AbstractXRDObject;
 import org.openxrd.xrd.core.Link;
+import org.openxrd.xrd.core.Title;
 
 /**
  * A concrete implementation of {@link Link}.
@@ -46,6 +47,9 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     /** Template. */
     private String template;
 
+    /** Titles. */
+    private final XMLObjectChildrenList<Title> titles;
+
     /** KeyInfos. */
     private final XMLObjectChildrenList<KeyInfo> keyInfos;
 
@@ -62,6 +66,7 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     public LinkImpl(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
 
+        titles = new XMLObjectChildrenList<Title>(this);
         keyInfos = new XMLObjectChildrenList<KeyInfo>(this);
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
     }
@@ -107,6 +112,11 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     }
 
     /** {@inheritDoc} */
+    public List<Title> getTitles() {
+        return titles;
+    }
+
+    /** {@inheritDoc} */
     public List<KeyInfo> getKeyInfos() {
         return keyInfos;
     }
@@ -115,6 +125,7 @@ public class LinkImpl extends AbstractXRDObject implements Link {
     public List<XMLObject> getOrderedChildren() {
         ArrayList<XMLObject> children = new ArrayList<XMLObject>();
 
+        children.addAll(getTitles());
         children.addAll(getKeyInfos());
 
         children.addAll(getUnknownXMLObjects());

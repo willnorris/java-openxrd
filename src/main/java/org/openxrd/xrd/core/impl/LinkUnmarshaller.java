@@ -22,6 +22,7 @@ import org.opensaml.xml.signature.KeyInfo;
 import org.opensaml.xml.util.DatatypeHelper;
 import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Link;
+import org.openxrd.xrd.core.Title;
 import org.w3c.dom.Attr;
 
 /**
@@ -33,7 +34,9 @@ public class LinkUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
     protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {
         Link link = (Link) parentObject;
 
-        if (childObject instanceof KeyInfo) {
+        if (childObject instanceof Title) {
+            link.getTitles().add((Title) childObject);
+        } else if (childObject instanceof KeyInfo) {
             link.getKeyInfos().add((KeyInfo) childObject);
         } else {
             super.processChildElement(parentObject, childObject);

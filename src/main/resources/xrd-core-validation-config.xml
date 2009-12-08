@@ -10,6 +10,7 @@
             <Validator qualifiedName="xrd:Alias" className="org.openxrd.xrd.core.validator.AliasSchemaValidator" />
             <Validator qualifiedName="xrd:Expires" className="org.openxrd.xrd.core.validator.ExpiresSchemaValidator" />
             <Validator qualifiedName="xrd:Link" className="org.openxrd.xrd.core.validator.LinkSchemaValidator" />
+            <Validator qualifiedName="xrd:Title" className="org.openxrd.xrd.core.validator.TitleSchemaValidator" />
             <Validator qualifiedName="xrd:Subject" className="org.openxrd.xrd.core.validator.SubjectSchemaValidator" />
             <Validator qualifiedName="xrd:Property" className="org.openxrd.xrd.core.validator.PropertySchemaValidator" />
             <Validator qualifiedName="xrd:XRD" className="org.openxrd.xrd.core.validator.XRDSchemaValidator" />

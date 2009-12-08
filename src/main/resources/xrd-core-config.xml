@@ -48,6 +48,13 @@
             <UnmarshallingClass className="org.openxrd.xrd.core.impl.LinkUnmarshaller" />
         </ObjectProvider>
 
+        <!-- Title -->
+        <ObjectProvider qualifiedName="xrd:Title">
+            <BuilderClass className="org.openxrd.xrd.core.impl.TitleBuilder" />
+            <MarshallingClass className="org.openxrd.xrd.core.impl.TitleMarshaller" />
+            <UnmarshallingClass className="org.openxrd.xrd.core.impl.TitleUnmarshaller" />
+        </ObjectProvider>
+
         <!-- XRDS -->
         <ObjectProvider qualifiedName="xrd:XRDS">
             <BuilderClass className="org.openxrd.xrd.core.impl.XRDSequenceBuilder" />

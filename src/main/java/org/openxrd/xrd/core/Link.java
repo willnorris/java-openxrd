@@ -106,6 +106,13 @@ public interface Link extends XRDObject, ElementExtensibleXMLObject {
     public void setTemplate(String newTemplate);
 
     /**
+     * Get the titles for this link.
+     * 
+     * @return the titles for this link
+     */
+    public List<Title> getTitles();
+
+    /**
      * Get the key infos for this link.
      * 
      * @return the key infos for this link.

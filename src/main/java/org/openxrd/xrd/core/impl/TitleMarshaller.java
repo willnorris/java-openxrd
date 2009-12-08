@@ -20,20 +20,21 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
-import org.openxrd.xrd.core.Property;
+import org.openxrd.xrd.core.Title;
 import org.w3c.dom.Element;
 
 /**
- * A thread-safe marshaller for {@link Property}.
+ * A thread-safe marshaller for {@link Title}.
  */
-public class PropertyMarshaller extends AbstractXRDObjectMarshaller {
+public class TitleMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Property property = (Property) xmlObject;
+        Title title = (Title) xmlObject;
 
-        if (property.getType() != null) {
-            domElement.setAttributeNS(null, Property.TYPE_ATTRIB_NAME, property.getType());
+        if (title.getLanguage() != null) {
+            domElement.setAttributeNS(Title.LANG_ATTRIB_NAME.getNamespaceURI(), Title.LANG_ATTRIB_NAME.getPrefix()
+                    + ":" + Title.LANG_ATTRIB_NAME.getLocalPart(), title.getLanguage());
         }
 
         super.marshallAttributes(xmlObject, domElement);
@@ -41,11 +42,11 @@ public class PropertyMarshaller extends AbstractXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        Property property = (Property) xmlObject;
+        Title title = (Title) xmlObject;
 
-        if (property.getValue() != null) {
-            XMLHelper.appendTextContent(domElement, property.getValue());
+        if (title.getValue() != null) {
+            XMLHelper.appendTextContent(domElement, title.getValue());
         }
     }
-    
+
 }
