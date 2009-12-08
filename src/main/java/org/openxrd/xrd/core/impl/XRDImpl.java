@@ -52,7 +52,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     private final XMLObjectChildrenList<Alias> aliases;
 
     /** Types. */
-    private final XMLObjectChildrenList<Property> types;
+    private final XMLObjectChildrenList<Property> properties;
 
     /** Links. */
     private final XMLObjectChildrenList<Link> links;
@@ -75,7 +75,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
 
         aliases = new XMLObjectChildrenList<Alias>(this);
         links = new XMLObjectChildrenList<Link>(this);
-        types = new XMLObjectChildrenList<Property>(this);
+        properties = new XMLObjectChildrenList<Property>(this);
 
         unknownAttributes = new AttributeMap(this);
         unknownElements = new IndexedXMLObjectChildrenList<XMLObject>(this);
@@ -119,8 +119,8 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
     }
 
     /** {@inheritDoc} */
-    public List<Property> getTypes() {
-        return types;
+    public List<Property> getProperties() {
+        return properties;
     }
 
     /** {@inheritDoc} */
@@ -151,7 +151,7 @@ public class XRDImpl extends AbstractSignableXRDObject implements XRD {
         }
 
         children.addAll(getAliases());
-        children.addAll(getTypes());
+        children.addAll(getProperties());
         children.addAll(getLinks());
 
         children.addAll(getUnknownXMLObjects());

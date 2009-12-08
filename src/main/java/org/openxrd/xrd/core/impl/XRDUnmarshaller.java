@@ -59,7 +59,7 @@ public class XRDUnmarshaller extends AbstractXRDObjectUnmarshaller {
         } else if (childObject instanceof Alias) {
             xrd.getAliases().add((Alias) childObject);
         } else if (childObject instanceof Property) {
-            xrd.getTypes().add((Property) childObject);
+            xrd.getProperties().add((Property) childObject);
         } else if (childObject instanceof Link) {
             xrd.getLinks().add((Link) childObject);
         } else if (childObject instanceof Signature) {

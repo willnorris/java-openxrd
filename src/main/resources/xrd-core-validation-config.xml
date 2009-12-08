@@ -13,6 +13,7 @@
             <Validator qualifiedName="xrd:Subject" className="org.openxrd.xrd.core.validator.SubjectSchemaValidator" />
             <Validator qualifiedName="xrd:Property" className="org.openxrd.xrd.core.validator.PropertySchemaValidator" />
             <Validator qualifiedName="xrd:XRD" className="org.openxrd.xrd.core.validator.XRDSchemaValidator" />
+            <Validator qualifiedName="xrd:XRDS" className="org.openxrd.xrd.core.validator.XRDSequenceSchemaValidator" />
         </ValidatorSuite>
 
         <!-- XRD 1.0 Specification Validation Rules -->

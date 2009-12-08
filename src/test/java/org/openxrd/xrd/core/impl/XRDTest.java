@@ -75,7 +75,7 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
         assertNotNull("Expires element not present", xrd.getExpires());
         assertNotNull("Subject element not present", xrd.getSubject());
         assertEquals("Alias count not as expected", aliasCount, xrd.getAliases().size());
-        assertEquals("Type count not as expected", typeCount, xrd.getTypes().size());
+        assertEquals("Type count not as expected", typeCount, xrd.getProperties().size());
         assertEquals("Link count not as expected", linkCount, xrd.getLinks().size());
     }
 
@@ -99,7 +99,7 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
         }
 
         for (int i = 0; i < typeCount; i++) {
-            xrd.getTypes().add((Property) buildXMLObject(Property.DEFAULT_ELEMENT_NAME));
+            xrd.getProperties().add((Property) buildXMLObject(Property.DEFAULT_ELEMENT_NAME));
         }
 
         for (int i = 0; i < linkCount; i++) {
