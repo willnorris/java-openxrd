@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xrd:XRD xmlns:xrd="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-	<xrd:Expires />
-	<xrd:Subject />
-	<xrd:Alias />
-	<xrd:Alias />
-	<xrd:Type />
-	<xrd:Type />
-	<xrd:Type />
-	<xrd:Link />
-	<xrd:Link />
+    <xrd:Expires />
+    <xrd:Subject />
+    <xrd:Alias />
+    <xrd:Alias />
+    <xrd:Property />
+    <xrd:Property />
+    <xrd:Property />
+    <xrd:Link />
+    <xrd:Link />
 </xrd:XRD>

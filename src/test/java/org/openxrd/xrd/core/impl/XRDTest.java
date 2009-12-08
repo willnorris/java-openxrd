@@ -16,15 +16,12 @@
 
 package org.openxrd.xrd.core.impl;
 
-import javax.xml.namespace.QName;
-
 import org.openxrd.common.BaseXRDObjectProviderTestCase;
-import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.core.Alias;
 import org.openxrd.xrd.core.Expires;
 import org.openxrd.xrd.core.Link;
-import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.Property;
+import org.openxrd.xrd.core.Subject;
 import org.openxrd.xrd.core.XRD;
 
 /**
@@ -38,8 +35,8 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
     /** Count of Alias sub-elements. */
     protected int aliasCount;
 
-    /** Count of Type sub-elements. */
-    protected int typeCount;
+    /** Count of Property sub-elements. */
+    protected int propertyCount;
 
     /** Count of Link sub-elements. */
     protected int linkCount;
@@ -56,7 +53,7 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
 
         expectedID = "id";
         aliasCount = 2;
-        typeCount = 3;
+        propertyCount = 3;
         linkCount = 2;
     }
 
@@ -75,7 +72,7 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
         assertNotNull("Expires element not present", xrd.getExpires());
         assertNotNull("Subject element not present", xrd.getSubject());
         assertEquals("Alias count not as expected", aliasCount, xrd.getAliases().size());
-        assertEquals("Type count not as expected", typeCount, xrd.getProperties().size());
+        assertEquals("Property count not as expected", propertyCount, xrd.getProperties().size());
         assertEquals("Link count not as expected", linkCount, xrd.getLinks().size());
     }
 
@@ -98,7 +95,7 @@ public class XRDTest extends BaseXRDObjectProviderTestCase {
             xrd.getAliases().add((Alias) buildXMLObject(Alias.DEFAULT_ELEMENT_NAME));
         }
 
-        for (int i = 0; i < typeCount; i++) {
+        for (int i = 0; i < propertyCount; i++) {
             xrd.getProperties().add((Property) buildXMLObject(Property.DEFAULT_ELEMENT_NAME));
         }
 
