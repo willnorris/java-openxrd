@@ -36,17 +36,15 @@ public class LinkFilterTest extends BaseTestCase {
         List<Link> links = XRDUtils.getLinkedResources(xrd, "describedby");
 
         assertEquals(2, links.size());
-        assertEquals("http://example.com/1", links.get(0).getURIs().get(0).getValue());
-        assertEquals("http://example.com/3", links.get(1).getURIs().get(0).getValue());
+        assertEquals("http://example.com/1", links.get(0).getHref());
+        assertEquals("http://example.com/3", links.get(1).getHref());
     }
 
     public void testEmptyLink() {
         XRD xrd = (XRD) unmarshallElement("/data/org/openxrd/xrd/link-filtering.xml");
-        BasicLinkFilter filter = new BasicLinkFilter();
-        filter.getMediatypes().add("text/html");
-        
+        BasicLinkFilter filter = new BasicLinkFilter(null, "text/html");
+
         List<Link> links = XRDUtils.getLinkedResources(xrd, filter);
-        
         assertEquals(1, links.size());
     }
 }

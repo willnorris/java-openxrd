@@ -42,9 +42,7 @@ public class XRDUtils {
      * @return list of linked resources that have the specified rel value
      */
     public static List<Link> getLinkedResources(XRD xrd, String rel) {
-        BasicLinkFilter criteria = new BasicLinkFilter();
-        criteria.getRels().add(rel);
-
+        BasicLinkFilter criteria = new BasicLinkFilter(rel, null);
         return getLinkedResources(xrd, criteria);
     }
 

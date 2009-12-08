@@ -16,104 +16,42 @@
 
 package org.openxrd.xrd;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.opensaml.xml.util.LazySet;
 import org.openxrd.xrd.core.Link;
-import org.openxrd.xrd.core.MediaType;
-import org.openxrd.xrd.core.Rel;
 
 /**
  * Basic link filter that matches links based on Rel and MediaType values.
  */
 public class BasicLinkFilter implements LinkFilter {
 
-    /** Rels to match against link. */
-    private Set<String> rels;
+    /** Rel to match against link. */
+    private String rel;
 
     /** MediaTypes to match against link. */
-    private Set<String> mediaTypes;
+    private String type;
 
-    /** Constructor. */
-    public BasicLinkFilter() {
-        rels = new LazySet<String>();
-        mediaTypes = new LazySet<String>();
+    /**
+     * Constructor.
+     * 
+     * @param relValue rel value to match
+     * @param mediaType media type value to match
+     */
+    public BasicLinkFilter(String relValue, String mediaType) {
+        rel = relValue;
+        type = mediaType;
     }
 
     /** {@inheritDoc} */
     public boolean matches(Link link) {
-        if (!matchRels(link)) {
+
+        if (rel != null && !rel.equals(link.getRel())) {
             return false;
         }
 
-        if (!matchMediaTypes(link)) {
+        if (type != null && !type.equals(link.getType())) {
             return false;
         }
 
         return true;
-    }
-
-    /**
-     * Match given link against rel values.
-     * 
-     * @param link link to match
-     * @return true if link matches rel values for this filter
-     */
-    protected boolean matchRels(Link link) {
-        if (rels.size() != 0) {
-            Set<String> linkRels = new HashSet<String>();
-            for (Rel rel : link.getRels()) {
-                linkRels.add(rel.getValue());
-            }
-            for (String relValue : rels) {
-                if (!linkRels.contains(relValue)) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Match given link against media type values.
-     * 
-     * @param link link to match
-     * @return true if link matches media type values for this filter
-     */
-    protected boolean matchMediaTypes(Link link) {
-        if (mediaTypes.size() != 0) {
-            Set<String> linkMediaTypes = new HashSet<String>();
-            for (MediaType type : link.getMediaTypes()) {
-                linkMediaTypes.add(type.getValue());
-            }
-            for (String typeValue : mediaTypes) {
-                if (!linkMediaTypes.contains(typeValue)) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Get rel values to match against links.
-     * 
-     * @return rels
-     */
-    public Set<String> getRels() {
-        return rels;
-    }
-
-    /**
-     * Get media type values to match against links.
-     * 
-     * @return media types
-     */
-    public Set<String> getMediatypes() {
-        return mediaTypes;
     }
 
 }

@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
-    <Link>
-        <Rel>describedby</Rel>
-        <URI>http://example.com/1</URI>        
-    </Link>
-    <Link>
-        <Rel>foo</Rel>
-        <Rel>http://specs.example.net/</Rel>
-        <URI>http://example.com/2</URI>
-    </Link>
-    <Link>
-        <Rel>describedby</Rel>
-        <MediaType>text/html</MediaType>
-        <URI>http://example.com/3</URI>
-    </Link>
+    <Link rel="describedby" href="http://example.com/1" />
+    <Link rel="http://specs.example.net/foo" href="http://example.com/2" />
+    <Link rel="describedby" type="text/html" href="http://example.com/3" />
 </XRD>
