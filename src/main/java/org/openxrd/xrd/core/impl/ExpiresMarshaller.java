@@ -20,14 +20,14 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.XMLHelper;
 import org.openxrd.Configuration;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectMarshaller;
 import org.openxrd.xrd.core.Expires;
 import org.w3c.dom.Element;
 
 /**
  * A thread-safe Marshaller for {@link Expires}.
  */
-public class ExpiresMarshaller extends AbstractXRDObjectMarshaller {
+public class ExpiresMarshaller extends AbstractExtensibleXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {

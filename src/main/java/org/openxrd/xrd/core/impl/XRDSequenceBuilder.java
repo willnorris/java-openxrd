@@ -16,14 +16,14 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.opensaml.xml.AbstractXMLObjectBuilder;
 import org.openxrd.common.XRDConstants;
+import org.openxrd.xrd.common.impl.AbstractXRDObjectBuilder;
 import org.openxrd.xrd.core.XRDSequence;
 
 /**
  * Builder for {@link XRDSequenceImpl} objects.
  */
-public class XRDSequenceBuilder extends AbstractXMLObjectBuilder<XRDSequence> {
+public class XRDSequenceBuilder extends AbstractXRDObjectBuilder<XRDSequence> {
 
     /** Constructor. */
     public XRDSequenceBuilder() {

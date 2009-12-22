@@ -20,13 +20,13 @@ import org.joda.time.DateTime;
 import org.joda.time.chrono.ISOChronology;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.util.DatatypeHelper;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Expires;
 
 /**
  * A thread-safe Unmarshaller for {@link Expires}.
  */
-public class ExpiresUnmarshaller extends AbstractXRDObjectUnmarshaller {
+public class ExpiresUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
 
     /** {@inheritDoc} */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {

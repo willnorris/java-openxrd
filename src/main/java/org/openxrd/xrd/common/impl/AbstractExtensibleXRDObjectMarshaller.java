@@ -34,7 +34,7 @@ import org.w3c.dom.Element;
  * A thread safe, abstract implementation of the {@link Marshaller} interface that handles most of the boilerplate code
  * for XRD Marshallers.
  */
-public class AbstractXRDObjectMarshaller extends AbstractXMLObjectMarshaller {
+public class AbstractExtensibleXRDObjectMarshaller extends AbstractXMLObjectMarshaller {
 
     /**
      * Marshall all non-XRD attributes. Extending implementations should override this method if they have specific

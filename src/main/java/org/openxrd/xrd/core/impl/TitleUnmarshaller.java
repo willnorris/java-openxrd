@@ -19,14 +19,14 @@ package org.openxrd.xrd.core.impl;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.opensaml.xml.util.DatatypeHelper;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Title;
 import org.w3c.dom.Attr;
 
 /**
  * A thread-safe Unmarshaller for {@link Title}.
  */
-public class TitleUnmarshaller extends AbstractXRDObjectUnmarshaller {
+public class TitleUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
 
     /** {@inheritDoc} */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {

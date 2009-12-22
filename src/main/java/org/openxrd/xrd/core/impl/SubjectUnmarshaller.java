@@ -17,13 +17,13 @@
 package org.openxrd.xrd.core.impl;
 
 import org.opensaml.xml.XMLObject;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Subject;
 
 /**
  * A thread-safe Unmarshaller for {@link Subject}.
  */
-public class SubjectUnmarshaller extends AbstractXRDObjectUnmarshaller {
+public class SubjectUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
 
     /** {@inheritDoc} */
     protected void processElementContent(XMLObject xmlObject, String elementContent) {

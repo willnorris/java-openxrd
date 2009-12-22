@@ -28,7 +28,7 @@ import org.w3c.dom.Attr;
 /**
  * An thread safe abstract unmarshaller. This abstract unmarshaller only works with {@link AbstractXRDObject}.
  */
-public class AbstractXRDObjectUnmarshaller extends AbstractXMLObjectUnmarshaller {
+public class AbstractExtensibleXRDObjectUnmarshaller extends AbstractXMLObjectUnmarshaller {
 
     /** {@inheritDoc} */
     protected void processAttribute(XMLObject xmlObject, Attr attribute) throws UnmarshallingException {

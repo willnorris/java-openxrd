@@ -19,14 +19,14 @@ package org.openxrd.xrd.core.impl;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.XMLHelper;
-import org.openxrd.xrd.common.impl.AbstractXRDObjectMarshaller;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectMarshaller;
 import org.openxrd.xrd.core.Alias;
 import org.w3c.dom.Element;
 
 /**
  * A thread-safe Marshaller for {@link Alias}.
  */
-public class AliasMarshaller extends AbstractXRDObjectMarshaller {
+public class AliasMarshaller extends AbstractExtensibleXRDObjectMarshaller {
 
     /** {@inheritDoc} */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
