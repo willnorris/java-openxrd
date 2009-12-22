@@ -20,12 +20,13 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.opensaml.xml.AbstractValidatingSignableXMLObject;
 import org.opensaml.xml.signature.SignableXMLObject;
+import org.openxrd.xrd.common.SignableXRDObject;
 
 /**
  * Abstract XRDObject implementation that also implements {@link SignableXMLObject}.
  */
 public abstract class AbstractSignableXRDObject extends AbstractValidatingSignableXMLObject implements
-        SignableXMLObject {
+        SignableXRDObject {
 
     /**
      * Constructor.
@@ -59,4 +60,5 @@ public abstract class AbstractSignableXRDObject extends AbstractValidatingSignab
 
         return super.prepareForAssignment(oldValue, utcValue);
     }
+
 }

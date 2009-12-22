@@ -28,7 +28,7 @@ import org.openxrd.xrd.common.XRDObject;
 /**
  * An abstract implementation of XRDObject.
  */
-public abstract class AbstractXRDObject extends AbstractValidatingXMLObject implements XRDObject {
+public abstract class AbstractExtensibleXRDObject extends AbstractValidatingXMLObject implements XRDObject {
 
     /** Unknown attributes for this element. */
     private AttributeMap unknownAttributes;
@@ -40,7 +40,7 @@ public abstract class AbstractXRDObject extends AbstractValidatingXMLObject impl
      * @param elementLocalName the local name of the XML element this Object represents
      * @param namespacePrefix the prefix for the given namespace
      */
-    protected AbstractXRDObject(String namespaceURI, String elementLocalName, String namespacePrefix) {
+    protected AbstractExtensibleXRDObject(String namespaceURI, String elementLocalName, String namespacePrefix) {
         super(namespaceURI, elementLocalName, namespacePrefix);
         unknownAttributes = new AttributeMap(this);
     }
@@ -54,4 +54,5 @@ public abstract class AbstractXRDObject extends AbstractValidatingXMLObject impl
     public List<XMLObject> getOrderedChildren() {
         return Collections.unmodifiableList(new LinkedList<XMLObject>());
     }
+
 }

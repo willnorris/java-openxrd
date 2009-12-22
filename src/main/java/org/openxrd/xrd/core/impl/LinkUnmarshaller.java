@@ -20,7 +20,7 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.opensaml.xml.signature.KeyInfo;
 import org.opensaml.xml.util.DatatypeHelper;
-import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObjectUnmarshaller;
+import org.openxrd.xrd.common.impl.AbstractXRDObjectUnmarshaller;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Title;
 import org.w3c.dom.Attr;
@@ -28,7 +28,7 @@ import org.w3c.dom.Attr;
 /**
  * A thread-safe unmarshaller for {@link Link}.
  */
-public class LinkUnmarshaller extends AbstractExtensibleXRDObjectUnmarshaller {
+public class LinkUnmarshaller extends AbstractXRDObjectUnmarshaller {
 
     /** {@inheritDoc} */
     protected void processChildElement(XMLObject parentObject, XMLObject childObject) throws UnmarshallingException {

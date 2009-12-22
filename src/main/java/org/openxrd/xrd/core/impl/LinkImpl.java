@@ -26,14 +26,14 @@ import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.signature.KeyInfo;
 import org.opensaml.xml.util.IndexedXMLObjectChildrenList;
 import org.opensaml.xml.util.XMLObjectChildrenList;
-import org.openxrd.xrd.common.impl.AbstractXRDObject;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObject;
 import org.openxrd.xrd.core.Link;
 import org.openxrd.xrd.core.Title;
 
 /**
  * A concrete implementation of {@link Link}.
  */
-public class LinkImpl extends AbstractXRDObject implements Link {
+public class LinkImpl extends AbstractExtensibleXRDObject implements Link {
 
     /** Rel. */
     private String rel;

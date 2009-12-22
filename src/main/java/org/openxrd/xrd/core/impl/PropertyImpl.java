@@ -16,13 +16,13 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.openxrd.xrd.common.impl.AbstractXRDObject;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObject;
 import org.openxrd.xrd.core.Property;
 
 /**
  * A concrete implementation of {@link Property}.
  */
-public class PropertyImpl extends AbstractXRDObject implements Property {
+public class PropertyImpl extends AbstractExtensibleXRDObject implements Property {
 
     /** Property value. */
     private String value;

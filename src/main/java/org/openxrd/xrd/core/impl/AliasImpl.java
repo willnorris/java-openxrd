@@ -16,13 +16,13 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.openxrd.xrd.common.impl.AbstractXRDObject;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObject;
 import org.openxrd.xrd.core.Alias;
 
 /**
  * A concrete implementation of {@link Alias}.
  */
-public class AliasImpl extends AbstractXRDObject implements Alias {
+public class AliasImpl extends AbstractExtensibleXRDObject implements Alias {
 
     /** Alias value. */
     private String value;

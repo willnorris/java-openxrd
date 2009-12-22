@@ -16,13 +16,13 @@
 
 package org.openxrd.xrd.core.impl;
 
-import org.openxrd.xrd.common.impl.AbstractXRDObject;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObject;
 import org.openxrd.xrd.core.Subject;
 
 /**
  * A concrete implementation of {@link Subject}.
  */
-public class SubjectImpl extends AbstractXRDObject implements Subject {
+public class SubjectImpl extends AbstractExtensibleXRDObject implements Subject {
 
     /** URI value. */
     private String value;

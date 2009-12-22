@@ -20,13 +20,13 @@ import java.util.Map.Entry;
 
 import javax.xml.namespace.QName;
 
+import org.opensaml.xml.AttributeExtensibleXMLObject;
 import org.opensaml.xml.Configuration;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.io.AbstractXMLObjectMarshaller;
 import org.opensaml.xml.io.Marshaller;
 import org.opensaml.xml.io.MarshallingException;
 import org.opensaml.xml.util.XMLHelper;
-import org.openxrd.xrd.common.XRDObject;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 
@@ -43,17 +43,17 @@ public class AbstractXRDObjectMarshaller extends AbstractXMLObjectMarshaller {
      * {@inheritDoc}
      */
     protected void marshallAttributes(XMLObject xmlObject, Element domElement) throws MarshallingException {
-        XRDObject xrdObject = (XRDObject) xmlObject;
+        AttributeExtensibleXMLObject anyAttribute = (AttributeExtensibleXMLObject) xmlObject;
 
         Attr attr;
-        for (Entry<QName, String> entry : xrdObject.getUnknownAttributes().entrySet()) {
+        for (Entry<QName, String> entry : anyAttribute.getUnknownAttributes().entrySet()) {
             // TODO: ensure attribute is not in the XRD namespace
             attr = XMLHelper.constructAttribute(domElement.getOwnerDocument(), entry.getKey());
             attr.setValue(entry.getValue());
             domElement.setAttributeNodeNS(attr);
 
             if (Configuration.isIDAttribute(entry.getKey())
-                    || xrdObject.getUnknownAttributes().isIDAttribute(entry.getKey())) {
+                    || anyAttribute.getUnknownAttributes().isIDAttribute(entry.getKey())) {
                 attr.getOwnerElement().setIdAttributeNode(attr, true);
             }
         }
@@ -66,7 +66,6 @@ public class AbstractXRDObjectMarshaller extends AbstractXMLObjectMarshaller {
      * {@inheritDoc}
      */
     protected void marshallElementContent(XMLObject xmlObject, Element domElement) throws MarshallingException {
-
     }
 
 }

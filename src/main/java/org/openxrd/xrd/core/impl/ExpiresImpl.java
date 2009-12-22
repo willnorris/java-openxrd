@@ -17,13 +17,13 @@
 package org.openxrd.xrd.core.impl;
 
 import org.joda.time.DateTime;
-import org.openxrd.xrd.common.impl.AbstractXRDObject;
+import org.openxrd.xrd.common.impl.AbstractExtensibleXRDObject;
 import org.openxrd.xrd.core.Expires;
 
 /**
  * A concrete implementation of {@link Expires}.
  */
-public class ExpiresImpl extends AbstractXRDObject implements Expires {
+public class ExpiresImpl extends AbstractExtensibleXRDObject implements Expires {
 
     /** Expires value. */
     private DateTime value;
