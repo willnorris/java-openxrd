@@ -21,7 +21,7 @@ import org.opensaml.xml.signature.SignableXMLObject;
 /**
  * A signable XRDObject.
  */
-public interface SignableXRDObject extends SignableXMLObject, XRDObject {
+public interface SignableXRDObject extends XRDObject, SignableXMLObject {
 
     /**
      * Gets the value of the ID attribute for this XRD object which will be used as its signature reference.

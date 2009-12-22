@@ -20,13 +20,13 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
-import org.opensaml.xml.validation.ValidatingXMLObject;
 import org.openxrd.common.XRDConstants;
+import org.openxrd.xrd.common.XRDObject;
 
 /**
  * XRD Sequence.
  */
-public interface XRDSequence extends ValidatingXMLObject {
+public interface XRDSequence extends XRDObject {
 
     /** Element local name. */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "XRDS";

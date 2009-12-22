@@ -16,12 +16,11 @@
 
 package org.openxrd.xrd.common;
 
-import org.opensaml.xml.AttributeExtensibleXMLObject;
 import org.opensaml.xml.validation.ValidatingXMLObject;
 
 /**
  * A base interface for all XRD Objects.
  */
-public interface XRDObject extends ValidatingXMLObject, AttributeExtensibleXMLObject {
+public interface XRDObject extends ValidatingXMLObject {
 
 }

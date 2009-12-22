@@ -18,6 +18,7 @@ package org.openxrd.xrd.core;
 
 import javax.xml.namespace.QName;
 
+import org.opensaml.xml.AttributeExtensibleXMLObject;
 import org.opensaml.xml.schema.XSString;
 import org.opensaml.xml.util.XMLConstants;
 import org.openxrd.common.XRDConstants;
@@ -26,7 +27,7 @@ import org.openxrd.xrd.common.XRDObject;
 /**
  * XRD Title.
  */
-public interface Title extends XRDObject, XSString {
+public interface Title extends XRDObject, XSString, AttributeExtensibleXMLObject {
 
     /** Element local name. */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Title";

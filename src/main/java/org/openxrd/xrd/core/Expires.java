@@ -19,13 +19,14 @@ package org.openxrd.xrd.core;
 import javax.xml.namespace.QName;
 
 import org.joda.time.DateTime;
+import org.opensaml.xml.AttributeExtensibleXMLObject;
 import org.openxrd.common.XRDConstants;
 import org.openxrd.xrd.common.XRDObject;
 
 /**
  * XRD Expires.
  */
-public interface Expires extends XRDObject {
+public interface Expires extends XRDObject, AttributeExtensibleXMLObject {
 
     /** Element local name. */
     public static final String DEFAULT_ELEMENT_LOCAL_NAME = "Expires";
