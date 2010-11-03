@@ -75,7 +75,7 @@ public abstract class BaseTestCase extends XMLTestCase {
         XMLUnit.setIgnoreWhitespace(true);
 
         try {
-            TestBootstrap.bootstrap();
+            Bootstrap.bootstrap();
         } catch (ConfigurationException e) {
             fail(e.getMessage());
         }

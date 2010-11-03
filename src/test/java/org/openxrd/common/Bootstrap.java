@@ -22,7 +22,7 @@ import org.openxrd.DefaultBootstrap;
 /**
  * Extension to the default bootstrap process which sets up configuration for testing purposes.
  */
-public class TestBootstrap extends DefaultBootstrap {
+public class Bootstrap extends DefaultBootstrap {
 
     /** List of XMLTooling configuration files with any needed test configuration. */
     private static String[] testConfigs = {};

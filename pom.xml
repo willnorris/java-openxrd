@@ -11,18 +11,6 @@
 		The OpenXRD-J library provides tools to support developers working with Extensible Resource Descriptors (XRD).
 	</description>
 
-    <repositories>
-        <repository>
-            <id>shibboleth-release</id>
-            <name>Internet2 Releases</name>
-            <layout>default</layout>
-            <url>http://shibboleth.internet2.edu/downloads/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <distributionManagement>
         <site>
             <id>openxrd.website</id>
@@ -36,7 +24,7 @@
         <dependency>
             <groupId>org.opensaml</groupId>
             <artifactId>xmltooling</artifactId>
-            <version>1.2.1</version>
+            <version>1.3.0</version>
             <optional>false</optional>
         </dependency>
 
@@ -96,19 +84,19 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>xmlunit</groupId>
             <artifactId>xmlunit</artifactId>
-            <version>1.0</version>
+            <version>1.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>0.9.15</version>
+            <version>0.9.26</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -117,7 +105,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding> 
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -128,6 +124,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
                     <descriptors>
                         <descriptor>src/main/assembly/bin.xml</descriptor>
@@ -149,6 +146,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
                     <argLine>-Xmx256m</argLine>
                 </configuration>
@@ -157,6 +155,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
                 <configuration>
                     <archive>
                         <index>true</index>
@@ -167,8 +166,8 @@
                             <manifestSection>
                                 <name>org/openxrd/</name>
                                 <manifestEntries>
-                                    <Implementation-Title>${pom.artifactId}</Implementation-Title>
-                                    <Implementation-Version>${pom.version}</Implementation-Version>
+                                    <Implementation-Title>${project.artifactId}</Implementation-Title>
+                                    <Implementation-Version>${project.version}</Implementation-Version>
                                     <Implementation-Vendor>www.openxrd.org</Implementation-Vendor>
                                 </manifestEntries>
                             </manifestSection>
@@ -184,7 +183,6 @@
                     </archive>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -193,6 +191,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
                 <configuration>
                     <links>
                         <link>http://java.sun.com/j2se/1.5.0/docs/api/</link>
@@ -208,6 +207,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
                     <outputDirectory>${project.reporting.outputDirectory}/xref</outputDirectory>
                     <doctitle>${project.name} ${project.version} Code Cross-Reference</doctitle>
@@ -218,6 +218,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
                     <outputDirectory>${project.reporting.outputDirectory}/style</outputDirectory>
@@ -227,6 +228,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
                     <outputDirectory>${project.reporting.outputDirectory}/unitTest</outputDirectory>
                     <xrefLocation>${project.reporting.outputDirectory}/xref</xrefLocation>
@@ -254,9 +256,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git:git://github.com/willnorris/java-openxrd.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/willnorris/java-openxrd.git</developerConnection>
-        <url>http://github.com/willnorris/java-openxrd</url>
+        <connection>scm:svn:https://svn.middleware.georgetown.edu/java-openxrd/</connection>
+        <developerConnection>scm:svn:https://svn.middleware.georgetown.edu/java-openxrd/</developerConnection>
+        <url>http://svn.middleware.georgetown.edu/view/?root=java-openxrd</url>
     </scm>
 
     <developers>
@@ -265,8 +267,8 @@
             <name>Will Norris</name>
             <email>will@willnorris.com</email>
             <url>http://willnorris.com/</url>
-            <organization>Internet2</organization>
-            <organizationUrl>http://www.internet2.edu/</organizationUrl>
+            <organization>Google</organization>
+            <organizationUrl>http://www.google.com/</organizationUrl>
             <roles>
                 <role>developer</role>
                 <role>documentation</role>
