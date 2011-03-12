@@ -8,8 +8,8 @@
 
     <name>OpenXRD-J</name>
     <description>
-		The OpenXRD-J library provides tools to support developers working with Extensible Resource Descriptors (XRD).
-	</description>
+        The OpenXRD-J library provides tools to support developers working with Extensible Resource Descriptors (XRD).
+    </description>
 
     <distributionManagement>
         <site>
@@ -256,9 +256,9 @@
     </organization>
 
     <scm>
-        <connection>scm:svn:https://svn.middleware.georgetown.edu/java-openxrd/</connection>
-        <developerConnection>scm:svn:https://svn.middleware.georgetown.edu/java-openxrd/</developerConnection>
-        <url>http://svn.middleware.georgetown.edu/view/?root=java-openxrd</url>
+        <connection>scm:git:http://github.com/willnorris/java-openxrd.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:willnorris/java-openxrd.git</developerConnection>
+        <connection>http://github.com/willnorris/java-openxrd</connection>
     </scm>
 
     <developers>
