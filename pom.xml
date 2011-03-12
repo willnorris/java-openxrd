@@ -255,6 +255,11 @@
         <url>http://www.internet2.edu/</url>
     </organization>
 
+    <issueManagement>
+        <system>GitHub</system>
+        <url>http://github.com/willnorris/java-openxrd/issues/</url>
+    </issueManagement>
+
     <scm>
         <connection>scm:git:http://github.com/willnorris/java-openxrd.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:willnorris/java-openxrd.git</developerConnection>
@@ -265,7 +270,6 @@
         <developer>
             <id>willnorris</id>
             <name>Will Norris</name>
-            <email>will@willnorris.com</email>
             <url>http://willnorris.com/</url>
             <organization>Google</organization>
             <organizationUrl>http://www.google.com/</organizationUrl>
